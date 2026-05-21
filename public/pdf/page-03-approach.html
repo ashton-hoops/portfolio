@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Page 03 · About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  @media print {
+    html, body { background: var(--bg) !important; padding: 0 !important; margin: 0 !important; display: block !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; margin: 0 !important; }
+  }
+
+  :root {
+    --bg: #fafaf6;
+    --text: #18171a;
+    --text-secondary: #4a4a48;
+    --text-muted: #7a7976;
+    --accent: #6b1018;
+    --rule: rgba(24, 23, 26, 0.22);
+    --rule-light: rgba(24, 23, 26, 0.12);
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
+  body { display: flex; justify-content: center; padding: 0; }
+  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; padding: 48px 56px 40px; display: flex; flex-direction: column; }
+
+  /* HEADER BAND */
+  .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0; }
+
+  /* MASTHEAD */
+  .masthead { margin-top: 18px; }
+  .title { font-family: var(--font-display); font-size: 64px; font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; margin: 0; font-variation-settings: 'opsz' 60; }
+
+  /* HERO ROW — photo + lede side by side */
+  .hero { margin-top: 16px; display: grid; grid-template-columns: 230px 1fr; gap: 22px; align-items: stretch; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .hero-photo { width: 230px; height: 312px; border-radius: 4px; overflow: hidden; background: rgba(24,23,26,0.06); position: relative; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 10px 8px; background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0)); color: #fafaf6; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; }
+
+  .hero-body { display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; }
+  .lede { font-family: var(--font-display); font-size: 15px; font-weight: 400; line-height: 1.5; color: var(--text); margin: 0; font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
+
+  /* QUICK FACTS — small key/value table next to/below lede */
+  .facts { margin-top: 6px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; padding-top: 8px; border-top: 1px solid var(--rule-light); }
+  .facts-k { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); padding: 1px 0; }
+  .facts-v { font-family: var(--font-display); font-size: 12px; line-height: 1.35; color: var(--text); font-variation-settings: 'opsz' 18; padding: 1px 0; }
+
+  /* STATS STRIP */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 18px 0 0; padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { display: flex; flex-direction: column; gap: 3px; }
+  .stat-value { font-family: var(--font-display); font-size: 28px; font-weight: 600; line-height: 1; letter-spacing: -0.025em; color: var(--text); font-variation-settings: 'opsz' 32; }
+  .stat-value-sm { font-size: 19px; }
+  .stat-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted); line-height: 1.3; }
+
+  /* BLOCKS */
+  .blocks { margin-top: 22px; display: flex; flex-direction: column; justify-content: space-between; flex: 1 1 auto; padding-bottom: 8px; }
+  .block { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--rule-light); }
+  .block:first-child { border-top: none; padding-top: 6px; }
+  .block-label-row { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+  .block-num { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--accent); line-height: 0.9; letter-spacing: -0.02em; font-variation-settings: 'opsz' 32; }
+  .block-label { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); padding-top: 5px; }
+  .block-body { font-family: var(--font-display); font-size: 15px; font-weight: 400; line-height: 1.6; color: var(--text); margin: 0; font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
+
+  /* FOOTER */
+  .footer { margin-top: auto; padding-top: 14px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--rule); }
+  .footer-meta { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
+  .pg { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <p class="eyebrow">Portfolio · 2026</p>
+      <p class="eyebrow">About</p>
+    </header>
+
+    <section class="masthead">
+      <h1 class="title">About</h1>
+    </section>
+
+    <section class="hero">
+      <div class="hero-photo">
+        <img src="/images/ashton-court.jpg" alt="Ashton Jantz on the court" />
+      </div>
+      <div class="hero-body">
+        <p class="lede">
+          I recently graduated from the University of Oklahoma's Price College of Business with a Bachelor's in Sports Business &amp; Analytics. I spent the past two seasons as a practice player with the Oklahoma women's basketball team, gaining hands-on experience inside a high-level college basketball program. That experience strengthened my passion for basketball analytics, film study, scouting, and defensive evaluation. At Oklahoma, I coded and built a custom defensive analytics dashboard and platform from scratch, developed a computer-vision pipeline using publicly available broadcasts, and completed a season-long defensive analysis report on Oklahoma's defensive possessions against top opponents. I am currently seeking a graduate assistant role for the 2026–27 season.
+        </p>
+      </div>
+    </section>
+
+    <div class="blocks">
+      <div class="block">
+        <div class="block-label-row">
+          <span class="block-num">01</span>
+          <span class="block-label">On Analytics</span>
+        </div>
+        <p class="block-body">My view on analytics is that it's a small part of the puzzle. The goal isn't to redesign a system, but to give insight and find advantages in team building, playstyles, and in-game adjustments.</p>
+      </div>
+      <div class="block">
+        <div class="block-label-row">
+          <span class="block-num">02</span>
+          <span class="block-label">On the Game</span>
+        </div>
+        <p class="block-body">I'm someone that is more process-oriented and looks to find ways to constantly learn about the game and a team. I enjoy reading about the game, studying different philosophies, and knowing what's important to a staff. Being a practice player has taught me as much about the importance of the intangibles as my work in analytics and coding.</p>
+      </div>
+      <div class="block">
+        <div class="block-label-row">
+          <span class="block-num">03</span>
+          <span class="block-label">On the Work</span>
+        </div>
+        <p class="block-body">For every tool and research study, the goal is to adapt to the needs of the coaching staff. The right tools support a staff's philosophy and a team's development.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-meta">Ashton Jantz · Basketball Analytics &amp; Research</span>
+      <span class="pg">03</span>
+    </footer>
+  </div>
+</body>
+</html>

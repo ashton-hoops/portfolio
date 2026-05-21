@@ -1,0 +1,351 @@
+/* 3D Shot Chart Tool — full-page interactive tool covering AP Top 25
+   women's D1 teams (2025-26). Replaces the Playbook placeholder page. */
+
+.sct {
+  display: flex;
+  flex-direction: column;
+  background: #18171a;
+  color: #fafaf6;
+  min-height: calc(100vh - var(--header-height, 48px));
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ============================================================
+   Team strip — horizontal scroll of AP25 team logos
+   ============================================================ */
+
+.sct__team-strip {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: #0d0c0e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.sct__team-strip::-webkit-scrollbar {
+  height: 6px;
+}
+.sct__team-strip::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.sct__team-btn {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fafaf6;
+  transition: background 150ms ease, border-color 150ms ease;
+  min-width: 88px;
+}
+
+.sct__team-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sct__team-btn--active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.sct__team-btn-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.sct__team-btn-name {
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.sct__team-btn-rank {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sct__team-btn--active .sct__team-btn-rank {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================================
+   Main grid — chart left, sidebar right
+   ============================================================ */
+
+.sct__main {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.sct__chart {
+  background: #0d0c0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.sct__chart-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  text-align: center;
+  padding: 32px;
+}
+
+.sct__chart-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 12, 14, 0.85);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.sct__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.sct__sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sct__sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Cards (player, stats, filters)
+   ============================================================ */
+
+.sct__card {
+  background: #0d0c0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.sct__card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 12px;
+}
+
+/* PLAYER CARD */
+.sct__player-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sct__player-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+.sct__player-meta-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.sct__player-meta-sub {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 4px 0 0;
+}
+
+/* STATS — classic line + zone breakdown */
+.sct__stat-line {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.sct__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.sct__stat-k {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sct__stat-v {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sct__zone-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.sct__zone-table th,
+.sct__zone-table td {
+  text-align: left;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sct__zone-table th {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sct__zone-table td {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+}
+
+.sct__zone-table .sct__zone-pct {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* FILTERS */
+.sct__filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.sct__filter-row:last-child { margin-bottom: 0; }
+
+.sct__filter-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sct__filter-btn-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sct__filter-btn {
+  flex: 1 1 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fafaf6;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.sct__filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sct__filter-btn--active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.sct__select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fafaf6;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .sct__main {
+    grid-template-columns: 1fr;
+  }
+  .sct__sidebar {
+    max-height: none;
+  }
+  .sct__chart {
+    min-height: 480px;
+  }
+  .sct__team-btn {
+    min-width: 76px;
+  }
+}

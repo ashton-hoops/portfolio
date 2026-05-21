@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cover 9 · Magazine grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  :root { --bg: #fafaf6; --bg-subtle: #f3f2ec; --bg-dark: #18171a; --text: #18171a; --text-muted: #7a7976; --text-on-dark: #fafaf6; --accent: #6b1018; --border: #d8d6cf; --border-light: #e8e6df; --font-display: 'Source Serif 4', Georgia, serif; --font-sans: 'Inter', system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
+  body { display: flex; justify-content: center; padding: 40px 20px; }
+  .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); padding: 36px; position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr 1fr auto; gap: 16px; }
+  .head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--text); }
+  .eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0; }
+  .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.03em; font-variation-settings: 'opsz' 32; }
+  .name-cell { grid-column: 1 / -1; padding: 8px 8px 0; }
+  .name { font-family: var(--font-display); font-size: 144px; font-weight: 600; line-height: 0.85; letter-spacing: -0.045em; margin: 0; font-variation-settings: 'opsz' 60; }
+  .photo-cell { background: var(--bg-dark); overflow: hidden; border-radius: 4px; }
+  .photo-cell img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; }
+  .role-cell { background: var(--bg-subtle); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 4px; }
+  .role-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0 0 8px; }
+  .role { font-family: var(--font-display); font-style: italic; font-size: 28px; font-weight: 500; line-height: 1.25; margin: 0; font-variation-settings: 'opsz' 32; }
+  .pill { align-self: flex-start; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--bg); background: var(--accent); padding: 5px 11px; border-radius: 999px; }
+  .info-cell { background: var(--bg-dark); color: var(--text-on-dark); padding: 24px; border-radius: 4px; display: flex; flex-direction: column; gap: 12px; }
+  .info-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.7; margin: 0; }
+  .info-block { display: flex; flex-direction: column; gap: 2px; }
+  .info-row-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.55; }
+  .info-row-value { font-size: 13px; line-height: 1.4; }
+  .background-cell { padding: 18px 8px 0; border-top: 1px solid var(--border); grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .bg-item { display: flex; flex-direction: column; gap: 2px; }
+  .bg-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); }
+  .bg-value { font-size: 12.5px; line-height: 1.4; }
+  .meta { position: absolute; bottom: 14px; right: 36px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="head"><p class="eyebrow">Norman, Oklahoma · Portfolio 2026</p><span class="logo">AJ</span></div>
+    <div class="name-cell"><h1 class="name">Ashton Jantz</h1></div>
+    <div class="photo-cell"><img src="/pdf/images/ashton-cover.jpg" alt="" /></div>
+    <div class="role-cell">
+      <div>
+        <p class="role-eyebrow">Role</p>
+        <p class="role">Basketball Analytics &amp; Research</p>
+      </div>
+      <span class="pill">Seeking GA · 2026–27</span>
+    </div>
+    <div class="info-cell">
+      <p class="info-label">Contact</p>
+      <div class="info-block"><span class="info-row-label">Email</span><span class="info-row-value">ashtonbjantz@icloud.com</span></div>
+      <div class="info-block"><span class="info-row-label">Phone</span><span class="info-row-value">(405) 696-9206</span></div>
+    </div>
+    <div class="background-cell">
+      <div class="bg-item"><span class="bg-label">School</span><span class="bg-value">B.B.A. Sports Business · OU '26</span></div>
+      <div class="bg-item"><span class="bg-label">Playing</span><span class="bg-value">OU WBB practice player, 2024–26</span></div>
+    </div>
+    <span class="meta">Portfolio · 2026</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cover 5 · Mirror split, photo left</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  @media print {
+    html, body { background: var(--bg) !important; padding: 0 !important; margin: 0 !important; display: block !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; margin: 0 !important; }
+  }
+
+  :root {
+    --bg: #fafaf6; --text: #18171a; --text-muted: #7a7976; --accent: #6b1018; --border: #d8d6cf; --border-light: #e8e6df;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
+  body { display: flex; justify-content: center; padding: 0; }
+  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; display: grid; grid-template-columns: 0.5fr 1fr; }
+  .photo-col { background: #18171a; overflow: hidden; }
+  .photo-col img { width: 100%; height: 100%; object-fit: cover; object-position: 35% 15%; }
+  .text-col { padding: 52px 56px 44px 40px; display: flex; flex-direction: column; }
+  .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid rgba(24, 23, 26, 0.22); }
+  .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0; }
+  .name-block { margin-top: 40px; }
+  .name { font-family: var(--font-display); font-size: 134px; font-weight: 600; line-height: 0.86; letter-spacing: -0.045em; margin: 0; font-variation-settings: 'opsz' 60; }
+  .role { font-family: var(--font-display); font-style: italic; font-size: 22px; font-weight: 500; line-height: 1.3; margin: 28px 0 0; font-variation-settings: 'opsz' 32; }
+  .pill { display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--bg); background: var(--accent); padding: 9px 18px; border-radius: 999px; }
+  .bio-area { flex: 1 1 auto; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(24, 23, 26, 0.22); display: flex; align-items: center; justify-content: stretch; }
+  .bio { font-family: var(--font-display); font-size: 23px; font-style: normal; font-weight: 400; line-height: 1.55; color: var(--text); margin: 0; font-variation-settings: 'opsz' 24; letter-spacing: -0.01em; }
+  .info-group { margin-top: 0; }
+  .bottom { padding-top: 20px; border-top: 1px solid rgba(24, 23, 26, 0.22); }
+  .row { display: grid; grid-template-columns: 92px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+  .row:last-child { border-bottom: none; }
+  .row-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted); padding-top: 2px; }
+  .row-value { font-family: var(--font-display); font-size: 14px; line-height: 1.4; font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="photo-col"><img src="/pdf/images/ashton-brick.jpg" alt="" /></div>
+    <div class="text-col">
+      <div class="top"><p class="eyebrow">Portfolio · 2026</p></div>
+      <div class="name-block">
+        <h1 class="name">Ashton<br/>Jantz</h1>
+        <p class="role">Basketball Analytics &amp; Research</p>
+        <span class="pill">Seeking GA Role · 2026–27</span>
+      </div>
+      <div class="bio-area">
+        <p class="bio">Passionate about the game and understanding what drives winning. Focused on evaluating opponent actions, coverages, and outcomes, combining film and data to generate insights, and using analytics and research to support coaching staff and players.</p>
+      </div>
+      <div class="info-group">
+        <div class="bottom">
+          <div class="row"><span class="row-label">Email</span><span class="row-value">ashtonbjantz@icloud.com</span></div>
+          <div class="row"><span class="row-label">Phone</span><span class="row-value">(405) 696-9206</span></div>
+          <div class="row"><span class="row-label">Education</span><span class="row-value">B.B.A. Sports Business &amp; Analytics, Oklahoma '26</span></div>
+          <div class="row"><span class="row-label">Last Team</span><span class="row-value">Oklahoma WBB practice player, 2024–26</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

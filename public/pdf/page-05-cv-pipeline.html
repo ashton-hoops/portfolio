@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Page 05 · Computer Vision Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  @media print {
+    html, body { background: var(--bg) !important; padding: 0 !important; margin: 0 !important; display: block !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; margin: 0 !important; }
+  }
+
+  :root {
+    --bg: #fafaf6;
+    --text: #18171a;
+    --text-secondary: #4a4a48;
+    --text-muted: #7a7976;
+    --accent: #6b1018;
+    --rule: rgba(24, 23, 26, 0.22);
+    --rule-light: rgba(24, 23, 26, 0.12);
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
+  body { display: flex; justify-content: center; padding: 0; }
+  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; padding: 52px 64px 44px; display: flex; flex-direction: column; }
+
+  /* HEADER BAND */
+  .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0; }
+
+  /* MASTHEAD */
+  .masthead { margin-top: 14px; }
+  .title { font-family: var(--font-display); font-size: 46px; font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; margin: 0; font-variation-settings: 'opsz' 60; }
+
+  /* LEDE */
+  .lede { font-family: var(--font-display); font-size: 15px; font-weight: 400; line-height: 1.5; color: var(--text); margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--rule); font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
+  .lede-2 { margin-top: 16px; padding-top: 0; border-top: none; }
+
+  /* IMAGE / VIDEO */
+  .image-block { margin: auto 0; }
+  .image-wrap { position: relative; width: 100%; aspect-ratio: 8 / 3; overflow: hidden; border-radius: 4px; background: #18171a; border: 1px solid var(--rule); }
+  .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .image-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 1500ms ease; pointer-events: none; }
+  .image-wrap video.cv-active { opacity: 1; pointer-events: auto; cursor: zoom-in; }
+  .image-wrap video.cv-active:hover { cursor: zoom-in; }
+  /* In fullscreen, fit the entire frame on screen (letterbox if needed)
+     instead of cropping to fill — the cropped preview is intentional in
+     the small embed, but fullscreen should show the whole frame. */
+  .image-wrap video:fullscreen,
+  .image-wrap video:-webkit-full-screen { object-fit: contain; background: #000; }
+  /* Click-to-expand pill — visual cue that the demo opens in fullscreen
+     when clicked. Matches the corner hint style used on page 07's PDF
+     preview. */
+  .cv-expand-hint { position: absolute; bottom: 12px; right: 12px; padding: 5px 11px; background: rgba(24, 23, 26, 0.86); color: #fafaf6; font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; border-radius: 4px; opacity: 0.85; pointer-events: none; transition: opacity 200ms ease, background 200ms ease; z-index: 2; font-family: inherit; }
+  .image-wrap:hover .cv-expand-hint { opacity: 1; background: var(--accent); }
+  .caption { font-size: 10.5px; color: var(--text-muted); margin: 6px 0 0; font-style: italic; line-height: 1.4; }
+  .caption-meta { font-style: normal; color: var(--text-secondary); }
+
+  /* CV DOTS — clip selector */
+  .cv-dots { display: flex; justify-content: center; gap: 10px; margin: 8px 0 0; }
+  .cv-dot { width: 9px; height: 9px; padding: 0; border: none; border-radius: 50%; background: var(--rule-light); cursor: pointer; transition: background 200ms ease, transform 200ms ease; }
+  .cv-dot:hover { background: rgba(107, 16, 24, 0.55); transform: scale(1.15); }
+  .cv-dot.active { background: var(--accent); }
+  .cv-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* LINK CALLOUT */
+  .report-link { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 10px 18px; margin: 10px 0 0; background: var(--accent); color: #fafaf6; border-radius: 6px; text-decoration: none; }
+  .report-link-left { display: flex; flex-direction: column; gap: 2px; }
+  .report-link-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.75; }
+  .report-link-url { font-family: var(--font-display); font-size: 16px; font-weight: 500; letter-spacing: -0.005em; font-variation-settings: 'opsz' 18; }
+  .report-link-cta { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; padding: 8px 14px; background: rgba(255, 255, 255, 0.12); border-radius: 999px; }
+
+  /* FOOTER */
+  .footer { margin-top: 14px; padding-top: 18px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--rule); }
+  .footer-meta { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
+  .pg { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <p class="eyebrow">Portfolio · 2026</p>
+      <p class="eyebrow">Computer Vision Pipeline</p>
+    </header>
+
+    <section class="masthead">
+      <h1 class="title">Computer Vision Pipeline</h1>
+    </section>
+
+    <p class="lede">
+      Over the past year I've been building a custom computer vision pipeline that takes broadcast footage and automatically detects and tracks all 10 players, their on court locations, and key actions such as passes, screens, DHOs, shot contests, and more. It can process a full game overnight from broadcast video alone to produce tracking quality data and labeled events similar to something like Synergy's in arena camera package, and it can be tailored to a team's specific play style and philosophies.
+    </p>
+    <p class="lede lede-2">
+      Beyond the current features, the possibilities and potential are really endless. It could be used to identify individual defenders, quantify pass and shot difficulty, and evaluate players in high school or overseas by measuring things like processing speed in pick and rolls, athletic measurements, and decision patterns. This is the kind of detailed feedback I think recruits would love to see about themselves on a visit.
+    </p>
+    <p class="lede lede-2">
+      I'm also actively exploring uses in practice and player workouts to track shooting progress and team drills, as well as tracking shot consistency through release point, arc, and release speed. There's so much potential in a project like this and teams are starting to take advantage, as this work is similar to computer vision models that were reportedly used by the Charlotte Hornets to select Kon Knueppel.
+    </p>
+
+    <div class="image-block">
+      <div class="image-wrap">
+        <video id="cv-player-a" muted playsinline preload="auto"></video>
+        <video id="cv-player-b" muted playsinline preload="auto"></video>
+        <span class="cv-expand-hint" aria-hidden="true">⤢ Click to expand</span>
+      </div>
+      <p class="caption">
+        <span class="caption-meta" id="cv-caption-meta">Computer Vision Demo · clip 1 of 3</span>
+      </p>
+      <div class="cv-dots" id="cv-dots" role="tablist" aria-label="Select clip"></div>
+    </div>
+
+    <script>
+      (function () {
+        var clips = [
+          { id: 'CV_8cef98e8' },
+          { id: 'CV_8d2f2fc2' },
+          { id: 'CV_0fa21c20' }
+        ];
+        var BASE = 'https://pub-f1e4215f277b4aba9425176b59903d78.r2.dev/derived/clips/';
+        var els = [document.getElementById('cv-player-a'), document.getElementById('cv-player-b')];
+        var meta = document.getElementById('cv-caption-meta');
+        var dotsRoot = document.getElementById('cv-dots');
+        var activeIdx = 0;
+        var clipIdx = 0;
+        var transitioning = false;
+
+        function clipFor(idx) { return clips[((idx % clips.length) + clips.length) % clips.length]; }
+        function loadClipInto(el, idx) {
+          var c = clipFor(idx);
+          el.src = BASE + c.id + '/v1/clip.mp4';
+          el.load();
+        }
+        function updateCaption(idx) {
+          meta.textContent = 'Computer Vision Demo · clip ' + ((idx % clips.length) + 1) + ' of ' + clips.length;
+        }
+        function updateDots() {
+          var children = dotsRoot.children;
+          var active = ((clipIdx % clips.length) + clips.length) % clips.length;
+          for (var i = 0; i < children.length; i++) {
+            children[i].classList.toggle('active', i === active);
+            children[i].setAttribute('aria-selected', i === active ? 'true' : 'false');
+          }
+        }
+
+        function swapTo(targetClipIdx) {
+          if (transitioning) return;
+          var normalized = ((targetClipIdx % clips.length) + clips.length) % clips.length;
+          var currentNormalized = ((clipIdx % clips.length) + clips.length) % clips.length;
+          if (normalized === currentNormalized) return;
+          transitioning = true;
+
+          var nextActiveIdx = 1 - activeIdx;
+          var prevEl = els[activeIdx];
+          var nextEl = els[nextActiveIdx];
+
+          function doSwap() {
+            nextEl.currentTime = 0;
+            nextEl.classList.add('cv-active');
+            prevEl.classList.remove('cv-active');
+            nextEl.play().catch(function () {});
+
+            activeIdx = nextActiveIdx;
+            clipIdx = targetClipIdx;
+            updateCaption(clipIdx);
+            updateDots();
+
+            window.setTimeout(function () {
+              prevEl.pause();
+              loadClipInto(prevEl, clipIdx + 1);
+              transitioning = false;
+            }, 1550);
+          }
+
+          // If the inactive element already has the target clip queued
+          // (the common sequential-advance case), swap immediately.
+          var targetSrc = BASE + clipFor(targetClipIdx).id + '/v1/clip.mp4';
+          if (nextEl.src === targetSrc && nextEl.readyState >= 3) {
+            doSwap();
+          } else {
+            loadClipInto(nextEl, targetClipIdx);
+            var ready = function () {
+              nextEl.removeEventListener('canplay', ready);
+              doSwap();
+            };
+            if (nextEl.readyState >= 3) ready();
+            else nextEl.addEventListener('canplay', ready);
+          }
+        }
+
+        function advance() {
+          // If a clip is currently in fullscreen, crossfading to the OTHER
+          // <video> element won't change what fullscreen is showing — it
+          // would just freeze on the original. Load the next clip into
+          // the SAME element instead so fullscreen keeps playing.
+          var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+          if (fsEl && els.indexOf(fsEl) !== -1) {
+            var nextIdx = clipIdx + 1;
+            var nextNorm = ((nextIdx % clips.length) + clips.length) % clips.length;
+            fsEl.src = BASE + clipFor(nextIdx).id + '/v1/clip.mp4';
+            var play = function () {
+              fsEl.removeEventListener('canplay', play);
+              fsEl.play().catch(function () {});
+            };
+            fsEl.addEventListener('canplay', play);
+            fsEl.load();
+            clipIdx = nextIdx;
+            updateCaption(clipIdx);
+            updateDots();
+            // Pre-queue the FOLLOWING clip into the other element so when
+            // we exit fullscreen the normal crossfade flow still works.
+            var otherEl = els[1 - els.indexOf(fsEl)];
+            loadClipInto(otherEl, nextIdx + 1);
+            return;
+          }
+          swapTo(clipIdx + 1);
+        }
+
+        function goFullscreen() {
+          var el = els[activeIdx];
+          if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+        }
+
+        // Bind ended + click on both video elements.
+        els.forEach(function (el) {
+          el.addEventListener('ended', advance);
+          el.addEventListener('click', goFullscreen);
+        });
+
+        // Build dots dynamically so they match the clips array.
+        for (var i = 0; i < clips.length; i++) {
+          (function (idx) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'cv-dot' + (idx === 0 ? ' active' : '');
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Clip ' + (idx + 1));
+            b.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+            b.addEventListener('click', function () { swapTo(idx); });
+            dotsRoot.appendChild(b);
+          })(i);
+        }
+
+        // Initial state: A plays clip 0, B preloads clip 1.
+        loadClipInto(els[0], 0);
+        loadClipInto(els[1], 1);
+        els[0].classList.add('cv-active');
+        els[0].play().catch(function () {});
+        updateCaption(0);
+      })();
+    </script>
+
+
+    <footer class="footer">
+      <span class="footer-meta">Ashton Jantz · Basketball Analytics &amp; Research</span>
+      <span class="pg">05</span>
+    </footer>
+  </div>
+</body>
+</html>

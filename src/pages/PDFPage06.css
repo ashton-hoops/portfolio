@@ -1,0 +1,603 @@
+/* PDFPage06 — interactive software-development page. Right-rail panels
+ * use inline styles lifted from ui/src/components/ShotChart.tsx so the
+ * visual styling matches the live Defense Dashboard exactly. Page chrome
+ * (header / title / lede / footer) stays in the portfolio doc style.
+ */
+@page { size: 8.5in 11in; margin: 0; }
+@media print {
+  html, body {
+    background: #fafaf6 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .pdf06-root {
+    background: #fafaf6 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    min-height: 0 !important;
+  }
+  .pdf06-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+}
+.pdf06-root {
+  --bg: #fafaf6;
+  --text: #18171a;
+  --text-secondary: #4a4a48;
+  --text-muted: #7a7976;
+  --accent: #6b1018;
+  --rule: rgba(24, 23, 26, 0.22);
+  --rule-light: rgba(24, 23, 26, 0.12);
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  margin: 0;
+  /* No padding — the gray frame lives on the outer paperStyle wrapper
+   * in PDFPreviewAll. Each iframe is 816×1056 and .pdf06-page is the
+   * same size, so it fills the iframe flush with no clipping. */
+  padding: 0;
+  background: #fafaf6;
+  color: var(--text);
+  font-family: var(--font-sans);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.pdf06-root *,
+.pdf06-root *::before,
+.pdf06-root *::after {
+  box-sizing: border-box;
+}
+
+/* Match the static PDF pages' text rendering — global.css sets
+   -webkit-font-smoothing: antialiased on <html>, which made body text
+   here render slightly lighter than the static .lede paragraphs that
+   use the browser default. Force the default back so all 8 pages
+   look identical. */
+.pdf06-root,
+.pdf06-root * {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Letter PORTRAIT — 816 × 1056. flex-shrink: 0 so this can never be
+   compressed by the parent flex container; the page must stay at its
+   designed dimensions so the footer and grid layout don't collapse. */
+.pdf06-page {
+  width: 816px;
+  height: 1056px;
+  flex-shrink: 0;
+  background: var(--bg);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  position: relative;
+  padding: 36px 44px 28px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pdf06-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pdf06-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.pdf06-masthead {
+  margin: 8px 0 0;
+  display: block;
+  padding: 0;
+  min-height: 0;
+}
+
+.pdf06-title {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-variation-settings: 'opsz' 60;
+}
+
+.pdf06-lede {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font-variation-settings: 'opsz' 18;
+  letter-spacing: -0.005em;
+}
+
+.pdf06-lede-2 {
+  margin-top: 8px;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* CHART column — fills all remaining vertical space on the page. */
+.pdf06-chart-col {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+}
+.pdf06-image-wrap {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  position: relative;
+  min-height: 400px;
+}
+
+/* Zone-edit banner — appears between the chart and toolbar when the
+ * user toggles Edit on. Keeps the main toolbar uncluttered. */
+.pdf06-zone-edit-banner {
+  margin: 4px 0 0;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(107, 16, 24, 0.08);
+  border: 1px solid rgba(107, 16, 24, 0.22);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+}
+.pdf06-zone-edit-tip {
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+}
+.pdf06-zone-edit-tip strong {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 2px;
+}
+.pdf06-zone-edit-actions {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.pdf06-zone-edit-btn {
+  border: 1px solid var(--rule-light);
+  background: #fafaf6;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pdf06-zone-edit-btn:hover {
+  background: rgba(24, 23, 26, 0.06);
+}
+.pdf06-zone-edit-btn.is-primary {
+  background: var(--accent);
+  color: #fafaf6;
+  border-color: var(--accent);
+}
+.pdf06-zone-edit-btn.is-primary:hover {
+  background: #861520;
+}
+
+/* Inline filter bar — flat, light, compact. No heavy dark cards. */
+.pdf06-bar {
+  margin: 2px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-sans);
+}
+.pdf06-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  background: rgba(24, 23, 26, 0.04);
+  border: 1px solid var(--rule-light);
+  border-radius: 6px;
+  flex-wrap: nowrap;
+}
+.pdf06-bar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.pdf06-bar-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.pdf06-bar-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--rule-light);
+  margin: 0;
+  flex-shrink: 0;
+}
+.pdf06-bar-pills {
+  display: inline-flex;
+  background: rgba(24, 23, 26, 0.08);
+  border-radius: 999px;
+  padding: 2px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.pdf06-bar-pill {
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 3px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pdf06-bar-pill.is-active {
+  background: var(--accent);
+  color: #fafaf6;
+}
+.pdf06-bar-zoom {
+  display: inline-flex;
+  gap: 3px;
+  margin-left: 3px;
+}
+.pdf06-bar-zoom-btn {
+  border: 1px solid var(--rule-light);
+  background: #fafaf6;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.pdf06-bar-zoom-btn:hover {
+  background: rgba(24, 23, 26, 0.08);
+}
+.pdf06-bar-select {
+  appearance: none;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text);
+  background: #fafaf6;
+  border: 1px solid var(--rule-light);
+  border-radius: 5px;
+  padding: 3px 18px 3px 7px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path fill="%237a7976" d="M5 6 0 0h10z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  cursor: pointer;
+  max-width: 130px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.pdf06-bar-select.is-game {
+  width: 168px;
+  min-width: 168px;
+}
+.pdf06-bar-select.is-role {
+  width: 108px;
+  min-width: 108px;
+}
+
+/* Custom Game picker — popup opens upward so it never overflows the page. */
+.pdf06-picker {
+  position: relative;
+  display: inline-flex;
+}
+.pdf06-picker-btn {
+  text-align: left;
+  cursor: pointer;
+}
+.pdf06-picker-pop {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  width: 240px;
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #fafaf6;
+  border: 1px solid rgba(24, 23, 26, 0.18);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  padding: 4px 0;
+  font-family: inherit;
+}
+.pdf06-picker-item {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pdf06-picker-item.no-meta {
+  grid-template-columns: 1fr auto;
+}
+.pdf06-picker-item:hover {
+  background: rgba(24, 23, 26, 0.06);
+}
+.pdf06-picker-item.is-selected {
+  background: rgba(107, 16, 24, 0.10);
+  color: var(--accent);
+  font-weight: 700;
+}
+.pdf06-picker-item-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pdf06-picker-item.is-selected .pdf06-picker-item-num { color: var(--accent); }
+.pdf06-picker-item-opp {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: -0.005em;
+  font-variation-settings: 'opsz' 18;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pdf06-picker-item-res {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+.pdf06-picker-item-res.is-good {
+  background: rgba(40, 120, 60, 0.14);
+  color: #1f5a32;
+}
+.pdf06-picker-item-res.is-bad {
+  background: rgba(107, 16, 24, 0.12);
+  color: var(--accent);
+}
+.pdf06-picker-item-res.is-neutral {
+  background: rgba(24, 23, 26, 0.10);
+  color: var(--text-secondary);
+}
+.pdf06-bar-select.is-result {
+  width: 102px;
+  min-width: 102px;
+}
+.pdf06-bar-reset {
+  margin-left: auto;
+  border: 0;
+  background: var(--accent);
+  color: #fafaf6;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 26px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pdf06-bar-legend-items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.pdf06-bar-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.pdf06-bar-legend-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.pdf06-cards-row {
+  margin: 8px 0 0;
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 8px;
+  align-items: stretch;
+}
+.pdf06-cards-row > * {
+  height: 100%;
+  min-width: 0;
+}
+.pdf06-chart-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.pdf06-chart-container > div {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  background: transparent;
+}
+.pdf06-chart-container > div > div {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent;
+}
+.pdf06-chart-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.pdf06-chart-loading,
+.pdf06-chart-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 2;
+}
+.pdf06-caption-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 6px 0 0;
+  flex-wrap: nowrap;
+}
+.pdf06-caption {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+  min-width: 0;
+}
+.pdf06-caption-meta {
+  font-style: normal;
+  color: var(--text-secondary);
+}
+
+/* Marker legend — sits inline with the caption row so the toolbar above
+ * stays a single clean strip. Three swatches: filled-blue (Primary),
+ * filled-green (Shooter), and a hollow ring (Missed shot). */
+.pdf06-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+.pdf06-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  white-space: nowrap;
+}
+.pdf06-legend-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+}
+.pdf06-legend-dot.is-ring {
+  background: transparent;
+  border: 1.5px solid var(--text-secondary);
+}
+
+/* FOOTER — pinned to the bottom of the page so the layout fills the
+ * letter-portrait paper instead of leaving cream below the cards row.
+ * Use gap+min-width:0 so the meta text never overlaps or clips against
+ * the page number on the right. */
+.pdf06-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  border-top: 1px solid var(--rule);
+}
+.pdf06-footer-meta {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  min-width: 0;
+  white-space: nowrap;
+}
+.pdf06-pg {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 24;
+  flex-shrink: 0;
+  font-variation-settings: 'opsz' 24;
+}

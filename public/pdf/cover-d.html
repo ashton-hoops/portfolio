@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cover D · Type-dominant, small inset photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafaf6;
+    --bg-subtle: #f3f2ec;
+    --text: #18171a;
+    --text-secondary: #4a4a48;
+    --text-muted: #7a7976;
+    --accent: #6b1018;
+    --border: #d8d6cf;
+    --border-light: #e8e6df;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 816px;
+    height: 1056px;
+    background: var(--bg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    position: relative;
+    overflow: hidden;
+    padding: 56px 64px 48px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 32px;
+  }
+
+  /* TOP — header band with small inset photo */
+  .top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-start;
+    gap: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--text);
+  }
+
+  .top-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: flex-end;
+    height: 100%;
+    padding-bottom: 4px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .logo-line {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variation-settings: 'opsz' 32;
+  }
+
+  .doc-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  .photo {
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
+    object-position: 50% 18%;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    display: block;
+  }
+
+  /* MIDDLE — type dominates */
+  .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 180px;
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: -0.045em;
+    margin: 0;
+    font-variation-settings: 'opsz' 60;
+  }
+
+  .role-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .role {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.005em;
+    font-variation-settings: 'opsz' 32;
+    max-width: 24ch;
+  }
+
+  .status-pill {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  /* BOTTOM — contact row + page meta */
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid var(--text);
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .contact-label {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+  }
+
+  .contact-value {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <section class="top">
+      <div class="top-left">
+        <p class="eyebrow">Norman, Oklahoma · Portfolio 2026</p>
+        <div class="logo-line">
+          <span class="logo">AJ</span>
+        </div>
+      </div>
+      <img class="photo" src="/pdf/images/ashton-cover.jpg" alt="Ashton Jantz" />
+    </section>
+
+    <section class="middle">
+      <h1 class="name">Ashton<br/>Jantz</h1>
+      <div class="role-block">
+        <p class="role">Basketball Analytics &amp; Research</p>
+        <span class="status-pill">Seeking GA · 2026–27</span>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <div class="contact-row">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">ashtonbjantz@icloud.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">(405) 696-9206</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">School</span>
+          <span class="contact-value">B.B.A. Sports Business · OU '26</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Playing</span>
+          <span class="contact-value">OU WBB practice player, 2024–26</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>Portfolio · 2026</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

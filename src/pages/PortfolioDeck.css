@@ -1,0 +1,96 @@
+/* PortfolioDeck — the 8-page deck rendered as the Portfolio landing page,
+   inside the site's normal Layout (Header on top, Footer below). The
+   floating PDF HUD from /pdf/all is intentionally omitted here because
+   the site's Header already provides nav. Each tile is a fixed 880×1120
+   cream-bordered paper containing an 816×1056 iframe of the underlying
+   /public/pdf/page-*.html page. */
+
+.deck-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(24px * var(--deck-scale, 1));
+  padding: 28px 16px 80px;
+  background: #ddd;
+  --deck-scale: 1;
+}
+
+/* Outer frame defines the SCALED layout box so the flex column stack
+   collapses correctly. Inner .deck-tile sits at native 920×1170 and
+   is visually shrunk via transform — works consistently in Safari
+   and Chrome (unlike `zoom`, which Safari doesn't propagate into
+   iframe content). */
+.deck-tile-frame {
+  width: calc(920px * var(--deck-scale, 1));
+  height: calc(1170px * var(--deck-scale, 1));
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: var(--header-height, 48px);
+}
+
+.deck-tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: scale(var(--deck-scale, 1));
+  transform-origin: top left;
+}
+
+.deck-tile-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  width: 880px;
+  max-width: 100%;
+  padding-left: 4px;
+  box-sizing: border-box;
+}
+
+.deck-tile-num {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b1018;
+  letter-spacing: -0.005em;
+}
+
+.deck-tile-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #4a4a48;
+}
+
+.deck-paper {
+  width: 880px;
+  height: 1120px;
+  background: #ddd;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  padding: 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.deck-iframe {
+  width: 816px;
+  height: 1056px;
+  border: 0;
+  display: block;
+  background: #fafaf6;
+}
+
+/* Narrow viewport padding tweak — the scale factor itself is computed
+   in JS based on both window width AND height (PortfolioDeck.tsx) and
+   applied via the --deck-scale CSS variable. */
+@media (max-width: 920px) {
+  .deck-stack {
+    padding: 14px 8px 60px;
+  }
+}

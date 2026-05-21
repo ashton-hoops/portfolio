@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Portfolio · All Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #ddd;
+    --panel: #fafaf6;
+    --text: #18171a;
+    --text-muted: #7a7976;
+    --accent: #6b1018;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: var(--font-sans); color: var(--text); }
+
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(24, 23, 26, 0.95);
+    backdrop-filter: blur(6px);
+    color: #fafaf6;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 100;
+  }
+  header h1 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  header .links { display: flex; gap: 16px; }
+  header .links a {
+    color: #cfceca;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 150ms ease;
+  }
+  header .links a:hover { background: rgba(255,255,255,0.1); color: #fafaf6; }
+
+  .grid {
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 32px;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+
+  .page-card {
+    background: var(--panel);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .page-card iframe {
+    width: 100%;
+    aspect-ratio: 816 / 1056;
+    border: none;
+    display: block;
+    background: var(--panel);
+  }
+
+  .page-meta {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .page-meta .pnum {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .page-meta .ptitle {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .page-meta .plink {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+  .page-meta .plink:hover { color: var(--text); }
+
+  .meta-left { display: flex; align-items: baseline; gap: 12px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Ashton Jantz · Portfolio Preview</h1>
+    <div class="links">
+      <a href="/pdf/cover.html" target="_blank">Cover</a>
+      <a href="/pdf/page-02-toc.html" target="_blank">TOC</a>
+      <a href="/pdf/page-03-approach.html" target="_blank">About</a>
+      <a href="/pdf/page-04-defense.html" target="_blank">Defense</a>
+      <a href="/pdf/page-05-cv-pipeline.html" target="_blank">CV Pipeline</a>
+      <a href="/#/pdf/page-06" target="_blank">Software Dev</a>
+    </div>
+  </header>
+
+  <main class="grid">
+    <div class="page-card">
+      <iframe src="/pdf/cover.html" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">01</span>
+          <span class="ptitle">Cover</span>
+        </div>
+        <a class="plink" href="/pdf/cover.html" target="_blank">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <iframe src="/pdf/page-02-toc.html" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">02</span>
+          <span class="ptitle">Contents</span>
+        </div>
+        <a class="plink" href="/pdf/page-02-toc.html" target="_blank">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <iframe src="/pdf/page-03-approach.html" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">03</span>
+          <span class="ptitle">About</span>
+        </div>
+        <a class="plink" href="/pdf/page-03-approach.html" target="_blank">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <iframe src="/pdf/page-04-defense.html" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">04</span>
+          <span class="ptitle">Defense Dashboard</span>
+        </div>
+        <a class="plink" href="/pdf/page-04-defense.html" target="_blank">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <iframe src="/pdf/page-05-cv-pipeline.html" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">05</span>
+          <span class="ptitle">Computer Vision Pipeline</span>
+        </div>
+        <a class="plink" href="/pdf/page-05-cv-pipeline.html" target="_blank">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="page-card">
+      <iframe src="/#/pdf/page-06" loading="lazy" scrolling="no"></iframe>
+      <div class="page-meta">
+        <div class="meta-left">
+          <span class="pnum">06</span>
+          <span class="ptitle">Software Development</span>
+        </div>
+        <a class="plink" href="/#/pdf/page-06" target="_blank">Open ↗</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Page 07 · Research &amp; Writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  @media print {
+    html, body { background: var(--bg) !important; padding: 0 !important; margin: 0 !important; display: block !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none !important; margin: 0 !important; }
+  }
+
+  :root {
+    --bg: #fafaf6;
+    --text: #18171a;
+    --text-secondary: #4a4a48;
+    --text-muted: #7a7976;
+    --accent: #6b1018;
+    --rule: rgba(24, 23, 26, 0.22);
+    --rule-light: rgba(24, 23, 26, 0.12);
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
+  body { display: flex; justify-content: center; padding: 0; }
+  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; padding: 48px 56px 36px; display: flex; flex-direction: column; }
+
+  /* HEADER */
+  .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0; }
+
+  /* MASTHEAD */
+  .masthead { margin-top: 16px; }
+  .title { font-family: var(--font-display); font-size: 52px; font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; margin: 0; font-variation-settings: 'opsz' 60; }
+  .lede { font-family: var(--font-display); font-size: 15px; font-weight: 400; line-height: 1.5; color: var(--text); margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--rule); font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
+  .lede-2 { margin-top: 6px; padding-top: 0; border-top: none; }
+
+  /* META STRIP — small key data points about the report */
+  .meta-strip { margin: 12px 0 0; padding: 8px 0; border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-k { font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted); }
+  .meta-v { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.005em; font-variation-settings: 'opsz' 18; }
+
+  /* EMBED — actual defense PDF rendered inside an iframe. The frame uses
+   * an 8.5×11 portrait aspect ratio (matching a real letter page) so a
+   * single PDF page renders fully visible without internal scrolling.
+   * Centered horizontally within the available column. */
+  .embed-wrap { margin: 14px 0 0; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; }
+  .embed-head { display: flex; align-items: baseline; justify-content: space-between; width: 432px; padding: 0 0 6px; }
+  /* Container that hosts both the iframe AND the corner hints — keeping
+   * the hints OUTSIDE the .embed-frame (and therefore outside the PDF
+   * plugin's host element) is the only reliable way to get clicks on
+   * them, because Chrome's built-in PDF viewer composites over any
+   * absolutely positioned siblings inside its own host. */
+  .embed-shell { position: relative; flex-shrink: 0; cursor: zoom-in; }
+  .embed-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); }
+  .embed-cta { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+  .embed-frame { width: 432px; height: 559px; background: #f3f1ea; border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); overflow: hidden; transition: box-shadow 200ms ease, transform 200ms ease; }
+  .embed-shell:hover .embed-frame { box-shadow: 0 12px 30px rgba(0,0,0,0.22); transform: translateY(-1px); }
+  .embed-frame iframe, .embed-frame object, .embed-frame embed { width: 100%; height: 100%; border: 0; display: block; }
+  /* Static rendered preview of page 1 — replaces the iframe so the
+     browser's native PDF viewer (and its floating control HUD) never
+     gets attached on the inline preview. Native controls still appear
+     in the expanded modal and on the standalone PDF download. */
+  .embed-frame img.embed-image { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; user-select: none; -webkit-user-drag: none; }
+  /* "Click to expand" button is the visible cue. It sits in the corner
+   * but the click handler ALSO listens for clicks inside the PDF iframe
+   * via contentDocument (same-origin), so clicks on the PDF body open
+   * the modal too. */
+  .embed-zoom-hint { position: absolute; bottom: 14px; right: 14px; padding: 5px 11px; background: rgba(24, 23, 26, 0.86); color: #fafaf6; font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; border-radius: 4px; opacity: 0.92; transition: opacity 200ms ease, background 200ms ease; z-index: 2; cursor: zoom-in; border: 0; font-family: inherit; }
+  .embed-zoom-hint:hover { opacity: 1; background: var(--accent); }
+  .embed-shell:hover .embed-zoom-hint { opacity: 1; background: var(--accent); }
+  .embed-shell { cursor: zoom-in; }
+
+  /* Full-size PDF modal — click the small embed to expand it. Click the
+   * backdrop (or ✕) to close. Sized at letter aspect, capped at 92vh. */
+  .pdf-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; animation: pdf-modal-fade 180ms ease-out; }
+  .pdf-modal[hidden] { display: none; }
+  .pdf-modal-backdrop { position: absolute; inset: 0; background: rgba(8, 8, 10, 0.78); backdrop-filter: blur(3px); cursor: zoom-out; }
+  .pdf-modal-content { position: relative; height: min(78vh, 900px); aspect-ratio: 8.5 / 11; max-width: 90vw; background: #fafaf6; border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); overflow: hidden; }
+  .pdf-modal-content object, .pdf-modal-content iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .pdf-modal-close { position: absolute; top: -38px; right: -4px; background: transparent; border: 0; color: #fafaf6; font-size: 28px; font-weight: 300; line-height: 1; padding: 4px 12px; cursor: pointer; opacity: 0.9; }
+  .pdf-modal-close:hover { opacity: 1; }
+  @keyframes pdf-modal-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* FOOTER */
+  .footer { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--rule); }
+  .footer-meta { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
+  .pg { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <p class="eyebrow">Portfolio · 2026</p>
+      <p class="eyebrow">Research</p>
+    </header>
+
+    <section class="masthead">
+      <h1 class="title">Research</h1>
+    </section>
+
+    <p class="lede">
+      Below is the season-long defensive report I wrote on Oklahoma's half-court defense against 15 tournament-level opponents. The Defense Dashboard was the engine behind it: I tagged 810 possessions inside the dashboard, sliced the data by action, contest, set, and outcome, then pulled the cleanest signals into the report you can scroll through here.
+    </p>
+    <p class="lede lede-2">
+      The dashboard stayed open through every step. Hand-tagging the film, filtering possessions by coverage and set, and exporting the numbers underneath each chart all happened inside the same tool.
+    </p>
+
+    <section class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-k">Possessions</span>
+        <span class="meta-v">810</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Games</span>
+        <span class="meta-v">15</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Actions</span>
+        <span class="meta-v">3,061</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Platform Built</span>
+        <span class="meta-v">Defense Dashboard</span>
+      </div>
+    </section>
+
+    <div class="embed-wrap">
+      <div class="embed-head">
+        <span class="embed-title">Full Report</span>
+        <a class="embed-cta" href="/OU_Defense_AshtonJantz.pdf" download="OU_Defense_AshtonJantz.pdf">Download PDF ↓</a>
+      </div>
+      <div class="embed-shell" id="pdfEmbedShell">
+        <div class="embed-frame">
+          <img class="embed-image" src="/images/ou-defense-preview.png" alt="OU Defense Report — cover page" />
+        </div>
+        <button type="button" class="embed-zoom-hint" id="pdfExpandBtn" aria-label="Expand the defense report to full size">⤢ Click to expand</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-meta">Ashton Jantz · Basketball Analytics &amp; Research</span>
+      <span class="pg">07</span>
+    </footer>
+  </div>
+
+  <!-- Full-size PDF modal — opens when the small embed is clicked.
+       The <object> is intentionally NOT in the markup. Safari renders
+       its native PDF viewer (and floating control HUD) for any
+       application/pdf object as soon as it's in the DOM, even if the
+       modal is display:none — that caused a second bar to bleed
+       through under the inline preview. We create the object only
+       when the modal opens and remove it on close. -->
+  <div class="pdf-modal" id="pdfModal" hidden aria-modal="true" role="dialog" aria-label="OU Defense Report — full size">
+    <div class="pdf-modal-backdrop" data-close></div>
+    <div class="pdf-modal-content" id="pdfModalContent">
+      <button type="button" class="pdf-modal-close" data-close aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var expandBtn = document.getElementById('pdfExpandBtn');
+      var embedShell = document.getElementById('pdfEmbedShell');
+      var modal = document.getElementById('pdfModal');
+      var modalContent = document.getElementById('pdfModalContent');
+      var PDF_URL = '/OU_Defense_AshtonJantz.pdf';
+      function openModal() {
+        // Create the PDF object fresh each time so Safari's native
+        // viewer is only alive while the modal is visible. The inline
+        // preview is a static image, so the modal is the only place a
+        // native PDF viewer (with its floating control HUD) attaches.
+        var existing = modalContent.querySelector('object, iframe');
+        if (existing) existing.remove();
+        var obj = document.createElement('object');
+        obj.id = 'pdfModalObject';
+        obj.type = 'application/pdf';
+        obj.data = PDF_URL;
+        modalContent.appendChild(obj);
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        var existing = modalContent.querySelector('object, iframe');
+        if (existing) existing.remove();
+      }
+
+      expandBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openModal();
+      });
+      // Clicking anywhere on the preview image opens the modal too.
+      embedShell.addEventListener('click', function () {
+        if (modal.hidden) openModal();
+      });
+
+      modal.addEventListener('click', function (e) {
+        if (e.target.matches('[data-close]')) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!modal.hidden && e.key === 'Escape') closeModal();
+      });
+
+      // When this page is embedded in the PDFPreviewAll iframe, Safari
+      // swallows wheel events because the iframe body has padding that
+      // creates a few pixels of overflow. Forward wheel deltas up to
+      // the parent window so the outer scroll keeps working when the
+      // cursor is anywhere on this page — including over the inline
+      // preview image. Skip when the modal is open (modal handles its
+      // own scroll) or when this page is viewed standalone.
+      if (window.parent && window.parent !== window) {
+        document.addEventListener('wheel', function (e) {
+          if (!modal.hidden) return;
+          try {
+            window.parent.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' });
+          } catch (err) { /* cross-origin, give up */ }
+        }, { passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>
