@@ -110,3 +110,6 @@
   --transition-base: 220ms ease;
   --transition-slow: 350ms ease;
 }
+
+/* Header stays at 48px on mobile (single-row hamburger + logo) so the
+   variable no longer needs an override. */

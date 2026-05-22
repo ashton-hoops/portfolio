@@ -173,6 +173,29 @@ let CRIMSON_HEX = APRON_HEX;
 // is passed in.
 let TEAM_WORDMARK = "OKLAHOMA";
 
+// Marker-role colors. These must match the shot-marker fills produced in the
+// scene-building useEffect (see PRIMARY_HEX / SHOOTER_HEX / ROLE_HEX usage
+// down below). Promoted to module level so `buildFloorAlbedo` can paint the
+// in-court legend with the exact same shades.
+const MARKER_PRIMARY_HEX = "#3b82f6";
+const MARKER_SHOOTER_HEX = "#22c55e";
+const MARKER_ROLE_HEX = "#050505";
+
+// Relative-luminance test on a #rrggbb hex string. Used to decide whether
+// labels painted on the team's lane color (paint + rim zones) should be
+// black-on-light or white-on-dark.
+function isHexDark(hex) {
+  if (typeof hex !== "string") return false;
+  const h = hex.replace("#", "");
+  if (h.length !== 6) return false;
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  // sRGB luma weighting (Rec. 709)
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum < 0.5;
+}
+
 // ---------------------------------------------------------------------------
 // Asset loading
 // ---------------------------------------------------------------------------
@@ -2024,6 +2047,15 @@ function buildZoneDividers() {
 
 // Helper: render a zone's PPP + label + FGA into a canvas at the given size.
 function drawZoneLabelCanvas(z, { w, h, onLight = false }) {
+  // Paint + Rim zones sit ON TOP of the team's primary-color lane, not
+  // on the wood floor. If the team color is dark (Iowa navy, Vanderbilt,
+  // UConn navy, Michigan blue, Notre Dame green, Duke blue, etc.), the
+  // default dark ink is unreadable. Flip to light ink in that case so
+  // every team gets a legible label.
+  if ((z.key === "rim" || z.key === "paint") && onLight && isHexDark(CRIMSON)) {
+    onLight = false;
+  }
+
   const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
@@ -4286,9 +4318,9 @@ export default function ThreeJsShotChartPrototype({
     const primary = primaryDesignationNames ?? new Set();
     const shooter = shooterDesignationNames ?? new Set();
 
-    const PRIMARY_HEX = "#3b82f6";
-    const SHOOTER_HEX = "#22c55e";
-    const ROLE_HEX = "#050505";
+    const PRIMARY_HEX = MARKER_PRIMARY_HEX;
+    const SHOOTER_HEX = MARKER_SHOOTER_HEX;
+    const ROLE_HEX = MARKER_ROLE_HEX;
     const NEUTRAL_HEX = "#6b7280";
 
     const normalize = (s) => (s || "").trim().toLowerCase();
@@ -4475,14 +4507,11 @@ export default function ThreeJsShotChartPrototype({
       const hex = roleColorFor(shot);
       const filled = shot.made === true;
       const tex = makeTexture(hex, filled);
-      // Fade ONLY markers that land directly on a text row of one of the
-      // two player cards. Each card has five thin text strips: name,
-      // badge, label-header row, GAME row, SEASON row. Anything between
-      // the strips (gaps, headshot circle, empty card border) stays at
-      // full opacity. Z ranges were derived by mapping the canvas-pixel
-      // text positions back to world coords on the 50×20 panel; X ranges
-      // are wide (full table) for stat rows and narrow (name + badge box)
-      // for the header strips. Stats still aggregate over every marker.
+      // PDFPage06 paints two on-court player cards (Beers, Verhulst) on the
+      // half-court side; markers that land on a text row of one of those
+      // cards get dimmed so the text stays readable. The 3D Shot Chart
+      // tool does not draw those cards, so skip the fade entirely when
+      // courtPanelCards is not supplied — full opacity for every marker.
       const NAME_X = [13.35, 20.1];           // name + badge x window
       const STAT_X = [-23.95, 23.95];          // stat table x window
       const TEXT_STRIPS = [
@@ -4499,11 +4528,14 @@ export default function ThreeJsShotChartPrototype({
         { xMin: STAT_X[0], xMax: STAT_X[1], zMin: -21.725, zMax: -20.975 },// GAME row
         { xMin: STAT_X[0], xMax: STAT_X[1], zMin: -22.975, zMax: -22.225 },// SEASON row
       ];
+      const cardsActive = Array.isArray(courtPanelCards) && courtPanelCards.length > 0;
       let overlapsText = false;
-      for (const s of TEXT_STRIPS) {
-        if (wx >= s.xMin && wx <= s.xMax && wz >= s.zMin && wz <= s.zMax) {
-          overlapsText = true;
-          break;
+      if (cardsActive) {
+        for (const s of TEXT_STRIPS) {
+          if (wx >= s.xMin && wx <= s.xMax && wz >= s.zMin && wz <= s.zMax) {
+            overlapsText = true;
+            break;
+          }
         }
       }
       const mat = new THREE.MeshBasicMaterial({
@@ -4746,12 +4778,25 @@ export default function ThreeJsShotChartPrototype({
       const cx = wxToPx(lbl.wx);
       const cy = wzToPy(lbl.wz);
       const lineH = fs * 1.10;
+      // Zone 1 (At Rim) and zone 2 (Paint) sit on the lane painted with the
+      // team's primary color. For dark-color teams (Iowa, ND, UConn, Duke,
+      // Vanderbilt, etc.) the default dark ink is unreadable on the dark
+      // lane. Flip to cream ink in that case so the FG% / PPS / att lines
+      // stay legible across every team.
+      const isOnLane = lbl.id === 1 || lbl.id === 2;
+      const useLightInk = isOnLane && isHexDark(CRIMSON);
       // FG% is the dominant line; PPS + attempts are sub-stats below.
-      const lines = [
-        { text: fgStr,  font: `800 ${fs}px ${wsTextSans}`,                  fill: "rgba(15,18,24,0.94)" },
-        { text: ppsStr, font: `700 ${Math.round(fs * 0.78)}px ${wsTextSans}`, fill: "rgba(28,32,40,0.90)" },
-        { text: attStr, font: `600 ${Math.round(fs * 0.65)}px ${wsTextSans}`, fill: "rgba(50,56,66,0.82)" },
-      ];
+      const lines = useLightInk
+        ? [
+            { text: fgStr,  font: `800 ${fs}px ${wsTextSans}`,                  fill: "rgba(244,236,213,0.98)" },
+            { text: ppsStr, font: `700 ${Math.round(fs * 0.78)}px ${wsTextSans}`, fill: "rgba(244,236,213,0.92)" },
+            { text: attStr, font: `600 ${Math.round(fs * 0.65)}px ${wsTextSans}`, fill: "rgba(244,236,213,0.85)" },
+          ]
+        : [
+            { text: fgStr,  font: `800 ${fs}px ${wsTextSans}`,                  fill: "rgba(15,18,24,0.94)" },
+            { text: ppsStr, font: `700 ${Math.round(fs * 0.78)}px ${wsTextSans}`, fill: "rgba(28,32,40,0.90)" },
+            { text: attStr, font: `600 ${Math.round(fs * 0.65)}px ${wsTextSans}`, fill: "rgba(50,56,66,0.82)" },
+          ];
 
       ctx.save();
       ctx.translate(cx, cy);

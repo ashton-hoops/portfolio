@@ -6,212 +6,116 @@ export interface Article {
   readingTime: string
   tags: string[]
   content: string
+  // Optional project-style extras (rendered after content when present)
+  subtitle?: string
+  videos?: { id?: string; src?: string }[]
+  features?: string[]
+  techStack?: string[]
+  links?: { label: string; url: string }[]
+  coverImage?: string
+  coverImages?: string[]
 }
 
 export const articles: Article[] = [
   {
-    slug: 'defensive-rotations-800-possessions',
-    title: 'What 800 Possessions Taught Me About Defensive Rotations',
+    slug: 'defensive-analysis',
+    title: 'Defensive Analysis: 2025-26 Season',
     excerpt:
-      'After tagging every half-court possession from a full season, patterns emerged that changed how I think about help defense, communication, and where breakdowns actually happen.',
+      'I independently tagged 811 half-court defensive possessions across 15 tournament-level opponents using tools I built from scratch. Full report with interactive charts covering PPP by action type, paint touches, contest levels, formations, and miss-zone analysis.',
     date: '2026-05-10',
-    readingTime: '8 min read',
-    tags: ['Defense', 'Film Study', 'Research'],
+    readingTime: '10 min read',
+    tags: ['Research & Analytics'],
+    coverImages: [
+      '/images/full-defense-team.png',
+      '/images/full-defense-shot-chart.png',
+      '/images/full-defense-tagger.png',
+      '/images/full-defense-lineups.png',
+      '/images/full-defense-trends.png',
+      '/images/full-defense-game-detail.png',
+    ],
     content: `
-When you tag 800+ defensive possessions by hand, you start to see things differently.
+During the 2025-26 season I independently tagged every half-court defensive possession across 15 tournament-level opponents. 811 possessions total. Each one was tagged with the play name or formation, the actions involved, the sequence of those actions, the defensive coverage, the shot-contest level, paint touches, scouting role, and the outcome. I built the tagging dashboard, the data pipeline, and the visualization layer from scratch. The goal was to connect exact opponent actions, coverages, and outcomes in a way that standard film and box-score platforms don't capture.
 
-Not better, necessarily—just differently. The game slows down. Patterns that felt intuitive become measurable. And some of the things you *thought* were problems turn out to be symptoms of something else entirely.
-
-This is what I learned from a season of tagging every half-court possession for OU Women's Basketball.
+This is a summary of what I found.
 
 ## The Setup
 
-The Defense Dashboard I built tracks 14 distinct action types: ball screens, DHOs, pin-downs, flares, staggers, cuts, posts, isolations, and more. For each possession, I log:
+The Defense Dashboard I built tracks 14 distinct action types including ball screens, DHOs, pin-downs, flares, staggers, and isolations. For each possession I log the situation (half court, transition, BLOB, SLOB), the offensive formation (5-out, 4-out 1-in, etc.), the action sequence, our defensive coverage (man, zone, switch, etc.), the help and rotation, whether there was a breakdown, and the result (made FG, missed FG, turnover, foul).
 
-- The **situation** (half court, transition, BLOB, SLOB)
-- The **offensive formation** (5-out, 4-out 1-in, etc.)
-- The **action sequence** (what they ran)
-- Our **defensive coverage** (man, zone, switch, etc.)
-- The **help and rotation**
-- Whether there was a **breakdown**
-- The **result** (made FG, missed FG, turnover, foul)
+With 811 possessions in the database, the sample size is large enough to compare across games and opponents and find trends that actually mean something.
 
-With 811 possessions in the database, the sample size is large enough to spot real trends—not just noise.
+## More Actions Led to Higher PPP and More Paint Touches
 
-## Finding #1: Breakdowns Cluster at the Second Action
+Possessions where opponents ran more actions were associated with higher points per possession. Those with no actions or isolations (0.79 PPP) or 1 action (0.76 PPP) stayed well below the 0.99 average, while possessions with 2-3 actions (1.06 PPP), 4-6 actions (1.05 PPP), and 7-9 actions (1.24 PPP) all rose above it.
 
-The single biggest surprise was where breakdowns happen.
+Paint touch rates followed the same pattern, rising from 12% on no-action possessions to 34% on 1-action possessions all the way up to 90% on 7-9 action possessions. Contest levels stayed similar regardless of action count. This mattered because it showed that the number of actions an offense runs is directly tied to how much they are able to get into the paint and score efficiently. Limiting second and third actions is where the leverage is.
 
-I expected them to cluster at the point of attack—the ball screen, the isolation, the initial action. But the data told a different story: **62% of defensive breakdowns occurred on the second or third action of a possession**, not the first.
+## Which Actions Caused the Most Damage
 
-What does that mean practically?
+Among reliable sample sizes, DHOs were associated with the most PPP at 1.23, above the 0.99 average. Pick and pops were held to 0.69 PPP. DHOs generated paint touches only 51% of the time but still averaged 1.23 PPP, which suggests the scoring came from other areas like mid-range or three-point looks off the handoff.
 
-It means the defense handles the initial action fine. We show on the ball screen, we contain the drive, we force a pass. But then the offense swings the ball and runs *another* action—a weak-side pin-down, a DHO in the corner, a duck-in post—and that's where we lose.
+Isolations showed the highest correlation with paint touches at 77%, above the 60% average. Side PNR/PNP actions (73%) and rejected ball screens (69%) were also associated with high paint-touch rates.
 
-The implication is clear: we're not drilling second-action rotations enough. We're practicing how to guard ball screens. We're not practicing what happens *after* we guard the ball screen.
+## Contest Level and Shot Location
 
-## Finding #2: Communication Predicts Results More Than Coverage
+On half-court possessions that ended in a shot attempt, contest level was strongly associated with scoring. The most open looks (4+ ft) produced 1.52 PPP, while the most tightly contested (Heavy / Early High-Hand) held opponents to 0.57 PPP.
 
-Before this project, I would have bet money that our *coverage scheme* was the biggest factor in defensive success. Switch versus show. Drop versus hedge.
+Across the seven most common actions, 48% of possessions ended open (4+ ft) or light / late high-hand on average. Pin-downs led to the most open shots at 62% open-or-light, while side PNR/PNP was the most tightly contested at 75% contested or heavy / early high-hand.
 
-Wrong.
+## Set and Formation Breakdown
 
-When I added a "communication" tag to possessions (Good / Partial / Poor), the correlation was striking: **possessions with "Good" communication had a 58% stop rate, versus 41% with "Poor" communication**—regardless of coverage.
+Among reliable sample sizes, Pistol led paint touches at 59%, above the 48% average. Floppy created the least amount of paint touches at 28%. Among lower-sample sets, UCLA (67%) and Zipper (50%) showed the highest paint touch rates.
 
-Put another way: a well-communicated hedge beats a poorly-communicated switch. Every time.
+For PPP by formation, Floppy was the highest at 1.07 PPP, compared to the 0.99 average across all tagged formations. Pistol was best defended at 1.06 PPP.
 
-This has obvious coaching implications. If your team is struggling defensively, don't just tweak the scheme. Check whether players are talking. Are they calling out screens early? Are they IDing cutters? Are they confirming switches?
+## What Comes Next
 
-The data says that's where the leverage is.
-
-## Finding #3: Paint Touches Are the Canary in the Coal Mine
-
-One metric I tracked obsessively was **paint touches**—any time the offense got the ball in the lane, whether they scored or not.
-
-Here's the thing: paint touches didn't just correlate with points. They correlated with *future* breakdowns.
-
-When the offense got a paint touch on one action, our defense was **2.3x more likely to break down on the next action**. The paint touch scrambles the defense. Players help, then don't recover. Rotations lag. The second action catches us out of position.
-
-This reframed how I think about "good defense." A possession where we give up a paint touch but force a miss isn't a win—it's a warning. The offense found a crack. They'll probe it again.
-
-## Finding #4: Transition Defense Is a Different Sport
-
-This wasn't a surprise, but the data made it visceral.
-
-Our transition defense (early offense / secondary break situations) had a **29% stop rate**. Our half-court defense had a **52% stop rate**.
-
-When I dug deeper, the problem wasn't effort or speed—it was role clarity. In transition, we didn't have consistent rules for who takes ball, who protects rim, who matches up. So we'd end up with two players on the ball and no one in the paint. Or three players in the paint and a shooter wide open.
-
-The fix was simple: establish rules. Ball = X1. Rim = X5. Match = closest. Once we codified it, transition defense improved—not because we ran faster, but because we stopped thinking.
-
-## Finding #5: Shot Contests Are Overrated (Kind Of)
-
-This one's counterintuitive.
-
-Coaches love shot contests. Close out hard, get a hand up, don't foul. And yes, contested shots go in less often than open ones.
-
-But here's what the data showed: **the correlation between contest quality and shot result was weaker than expected**. Shots with "tight" contests had a 38% make rate. Shots with "moderate" contests had a 42% make rate. Not much difference.
-
-What *did* correlate strongly? **Shot location.**
-
-A moderately contested three from the corner went in more often than a tightly contested mid-range pull-up. The contest mattered less than where the shot came from.
-
-The takeaway isn't "don't contest shots." It's "don't trade location for contest." A closeout that runs the shooter off the line but gives up a mid-range is a win. A closeout that contests but lets them shoot from the corner is a loss.
-
-## What I'm Still Figuring Out
-
-This project raised as many questions as it answered:
-
-- **How do we quantify help defense *before* the breakdown?** Right now I'm tagging outcomes, not processes. I want to tag rotations that *prevented* breakdowns, not just ones that failed.
-- **What's the right way to weight possessions?** A breakdown in the first quarter versus a breakdown in crunch time—are they equal? The data treats them the same. Maybe it shouldn't.
-- **Can computer vision automate any of this?** Tagging 811 possessions took forever. If the CV pipeline can pre-tag action types with 80% accuracy, human review becomes verification instead of creation.
-
-## The Bottom Line
-
-Data doesn't replace coaching. It sharpens it.
-
-After this project, I don't watch film the same way. I see the second action before the first one finishes. I listen for communication. I track paint touches like they're turnovers.
-
-And when the defense breaks down, I don't just ask "what happened?" I ask "what happened *before* what happened?"
-
-That's what 800 possessions taught me.
+This report establishes a baseline for analyzing half-court defense by tagging actions to outcomes. The next phase would be to focus on scaling this to capture individual assignments, hustle stats, and precise coverage details. Upgrading the tagging process would allow better insight into specific defenders, coverages, and breakdowns. The computer vision pipeline I have been building is designed to eventually automate large portions of this tagging work, which would make it possible to expand the dataset significantly without the manual time commitment.
     `.trim(),
   },
   {
-    slug: 'why-3d-visualization',
-    title: 'Why 3D? Building Visualizations That Connect with Players',
+    slug: 'cv-pipeline',
+    title: 'Computer Vision Pipeline',
+    subtitle: 'Player Tracking & Action Detection',
     excerpt:
-      'Most analytics tools are built for analysts. I wanted to build something coaches could show players in a film session and have it click immediately.',
-    date: '2026-05-05',
-    readingTime: '6 min read',
-    tags: ['Visualization', 'Tools', 'Development'],
+      'A custom computer vision pipeline that takes broadcast footage and automatically detects and tracks all 10 players, their court locations, and key actions like screens, DHOs, and shot contests.',
+    date: '2026-04-25',
+    readingTime: 'Project',
+    tags: ['Project'],
+    coverImage: '/images/thumb-cv-pipeline.png',
     content: `
-Here's a confession: I built the 3D shot chart because I thought it would look cool.
+Over the past year I've been building a custom computer vision pipeline that takes broadcast footage and automatically detects and tracks all 10 players, their on court locations, and key actions such as passes, screens, DHOs, shot contests, and more. It can process a full game overnight from broadcast video alone to produce tracking quality data and labeled events similar to something like Synergy's in arena camera package, and it can be tailored to a team's specific play style and philosophies.
 
-That's it. No grand vision. No user research. I had learned Three.js for another project, and I thought, "What if I rendered shots in 3D?"
+Beyond the current features, the possibilities and potential are really endless. It could be used to identify individual defenders, quantify pass and shot difficulty, and evaluate players in high school or overseas by measuring things like processing speed in pick and rolls, athletic measurements, and decision patterns. This is the kind of detailed feedback I think recruits would love to see about themselves on a visit.
 
-But then something unexpected happened.
-
-I showed it to a coach. She leaned in, grabbed the mouse, and started orbiting around the court. "Oh," she said, "so that's why they keep going to that spot." She'd looked at 2D shot charts before. She'd seen the same data. But something about the 3D view made it click.
-
-That moment changed how I think about analytics tools.
-
-## The Problem with Analytics
-
-Most analytics tools are built by analysts, for analysts.
-
-They're dense. They're precise. They require training to interpret. And they assume the user *wants* to engage with data.
-
-But coaches and players don't want to engage with data. They want to win games. Data is a means to an end—and if the data doesn't connect to what they're trying to do, it's just noise.
-
-The 2D shot chart is a perfect example. It's information-dense. Every shot is a dot. Color shows make/miss. Position shows location. It's efficient.
-
-But it's also abstract. The court is flat. The player isn't there. The context is stripped away.
-
-When you watch a game, you see shots in 3D. You see the arc. You see where the defender was. You see the shooter's feet. The 2D chart disconnects from that experience.
-
-## Why 3D Works
-
-The 3D shot chart doesn't add information. It adds *presence*.
-
-When you orbit around the court, you're simulating what it feels like to be on the floor. You're looking at the basket from the shooter's perspective. You're seeing the spacing from the defender's angle.
-
-That simulation creates connection. It bridges the gap between abstract data and felt experience.
-
-Coaches told me things like:
-
-- "I can show this to players and they *get it*."
-- "This is how I actually see the game in my head."
-- "The 2D chart says the same thing, but this one tells a story."
-
-The data is identical. The experience is different.
-
-## Building for Connection, Not Precision
-
-This realization shifted how I approach every visualization.
-
-The first question isn't "what data do I need to show?" It's "what experience do I want to create?" Who's the user? What do they already understand? What's the gap between what they know and what they need to know?
-
-For the 3D play diagram tool, the answer was similar: coaches see plays in motion. Static X's and O's are abstractions. Animation reconnects the diagram to the real thing.
-
-For the shot chart filters, the answer was: players care about *their* shots, not the team's. So the default view is individual, not aggregate. You start with yourself, then zoom out.
-
-For the defensive dashboard, the answer was: coaches need to answer specific questions in film sessions. "What happened on horns sets against Texas A&M?" The interface is built around questions, not around data dumps.
-
-## The Technical Part (Briefly)
-
-The 3D shot chart uses Three.js to render a court with realistic textures, lines, and lighting. Each shot is a small sphere positioned at its (x, y) coordinate with a fixed z-height (I experimented with varying height by shot arc, but it was more confusing than helpful).
-
-Performance was a challenge. Rendering hundreds of spheres with shadows tanks the frame rate. I ended up using instanced meshes for the shot markers, which lets Three.js batch them into a single draw call. Shadows are disabled on the markers and only applied to the court.
-
-Interactivity is handled through raycasting. When you click, the system calculates which object (if any) is under the cursor. If it's a shot marker, a detail panel appears with game, player, time, and result.
-
-The hardest part was camera controls. Three.js has built-in orbit controls, but they needed tuning to feel right. I limited the vertical rotation so you can't flip under the court. I set boundaries so the camera can't zoom through the floor. Small things, but they make the difference between "this feels professional" and "this feels like a tech demo."
-
-## What I'd Do Differently
-
-If I rebuilt the 3D shot chart today, I'd add:
-
-1. **Comparative views**: Show two players' shots side-by-side. Or your shots this game versus your season average. Context is everything.
-
-2. **Animation**: Let the user "play" the shots in sequence. See the flow of the game. Where did they start shooting? Where did they end up?
-
-3. **Integration with video**: Click a shot, watch the clip. This is technically possible now—the data links to video files—but the UI isn't built for it.
-
-4. **Mobile support**: Right now it's desktop-only. That's a limitation. Players don't sit at desktops.
-
-## The Takeaway
-
-Analytics tools succeed when they fit into existing workflows.
-
-Coaches already watch film. They already draw plays on whiteboards. They already talk to players in huddles.
-
-The question isn't "how do we get coaches to use analytics?" It's "how do we make analytics *feel* like film, whiteboards, and huddles?"
-
-3D visualization is one answer. It's not the only answer. But it's an answer that works because it meets people where they are—in the three-dimensional, motion-filled world of basketball.
-
-Not in spreadsheets. Not in dashboards. On the court.
+I'm also actively exploring uses in practice and player workouts to track shooting progress and team drills, as well as tracking shot consistency through release point, arc, and release speed. There's so much potential in a project like this and teams are starting to take advantage, as this work is similar to computer vision models that were reportedly used by the Charlotte Hornets to select Kon Knueppel.
     `.trim(),
+    videos: [{ id: 'CV_8cef98e8' }, { id: 'CV_8d2f2fc2' }, { id: 'CV_0fa21c20' }],
+  },
+  {
+    slug: 'shot-chart',
+    title: '3D Shot Chart',
+    subtitle: 'Interactive Shot Visualization · AP Top 25',
+    excerpt:
+      "Interactive 3D shot chart covering the 2025-26 AP Top 25 women's D1 teams. Filter by player, game, period, zone, and shot result. Built in Three.js to render shooting data on a real court instead of a flat scatter.",
+    date: '2026-04-20',
+    readingTime: '3 min read',
+    tags: ['Project'],
+    videos: [{ src: '/videos/shot-chart-demo.mp4' }],
+    content: `
+## Why 3D?
+
+A flat 2D shot chart is information-dense but abstract. When you watch a game you see spacing, angles, and player positioning all at once, and a 2D chart strips that out and asks the viewer to mentally rebuild what they were just watching. I also think visualizing in this way can lead to better retention and also allows for more interaction.
+
+## What it does
+
+Pick any AP Top 25 team and see their full season at a glance. Filter by player to focus on a primary scorer, designated shooter, or role player. Filter by game to scout a specific opponent or check tendencies in a single matchup. Filter by period, contest level, and shot result to drill into specific situations. Zones mode shows aggregated FG% per area with color coding by efficiency.
+
+## How it was built
+
+The data comes from ESPN's public API, pulled per team and saved as a static dataset so the page doesn't make live calls. Per-player stats and scouting designations are computed in a Python pipeline that runs offline. The court and markers are rendered in Three.js with React handling state and UI.
+    `.trim(),
+    links: [{ label: 'Open 3D Shot Chart', url: '/#/shot-chart' }],
   },
 ]
 

@@ -27,24 +27,57 @@
 }
 
 /* ---------- Article Card ---------- */
+/* Full-bleed cover on top, content below — editorial / magazine layout. */
 .article-card {
   display: block;
-  padding: var(--space-8) 0;
-  border-bottom: 1px solid var(--border-light);
+  margin-bottom: var(--space-10);
   text-decoration: none;
-  transition: transform var(--transition-fast);
-}
-
-.article-card:first-child {
-  padding-top: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .article-card:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .article-card:hover {
-  transform: translateX(4px);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.article-card__cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  background: var(--bg-subtle);
+}
+
+/* Static (non-MediaPreview) cover images get a hover scale.
+   Scoped with :not() so it doesn't fight MediaPreview's own opacity/Ken Burns
+   transitions on the layer images. */
+.article-card__cover > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 500ms ease;
+}
+
+.article-card:hover .article-card__cover > img {
+  transform: scale(1.03);
+}
+
+.article-card__body {
+  padding: var(--space-8) var(--space-8) var(--space-8);
+}
+
+@media (max-width: 600px) {
+  .article-card__body {
+    padding: var(--space-6);
+  }
 }
 
 .article-card__meta {

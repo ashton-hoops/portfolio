@@ -16,6 +16,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 body {
@@ -25,6 +26,18 @@ body {
   color: var(--text);
   background: var(--bg);
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ---------- Deck page full-bleed background ---------- */
+/* When the portfolio deck is visible, paint the entire viewport canvas
+   #ddd so no body-colored strip leaks through behind the scrollbar.
+   Lives in global.css (not PortfolioDeck.css) so it's always loaded —
+   component-scoped CSS in Vite is injected dynamically and can race. */
+html:has(.deck-stack),
+body:has(.deck-stack) {
+  background: #ddd !important;
 }
 
 /* ---------- Typography ---------- */

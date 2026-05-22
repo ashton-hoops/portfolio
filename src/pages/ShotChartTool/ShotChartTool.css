@@ -1,25 +1,44 @@
 /* 3D Shot Chart Tool — full-page interactive tool covering AP Top 25
    women's D1 teams (2025-26). Replaces the Playbook placeholder page. */
 
+/* Palette mirrors the PDF deck pages (cover.html, page-03-approach.html,
+   page-08-bring.html): cream background, dark text, accent maroon, serif
+   for headings/numbers, sans for labels. */
 .sct {
+  --sct-bg: #fafaf6;
+  --sct-text: #18171a;
+  --sct-text-secondary: #4a4a48;
+  --sct-text-muted: #7a7976;
+  --sct-accent: #6b1018;
+  --sct-rule: rgba(24, 23, 26, 0.22);
+  --sct-rule-light: rgba(24, 23, 26, 0.12);
+  --sct-card-bg: rgba(24, 23, 26, 0.03);
+  --sct-card-hover: rgba(24, 23, 26, 0.06);
+  --sct-font-display: 'Source Serif 4', Georgia, serif;
+  --sct-font-sans: 'Inter', system-ui, sans-serif;
+
   display: flex;
   flex-direction: column;
-  background: #18171a;
-  color: #fafaf6;
-  min-height: calc(100vh - var(--header-height, 48px));
-  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--sct-bg);
+  color: var(--sct-text);
+  /* Lock to viewport height minus the fixed header (48px) and footer
+     (~50px). The sidebar uses its own overflow-y for any overflow. */
+  height: calc(100dvh - var(--header-height, 48px) - 50px);
+  min-height: 0;
+  font-family: var(--sct-font-sans);
+  overflow: hidden;
 }
 
 /* ============================================================
-   Team strip — horizontal scroll of AP25 team logos
+   Team strip — horizontal AP25 team logos row
    ============================================================ */
 
 .sct__team-strip {
   display: flex;
   gap: 4px;
   padding: 12px 16px;
-  background: #0d0c0e;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--sct-bg);
+  border-bottom: 1px solid var(--sct-rule-light);
   overflow-x: auto;
   scrollbar-width: thin;
 }
@@ -28,7 +47,7 @@
   height: 6px;
 }
 .sct__team-strip::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--sct-rule-light);
   border-radius: 3px;
 }
 
@@ -43,47 +62,54 @@
   background: transparent;
   border-radius: 8px;
   cursor: pointer;
-  color: #fafaf6;
+  color: var(--sct-text);
   transition: background 150ms ease, border-color 150ms ease;
   min-width: 88px;
 }
 
 .sct__team-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--sct-card-hover);
 }
 
 .sct__team-btn--active {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: var(--sct-card-bg);
+  border-color: var(--sct-accent);
 }
 
 .sct__team-btn-logo {
   width: 44px;
   height: 44px;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
   border-radius: 6px;
   padding: 4px;
+  border: 1px solid var(--sct-rule-light);
 }
 
 .sct__team-btn-name {
+  font-family: var(--sct-font-sans);
   font-size: 11px;
   font-weight: 600;
   text-align: center;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   white-space: nowrap;
+  color: var(--sct-text);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sct__team-btn-rank {
+  font-family: var(--sct-font-sans);
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.14em;
+  color: var(--sct-text-muted);
 }
 
 .sct__team-btn--active .sct__team-btn-rank {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--sct-accent);
 }
 
 /* ============================================================
@@ -92,20 +118,43 @@
 
 .sct__main {
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 16px;
-  padding: 16px;
+  /* Left sidebar | chart (flex) | right sidebar.
+     Sidebars are fixed-width and never scroll; chart fills the remainder. */
+  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  gap: 12px;
+  padding: 12px;
   flex: 1;
-  min-height: 0;
+  min-height: 0;   /* lets the grid children shrink within the viewport */
 }
 
 .sct__chart {
-  background: #0d0c0e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* The engine renderer is alpha-transparent (scene.background = null,
+     setClearColor(0, 0)) so the wrapper background shows through around
+     the court — match the portfolio cream for a seamless page bg. */
+  background: var(--sct-bg);
+  border: 1px solid var(--sct-rule-light);
   border-radius: 10px;
   position: relative;
-  min-height: 600px;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
+}
+
+/* The Three.js engine wraps the canvas in two divs whose classes use
+   Tailwind ("absolute inset-0", "overflow-hidden") — Tailwind isn't loaded
+   here so those classes are dead. Pin every wrapper between .sct__chart
+   and the canvas so the chart fills exactly the grid cell instead of
+   overflowing 200px past the bottom. */
+.sct__chart > div,
+.sct__chart > div > div {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.sct__chart canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .sct__chart-empty {
@@ -114,7 +163,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 14px;
   text-align: center;
   padding: 32px;
@@ -126,8 +175,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(13, 12, 14, 0.85);
-  color: rgba(255, 255, 255, 0.7);
+  background: rgba(250, 250, 246, 0.85);
+  color: var(--sct-text);
+  font-family: var(--sct-font-sans);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -139,17 +189,11 @@
 .sct__sidebar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-
-.sct__sidebar::-webkit-scrollbar {
-  width: 6px;
-}
-.sct__sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
+  gap: 10px;
+  min-height: 0;
+  /* No scroll — cards must fit the viewport. If a sidebar overflows, we
+     tune the card sizes/fonts in this file rather than enabling scroll. */
+  overflow: hidden;
 }
 
 /* ============================================================
@@ -157,19 +201,21 @@
    ============================================================ */
 
 .sct__card {
-  background: #0d0c0e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 16px;
+  background: var(--sct-card-bg);
+  border: 1px solid var(--sct-rule-light);
+  border-top: 3px solid var(--sct-accent);
+  border-radius: 6px;
+  padding: 10px 12px;
 }
 
 .sct__card-label {
-  font-size: 10px;
+  font-family: var(--sct-font-sans);
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0 0 12px;
+  color: var(--sct-accent);
+  margin: 0 0 8px;
 }
 
 /* PLAYER CARD */
@@ -184,28 +230,48 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(24, 23, 26, 0.06);
+  background-size: 130% auto;
+  /* ESPN headshots crop tight to the player's chest; without offset the
+     face sits low in the circle. Shift the background up so the face is
+     centered. 130% scale + 18% vertical offset frames the face cleanly. */
+  background-position: center 18%;
+  background-repeat: no-repeat;
+  border: 1px solid var(--sct-rule-light);
   flex-shrink: 0;
 }
 
+/* Team logo variant — bumped size + no padding so wordmark-style team
+   logos (Ole Miss script, Vanderbilt V-star, etc.) read more clearly
+   inside the circular frame. Round-mark teams (OU, UCLA) just look a
+   bit bigger; the corner clipping doesn't lose visible content because
+   round marks already have transparent corners. */
+.sct__player-photo--logo {
+  width: 68px;
+  height: 68px;
+  background: #ffffff;
+  object-fit: contain;
+  padding: 0;
+}
+
 .sct__player-meta-name {
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: var(--sct-font-display);
   font-size: 18px;
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 0;
+  color: var(--sct-text);
+  font-variation-settings: 'opsz' 18;
 }
 
 .sct__player-meta-sub {
+  font-family: var(--sct-font-sans);
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--sct-text-muted);
   margin: 4px 0 0;
 }
 
@@ -213,32 +279,40 @@
 .sct__stat-line {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .sct__stat {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 6px;
-  padding: 8px 10px;
+  gap: 1px;
+  background: rgba(24, 23, 26, 0.04);
+  border: 1px solid var(--sct-rule-light);
+  border-radius: 5px;
+  padding: 6px 8px;
+  min-width: 0;
 }
 
 .sct__stat-k {
-  font-size: 9px;
+  font-family: var(--sct-font-sans);
+  font-size: 8.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.14em;
+  color: var(--sct-text-muted);
 }
 
 .sct__stat-v {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 18px;
+  font-family: var(--sct-font-display);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  color: var(--sct-text);
+  font-variation-settings: 'opsz' 18;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sct__zone-table {
@@ -250,44 +324,48 @@
 .sct__zone-table th,
 .sct__zone-table td {
   text-align: left;
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--sct-rule-light);
 }
 
 .sct__zone-table th {
+  font-family: var(--sct-font-sans);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--sct-text-muted);
 }
 
 .sct__zone-table td {
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: var(--sct-font-display);
   font-size: 13px;
+  color: var(--sct-text);
 }
 
 .sct__zone-table .sct__zone-pct {
   text-align: right;
   font-weight: 600;
+  color: var(--sct-accent);
 }
 
 /* FILTERS */
 .sct__filter-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .sct__filter-row:last-child { margin-bottom: 0; }
 
 .sct__filter-label {
+  font-family: var(--sct-font-sans);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--sct-text-muted);
 }
 
 .sct__filter-btn-group {
@@ -296,56 +374,643 @@
   flex-wrap: wrap;
 }
 
+/* Tight variant — used by the Period row (5 buttons). Forces single-row
+   layout with compact padding so ALL · Q1 · Q2 · Q3 · Q4 fit at the
+   220px sidebar width without wrapping. */
+.sct__filter-btn-group--tight {
+  flex-wrap: nowrap;
+  gap: 3px;
+}
+
+.sct__filter-btn-group--tight .sct__filter-btn {
+  padding: 6px 4px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  min-width: 0;
+}
+
 .sct__filter-btn {
   flex: 1 1 auto;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fafaf6;
+  background: rgba(24, 23, 26, 0.04);
+  border: 1px solid var(--sct-rule-light);
+  color: var(--sct-text);
   padding: 6px 10px;
   border-radius: 6px;
+  font-family: var(--sct-font-sans);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   cursor: pointer;
-  transition: background 120ms ease, border-color 120ms ease;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
 .sct__filter-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--sct-card-hover);
+  border-color: var(--sct-rule);
 }
 
 .sct__filter-btn--active {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: var(--sct-accent);
+  border-color: var(--sct-accent);
+  color: #fafaf6;
 }
 
 .sct__select {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fafaf6;
+  background: rgba(24, 23, 26, 0.04);
+  border: 1px solid var(--sct-rule-light);
+  color: var(--sct-text);
   padding: 8px 10px;
   border-radius: 6px;
+  font-family: var(--sct-font-sans);
   font-size: 12px;
-  font-family: inherit;
 }
 
 /* ============================================================
-   Mobile
+   Shot legend card (left sidebar, below Filters)
+   ============================================================ */
+.sct__legend-table {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sct__legend-row {
+  display: grid;
+  /* Fixed-width "Made" / "Miss" columns so the header text and the dot/
+     ring beneath share the same column center. Without fixed widths the
+     auto-sized header column drifts to the left of the dot. */
+  grid-template-columns: 1fr 36px 36px;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--sct-text);
+}
+
+.sct__legend-row > :nth-child(2),
+.sct__legend-row > :nth-child(3) {
+  justify-self: center;
+  text-align: center;
+}
+
+.sct__legend-row--head {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--sct-text-muted);
+  margin-bottom: 2px;
+}
+
+.sct__legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  justify-self: center;
+}
+
+.sct__legend-ring {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: transparent;
+  display: inline-block;
+  justify-self: center;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   Mobile-only components — hidden on desktop
+   ============================================================ */
+.sct__mbar,
+.sct__sheet,
+.sct__sheet-backdrop,
+.sct__mobile-stats {
+  display: none;
+}
+
+/* ============================================================
+   Custom Dropdown (used inside the mobile popup sheet)
+   ============================================================ */
+.sct__dd {
+  position: relative;
+  min-width: 0;
+}
+
+.sct__dd-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  background: rgba(24, 23, 26, 0.04);
+  border: 1px solid var(--sct-rule-light);
+  color: var(--sct-text);
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-family: var(--sct-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  min-height: 32px;
+  text-align: left;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.sct__dd-trigger:hover {
+  background: var(--sct-card-hover);
+  border-color: var(--sct-rule);
+}
+
+.sct__dd-trigger--open {
+  background: #ffffff;
+  border-color: var(--sct-accent);
+  box-shadow: 0 0 0 3px rgba(107, 16, 24, 0.12);
+}
+
+.sct__dd-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sct__dd-chev {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--sct-text-muted);
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+
+.sct__dd-trigger--open .sct__dd-chev {
+  transform: rotate(180deg);
+  border-top-color: var(--sct-accent);
+}
+
+.sct__dd-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  background: #ffffff;
+  border: 1px solid var(--sct-rule);
+  border-radius: 5px;
+  box-shadow: 0 10px 24px rgba(24, 23, 26, 0.18);
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 4px;
+  list-style: none;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sct__dd-opt {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 3px;
+  font-family: var(--sct-font-sans);
+  font-size: 12px;
+  color: var(--sct-text);
+  cursor: pointer;
+}
+
+.sct__dd-opt:hover {
+  background: var(--sct-card-hover);
+}
+
+.sct__dd-opt--active {
+  background: var(--sct-accent);
+  color: #fafaf6;
+  font-weight: 600;
+}
+.sct__dd-opt--active:hover {
+  background: var(--sct-accent);
+}
+
+/* ============================================================
+   Responsive — laptop / tablet / phone tiers
    ============================================================ */
 
+/* === Laptop (1280–1440) === */
+@media (max-width: 1440px) {
+  .sct__main {
+    grid-template-columns: 200px minmax(0, 1fr) 260px;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+/* === Small laptop (1100–1280) === */
+@media (max-width: 1280px) {
+  .sct__main {
+    grid-template-columns: 180px minmax(0, 1fr) 240px;
+  }
+  .sct__team-strip { padding: 10px 12px; }
+  .sct__team-btn { min-width: 78px; padding: 6px 8px; }
+  .sct__team-btn-logo { width: 38px; height: 38px; padding: 3px; }
+  .sct__team-btn-name { font-size: 10.5px; }
+  .sct__card { padding: 9px 11px; }
+  .sct__stat-v { font-size: 13px; }
+  .sct__zone-table { font-size: 11px; }
+  .sct__zone-table td { font-size: 12px; }
+}
+
+/* === Compact laptop / large tablet (900–1100) === */
+@media (max-width: 1100px) {
+  .sct__main {
+    grid-template-columns: 168px minmax(0, 1fr) 220px;
+    gap: 8px;
+    padding: 8px;
+  }
+  .sct__team-strip { padding: 8px 10px; }
+  .sct__team-btn { min-width: 70px; padding: 5px 6px; gap: 3px; }
+  .sct__team-btn-logo { width: 32px; height: 32px; padding: 2px; border-radius: 5px; }
+  .sct__team-btn-name { font-size: 10px; }
+  .sct__team-btn-rank { font-size: 8px; }
+  .sct__card-label { font-size: 8.5px; margin-bottom: 6px; }
+  .sct__stat { padding: 5px 6px; }
+  .sct__stat-k { font-size: 8px; }
+  .sct__stat-v { font-size: 12px; }
+  .sct__player-photo { width: 44px; height: 44px; }
+  .sct__player-meta-name { font-size: 15px; }
+  .sct__filter-label { font-size: 9.5px; }
+  .sct__filter-btn { padding: 5px 8px; font-size: 10px; }
+}
+
+/* === Mobile (≤ 900px) — chart hero + sticky bottom bar + popup sheet ===
+   Sidebars are hidden. Chart fills the available viewport. A fixed bottom
+   bar shows team/player + quick stats and an "Details" button that opens
+   a modal sheet containing the full controls + stats. */
 @media (max-width: 900px) {
+  /* The page can scroll on phone — chart + bottom bar still fits one
+     screen, but the sheet content needs room to breathe when open. */
+  .sct {
+    height: auto;
+    min-height: calc(100dvh - var(--header-height, 48px) - 50px);
+    overflow: visible;
+  }
+
+  /* Single-column main grid: chart + stats card stacked vertically. */
   .sct__main {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "chart"
+      "stats";
+    gap: 10px;
+    padding: 10px 10px 76px; /* extra bottom padding leaves room for fixed bar */
   }
-  .sct__sidebar {
-    max-height: none;
-  }
+
+  /* Sidebars are gone on mobile — popup sheet replaces them. */
+  .sct__sidebar { display: none; }
+
+  /* Chart is the hero on mobile — fills most of the viewport. The stats
+     card below requires a small scroll, but the chart's prominence is
+     worth it. */
   .sct__chart {
-    min-height: 480px;
+    grid-area: chart;
+    aspect-ratio: auto;
+    height: 60dvh;
+    min-height: 360px;
   }
-  .sct__team-btn {
-    min-width: 76px;
+
+  /* Shooting · Selection card — visible inline on mobile. */
+  .sct__mobile-stats {
+    display: block;
+    grid-area: stats;
   }
+
+  /* Tighten the inline stats card so the whole page fits one viewport. */
+  .sct__mobile-stats .sct__card {
+    padding: 8px 12px;
+  }
+  .sct__mobile-stats .sct__card-label {
+    font-size: 8.5px;
+    margin-bottom: 6px;
+  }
+  .sct__mobile-stats .sct__stat-line {
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  .sct__mobile-stats .sct__stat {
+    padding: 5px 7px;
+    gap: 0;
+  }
+  .sct__mobile-stats .sct__stat-k { font-size: 8px; letter-spacing: 0.1em; }
+  .sct__mobile-stats .sct__stat-v { font-size: 12.5px; }
+  .sct__mobile-stats .sct__zone-table { font-size: 11.5px; }
+  .sct__mobile-stats .sct__zone-table th {
+    font-size: 9px;
+    padding: 3px 0;
+  }
+  .sct__mobile-stats .sct__zone-table td {
+    font-size: 11.5px;
+    padding: 3px 0;
+  }
+
+  /* Team strip hidden on mobile — switcher lives inside the popup sheet
+     instead. Frees vertical space for the chart. */
+  .sct__team-strip { display: none; }
+
+  /* The global site footer (Ashton Jantz · Basketball Analytics ...) is
+     ~120px tall on phones with the contact line wrapping. It crowds the
+     bottom of the chart tool, so hide it on this page on mobile — the
+     fixed bottom bar below already shows the active team identity. */
+  body:has(.sct) .footer {
+    display: none;
+  }
+
+  /* -------- Mobile bottom bar (fixed at viewport bottom) -------- */
+  .sct__mbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    padding: 8px 14px;
+    /* Honor iOS safe-area inset so the bar doesn't hide behind the home
+       indicator on iPhones with no physical home button. */
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    background: var(--sct-bg);
+    border-top: 1px solid var(--sct-rule);
+    box-shadow: 0 -6px 18px rgba(24, 23, 26, 0.08);
+    z-index: 90;
+  }
+  .sct__mbar-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+  .sct__mbar-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(24, 23, 26, 0.06);
+    background-size: 130% auto;
+    background-position: center 18%;
+    background-repeat: no-repeat;
+    border: 1px solid var(--sct-rule-light);
+    flex-shrink: 0;
+  }
+  .sct__mbar-avatar--logo {
+    background: #ffffff;
+    object-fit: contain;
+    padding: 4px;
+  }
+  .sct__mbar-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .sct__mbar-name {
+    font-family: var(--sct-font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sct-text);
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sct__mbar-stats {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--sct-text-muted);
+    white-space: nowrap;
+  }
+  .sct__mbar-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sct-accent);
+    color: #fafaf6;
+    border: 1px solid var(--sct-accent);
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-family: var(--sct-font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(107, 16, 24, 0.25);
+  }
+  .sct__mbar-chev {
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  /* -------- Sheet backdrop -------- */
+  .sct__sheet-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(24, 23, 26, 0.45);
+    border: 0;
+    cursor: pointer;
+    z-index: 999;
+    animation: sct-fade-in 180ms ease-out;
+  }
+
+  /* -------- Sheet panel -------- */
+  .sct__sheet {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 12vh;
+    background: var(--sct-bg);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -10px 32px rgba(24, 23, 26, 0.25);
+    z-index: 1000;
+    overflow: hidden;
+    animation: sct-slide-up 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .sct__sheet-handle {
+    width: 44px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--sct-rule);
+    margin: 10px auto 0;
+    flex-shrink: 0;
+  }
+  .sct__sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 18px 12px;
+    border-bottom: 1px solid var(--sct-rule-light);
+    flex-shrink: 0;
+  }
+  .sct__sheet-title {
+    margin: 0;
+    font-family: var(--sct-font-display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--sct-text);
+  }
+  .sct__sheet-close {
+    background: var(--sct-accent);
+    color: #fafaf6;
+    border: 0;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-family: var(--sct-font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+  }
+  .sct__sheet-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* When sheet is open, freeze body scroll on the page. */
+  .sct--sheet-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* Compact card density inside the sheet. The buttons stay readable
+     but lose the "big tap target" padding from the previous draft —
+     mobile menu shouldn't look chunky just because it's mobile. */
+  .sct__sheet .sct__card {
+    padding: 10px 12px;
+    border-top-width: 2px;
+    border-radius: 5px;
+  }
+  .sct__sheet .sct__card-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+
+  /* Player/team header */
+  .sct__sheet .sct__player-card-head { gap: 10px; margin-bottom: 8px; }
+  .sct__sheet .sct__player-photo { width: 44px; height: 44px; }
+  .sct__sheet .sct__player-meta-name { font-size: 15px; }
+  .sct__sheet .sct__player-meta-sub { font-size: 9px; letter-spacing: 0.12em; margin-top: 2px; }
+
+  /* Filter labels + rows tighten */
+  .sct__sheet .sct__filter-row { gap: 3px; margin-bottom: 7px; }
+  .sct__sheet .sct__filter-label { font-size: 9px; letter-spacing: 0.12em; }
+
+  /* Compact single-line row: label on the left, dropdown on the right.
+     Used by the Controls card in the mobile sheet — every filter +
+     view + camera preset is a dropdown so the whole control surface
+     fits in ~180px of vertical space. */
+  .sct__sheet .sct__row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .sct__sheet .sct__row:last-child { margin-bottom: 0; }
+  .sct__sheet .sct__row-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sct-text-muted);
+  }
+
+  /* Filter buttons — compact and content-sized (no row-fill stretch). */
+  .sct__sheet .sct__filter-btn {
+    flex: 0 0 auto;            /* don't grow to fill the row */
+    padding: 5px 10px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    min-height: 26px;
+    border-radius: 4px;
+  }
+  .sct__sheet .sct__filter-btn-group { gap: 4px; flex-wrap: wrap; }
+  .sct__sheet .sct__filter-btn-group--tight .sct__filter-btn {
+    flex: 1 1 0;               /* Period row keeps even split */
+    padding: 5px 4px;
+    font-size: 9.5px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Selects — compact but still finger-friendly */
+  .sct__sheet .sct__select {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-height: 30px;
+    border-radius: 4px;
+  }
+
+  /* Stats tiles — keep the value readable but drop the chunk */
+  .sct__sheet .sct__stat-line { gap: 4px; margin-bottom: 6px; }
+  .sct__sheet .sct__stat { padding: 4px 6px; gap: 0; border-radius: 4px; }
+  .sct__sheet .sct__stat-k { font-size: 8px; letter-spacing: 0.1em; }
+  .sct__sheet .sct__stat-v { font-size: 12.5px; }
+
+  /* Zone table — slim rows */
+  .sct__sheet .sct__zone-table { font-size: 11.5px; }
+  .sct__sheet .sct__zone-table th { font-size: 9px; padding: 3px 0; }
+  .sct__sheet .sct__zone-table td { font-size: 11.5px; padding: 4px 0; }
+
+  /* Legend rows */
+  .sct__sheet .sct__legend-row { font-size: 10px; gap: 6px; }
+  .sct__sheet .sct__legend-dot,
+  .sct__sheet .sct__legend-ring { width: 10px; height: 10px; }
+}
+
+@keyframes sct-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes sct-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* === Phone (≤ 720px) — chart + inline stats === */
+@media (max-width: 720px) {
+  .sct__chart { height: 60dvh; min-height: 340px; }
+}
+
+/* === Very small phones (≤ 400px) === */
+@media (max-width: 400px) {
+  .sct__main { padding: 8px 8px 76px; }
+  .sct__chart { height: 55dvh; min-height: 300px; }
+
+  .sct__mbar { padding: 8px 12px; gap: 8px; }
+  .sct__mbar-avatar { width: 36px; height: 36px; }
+  .sct__mbar-name { font-size: 14px; }
+  .sct__mbar-stats { font-size: 10.5px; }
+  .sct__mbar-open { padding: 8px 14px; font-size: 11px; }
 }

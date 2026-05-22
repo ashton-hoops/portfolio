@@ -53,6 +53,15 @@
   margin-bottom: var(--space-6);
 }
 
+.article-page__subtitle {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  margin-top: calc(-1 * var(--space-3));
+  margin-bottom: var(--space-6);
+  max-width: 600px;
+}
+
 .article-page__tags {
   display: flex;
   flex-wrap: wrap;
@@ -66,6 +75,165 @@
   background: rgba(0, 0, 0, 0.05);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
+}
+
+.article-page__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.article-page__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--bg);
+  background: var(--text);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.article-page__link:hover {
+  background: #000;
+  transform: translateY(-1px);
+}
+
+/* ---------- Video demo ---------- */
+.article-page__demo {
+  padding: var(--space-10) 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Single-video demo (no carousel chrome) — looping, click-to-fullscreen. */
+.article-page__single-video {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  background: #18171a;
+  border-radius: 6px;
+  border: 1px solid rgba(24, 23, 26, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.article-page__single-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+}
+
+.article-page__single-video video:fullscreen,
+.article-page__single-video video:-webkit-full-screen {
+  object-fit: contain;
+  background: #000;
+}
+
+.article-page__single-video-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 5px 11px;
+  background: rgba(24, 23, 26, 0.86);
+  color: #fafaf6;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 200ms ease, background 200ms ease;
+}
+
+.article-page__single-video:hover .article-page__single-video-hint {
+  opacity: 1;
+  background: #6b1018;
+}
+
+/* ---------- Features / Tech stack ---------- */
+.article-page__features,
+.article-page__tech {
+  padding: var(--space-10) 0;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.article-page__tech {
+  background: var(--bg);
+}
+
+.article-page__section-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text);
+  margin-bottom: var(--space-6);
+}
+
+.article-page__features-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-page__features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+}
+
+.article-page__features-list li::before {
+  display: none;
+}
+
+.article-page__features-list svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--text);
+}
+
+.article-page__tech-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-page__tech-list li {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.article-page__tech-list li::before {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .article-page__features-list,
+  .article-page__tech-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Content ---------- */

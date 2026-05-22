@@ -23,6 +23,7 @@
   align-items: center;
   gap: var(--space-2);
   text-decoration: none;
+  flex: 1;
 }
 
 .header__logo-text {
@@ -86,6 +87,13 @@
   transform: scaleX(1);
 }
 
+/* Contact wrapper — matches logo flex so nav stays centered */
+.header__contact-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* Contact Button */
 .header__contact {
   font-size: var(--text-xs);
@@ -94,17 +102,25 @@
   background: var(--text);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
-  text-decoration: none;
   letter-spacing: var(--tracking-wide);
   white-space: nowrap;
-  flex-shrink: 0;
-  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .header__contact:hover {
   background: #000000;
   color: var(--bg);
   transform: translateY(-1px);
+}
+
+/* Hamburger — hidden on desktop. */
+.header__hamburger {
+  display: none;
+}
+
+/* Mobile popup menu — hidden on desktop. */
+.header__menu,
+.header__menu-backdrop {
+  display: none;
 }
 
 /* Mobile */
@@ -119,7 +135,7 @@
 }
 
 @media (max-width: 768px) {
-  .header__contact {
+  .header__contact-wrap {
     display: none;
   }
 
@@ -128,24 +144,120 @@
   }
 }
 
+/* === Phone (≤ 600px) — hamburger left, name right, popup menu === */
 @media (max-width: 600px) {
   .header__container {
-    flex-wrap: wrap;
-    height: auto;
-    padding-top: var(--space-3);
-    padding-bottom: var(--space-3);
+    /* Keep single-row layout — name + hamburger only. */
+    height: 100%;
+    flex-wrap: nowrap;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
+  /* Hide the inline nav — moved into the hamburger popup. */
   .header__nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--border-light);
-    margin-top: var(--space-3);
+    display: none;
   }
 
-  .header {
-    height: auto;
+  /* Hamburger sits on the LEFT. */
+  .header__hamburger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    order: 1;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
   }
+  .header__hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 200ms ease, opacity 200ms ease;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header__hamburger--open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header__hamburger--open span:nth-child(2) {
+    opacity: 0;
+  }
+  .header__hamburger--open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Logo (name) sits on the RIGHT. */
+  .header__logo {
+    order: 2;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+  .header__logo-text {
+    font-size: var(--text-base);
+  }
+
+  /* Backdrop unused on the full-screen variant — the menu itself is
+     opaque and covers the whole viewport. */
+  .header__menu-backdrop { display: none; }
+
+  /* Full-screen popup menu — opaque overlay with nav links truly
+     centered. Uses CSS grid with `place-items: center` so the four-item
+     block is perfectly centered both vertically and horizontally. No
+     underline indicator on the active item — that pseudo-element used
+     to add ~10px of vertical weight and shifted the perceived center
+     downward. Color + weight handles the active state instead. */
+  .header__menu {
+    display: grid;
+    grid-auto-rows: max-content;
+    place-items: center;
+    align-content: center;
+    row-gap: 32px;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    padding: 0 24px;
+    z-index: 200;
+    animation: header-menu-fade 180ms ease-out;
+  }
+  .header__menu-link {
+    display: block;
+    font-family: var(--font-display, Georgia, serif);
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text-secondary);
+    text-decoration: none;
+    text-align: center;
+    transition: color 150ms ease;
+  }
+  .header__menu-link:hover {
+    color: var(--text);
+  }
+  .header__menu-link.active {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* Promote the hamburger above the full-screen menu when open so the
+     X icon stays tappable. */
+  .header__hamburger--open {
+    position: fixed;
+    top: 8px;
+    left: 16px;
+    z-index: 201;
+  }
+}
+
+@keyframes header-menu-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

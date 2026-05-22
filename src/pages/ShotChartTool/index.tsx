@@ -11,6 +11,7 @@
  *   /data/d1/teams/{teamId}.json  — per-team shots (lazy-fetched on team switch)
  */
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
+import { Dropdown } from './Dropdown'
 import './ShotChartTool.css'
 import type {
   Filters,
@@ -119,8 +120,19 @@ export default function ShotChartTool() {
   const [selectedTeamId, setSelectedTeamId] = useState<string>(DEFAULT_TEAM_ID)
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null)
   const [filters, setFilters] = useState<Filters>({ result: 'all', gameId: null, period: null })
-  const [viewMode] = useState<ViewMode>('markers')
+  const [viewMode, setViewMode] = useState<ViewMode>('markers')
   const [loadingTeam, setLoadingTeam] = useState<string | null>(null)
+  // Engine accepts bump-counter "nonces" to fly the camera to specific presets.
+  const [resetViewNonce, setResetViewNonce] = useState(0)
+  const [topDownViewNonce, setTopDownViewNonce] = useState(0)
+  // Mobile-only: a popup sheet that slides up from the bottom with every
+  // sidebar control + stat. Desktop ignores this state entirely. Lets the
+  // chart be the hero on phones while keeping controls one tap away.
+  const [sheetOpen, setSheetOpen] = useState(false)
+  // Camera is action-style — picking the same preset re-fires the engine
+  // nonce. We still track the *most recent* preset so the dropdown's
+  // trigger shows it instead of a placeholder.
+  const [lastCamera, setLastCamera] = useState<'default' | 'topdown'>('default')
 
   // Load index on mount
   useEffect(() => {
@@ -194,19 +206,32 @@ export default function ShotChartTool() {
     [filteredShots],
   )
 
-  // Designation sets (engine matches by lowercased athleteName)
+  // Designation sets (engine matches by lowercased athleteName).
+  // - Primary = top 2 PPG on the roster (overrides the scraped single-primary
+  //   list so we always color the team's two clearest go-to scorers).
+  // - Shooter = scraped shooterAthleteIds plus any per-team manual override
+  //   (used for cases like OU where Verhulst is the obvious designated
+  //   shooter by role even though her 3P% sits below the auto threshold).
   const designationNames = useMemo(() => {
     if (!team) return { primary: new Set<string>(), shooter: new Set<string>() }
-    const byId = new Map(team.roster.map((p) => [p.athleteId, p.name.toLowerCase()]))
     const primary = new Set<string>()
+    const top2 = [...team.roster].sort((a, b) => b.ppg - a.ppg).slice(0, 2)
+    for (const p of top2) primary.add(p.name.toLowerCase())
+
     const shooter = new Set<string>()
-    for (const aid of team.primaryAthleteIds) {
-      const n = byId.get(aid)
-      if (n) primary.add(n)
-    }
+    const byId = new Map(team.roster.map((p) => [p.athleteId, p.name.toLowerCase()]))
     for (const aid of team.shooterAthleteIds) {
       const n = byId.get(aid)
       if (n) shooter.add(n)
+    }
+    // Manual shooter overrides, keyed by teamId. Names must match roster
+    // strings (case-insensitive). Add only when the auto rule misses a
+    // player who is clearly the designated shooter by role.
+    const SHOOTER_OVERRIDES: Record<string, string[]> = {
+      '201': ['Payton Verhulst'], // OU
+    }
+    for (const name of SHOOTER_OVERRIDES[team.teamId] ?? []) {
+      shooter.add(name.toLowerCase())
     }
     return { primary, shooter }
   }, [team])
@@ -229,8 +254,421 @@ export default function ShotChartTool() {
   const games = teamFile?.games ?? []
   const isLoading = !index || loadingTeam === selectedTeamId
 
+  // Drive every accent on the page (card labels, top stripes, active filter
+  // buttons, team-strip active border, etc.) off the active team's primary
+  // color so nothing on the page is "default maroon" — it always tracks the
+  // team the chart is currently colored for.
+  const accentColor = team?.primaryColor || '#841617'
+
+  /* Card JSX is reused by both the desktop sidebars and the mobile popup
+     sheet. Extracting as consts keeps the two render paths in sync without
+     duplicating ~150 lines of markup. */
+  const teamCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">{selectedPlayer ? 'Player' : 'Team'}</p>
+      <div className="sct__player-card-head">
+        {selectedPlayer ? (
+          <div
+            className="sct__player-photo"
+            style={{ backgroundImage: `url(${headshotUrl(selectedPlayer.athleteId)})` }}
+          />
+        ) : team?.logoUrl ? (
+          <img
+            className="sct__player-photo sct__player-photo--logo"
+            src={team.logoUrl}
+            alt=""
+          />
+        ) : (
+          <div className="sct__player-photo" />
+        )}
+        <div>
+          <p className="sct__player-meta-name">
+            {selectedPlayer ? selectedPlayer.name : team?.fullName ?? 'Loading…'}
+          </p>
+          <p className="sct__player-meta-sub">
+            {selectedPlayer
+              ? `${selectedPlayer.position || '–'} · #${selectedPlayer.jersey || '–'}`
+              : team
+              ? `AP #${team.apRank} · ${team.gameCount} games`
+              : ''}
+          </p>
+        </div>
+      </div>
+      {selectedPlayer && (
+        <div className="sct__stat-line" style={{ marginBottom: 0 }}>
+          <div className="sct__stat">
+            <span className="sct__stat-k">PPG</span>
+            <span className="sct__stat-v">{selectedPlayer.ppg.toFixed(1)}</span>
+          </div>
+          <div className="sct__stat">
+            <span className="sct__stat-k">3PA/G</span>
+            <span className="sct__stat-v">
+              {selectedPlayer.threePointAttemptsPerGame.toFixed(1)}
+            </span>
+          </div>
+          <div className="sct__stat">
+            <span className="sct__stat-k">3P%</span>
+            <span className="sct__stat-v">{pct(selectedPlayer.threePointPercentage)}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+
+  const statsCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">Shooting · selection</p>
+      <div className="sct__stat-line">
+        <div className="sct__stat">
+          <span className="sct__stat-k">FG</span>
+          <span className="sct__stat-v">{`${classic.fgm}-${classic.fga}`}</span>
+        </div>
+        <div className="sct__stat">
+          <span className="sct__stat-k">FG%</span>
+          <span className="sct__stat-v">{pct(classic.fgPct)}</span>
+        </div>
+        <div className="sct__stat">
+          <span className="sct__stat-k">eFG%</span>
+          <span className="sct__stat-v">{pct(classic.efgPct)}</span>
+        </div>
+        <div className="sct__stat">
+          <span className="sct__stat-k">3P</span>
+          <span className="sct__stat-v">{`${classic.threeMade}-${classic.threeAttempts}`}</span>
+        </div>
+        <div className="sct__stat">
+          <span className="sct__stat-k">3P%</span>
+          <span className="sct__stat-v">{pct(classic.threePct)}</span>
+        </div>
+        <div className="sct__stat">
+          <span className="sct__stat-k">PTS</span>
+          <span className="sct__stat-v">
+            {filteredShots.reduce((sum, s) => sum + s.points, 0)}
+          </span>
+        </div>
+      </div>
+      <table className="sct__zone-table">
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th style={{ textAlign: 'right' }}>FG</th>
+            <th className="sct__zone-pct">FG%</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(Object.keys(ZONE_LABELS) as ZoneKind[]).map((zone) => {
+            const z = zoneAgg[zone]
+            const p = z.attempts ? z.made / z.attempts : 0
+            return (
+              <tr key={zone}>
+                <td>{ZONE_LABELS[zone]}</td>
+                <td style={{ textAlign: 'right' }}>
+                  {z.made}-{z.attempts}
+                </td>
+                <td className="sct__zone-pct">{z.attempts ? pct(p) : '–'}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+
+  const viewCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">View</p>
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Chart</span>
+        <div className="sct__filter-btn-group">
+          {(['markers', 'zones'] as ViewMode[]).map((v) => (
+            <button
+              key={v}
+              type="button"
+              className={`sct__filter-btn${viewMode === v ? ' sct__filter-btn--active' : ''}`}
+              onClick={() => setViewMode(v)}
+            >
+              {v}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Camera</span>
+        <div className="sct__filter-btn-group">
+          <button
+            type="button"
+            className="sct__filter-btn"
+            onClick={() => setResetViewNonce((n) => n + 1)}
+          >
+            Default
+          </button>
+          <button
+            type="button"
+            className="sct__filter-btn"
+            onClick={() => setTopDownViewNonce((n) => n + 1)}
+          >
+            Top-Down
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+
+  const filtersCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">Filters</p>
+      {/* Order: Game → Player → Result → Period. Picking a game narrows
+          the selection more aggressively than a player, so it leads. */}
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Game</span>
+        <select
+          className="sct__select"
+          value={filters.gameId ?? ''}
+          onChange={(e) => setFilters((f) => ({ ...f, gameId: e.target.value || null }))}
+        >
+          <option value="">All {games.length} games</option>
+          {games.map((g) => (
+            <option key={g.gameId} value={g.gameId}>
+              {(g.date || '').slice(0, 10)} · vs {g.opponent} · {g.result}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Player</span>
+        <select
+          className="sct__select"
+          value={selectedPlayerId ?? ''}
+          onChange={(e) => setSelectedPlayerId(e.target.value || null)}
+        >
+          <option value="">All players</option>
+          {(team?.roster ?? []).map((p) => (
+            <option key={p.athleteId} value={p.athleteId}>
+              {p.name}
+              {p.jersey ? ` #${p.jersey}` : ''}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Result</span>
+        <div className="sct__filter-btn-group">
+          {(['all', 'made', 'missed'] as ResultFilter[]).map((r) => (
+            <button
+              key={r}
+              type="button"
+              className={`sct__filter-btn${filters.result === r ? ' sct__filter-btn--active' : ''}`}
+              onClick={() => setFilters((f) => ({ ...f, result: r }))}
+            >
+              {r}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Period</span>
+        <div className="sct__filter-btn-group sct__filter-btn-group--tight">
+          <button
+            type="button"
+            className={`sct__filter-btn${filters.period === null ? ' sct__filter-btn--active' : ''}`}
+            onClick={() => setFilters((f) => ({ ...f, period: null }))}
+          >
+            All
+          </button>
+          {[1, 2, 3, 4].map((p) => (
+            <button
+              key={p}
+              type="button"
+              className={`sct__filter-btn${filters.period === p ? ' sct__filter-btn--active' : ''}`}
+              onClick={() => setFilters((f) => ({ ...f, period: p }))}
+            >
+              Q{p}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+
+  const legendCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">Shot Legend</p>
+      <div className="sct__legend-table">
+        <div className="sct__legend-row sct__legend-row--head">
+          <span></span>
+          <span>Made</span>
+          <span>Miss</span>
+        </div>
+        <div className="sct__legend-row">
+          <span>Primary</span>
+          <span className="sct__legend-dot" style={{ background: '#3b82f6' }} />
+          <span className="sct__legend-ring" style={{ color: '#3b82f6' }} />
+        </div>
+        <div className="sct__legend-row">
+          <span>Shooter</span>
+          <span className="sct__legend-dot" style={{ background: '#22c55e' }} />
+          <span className="sct__legend-ring" style={{ color: '#22c55e' }} />
+        </div>
+        <div className="sct__legend-row">
+          <span>Role</span>
+          <span className="sct__legend-dot" style={{ background: '#050505' }} />
+          <span className="sct__legend-ring" style={{ color: '#050505' }} />
+        </div>
+      </div>
+    </div>
+  )
+
+  /* Mobile-only compact cards — every control becomes a label+dropdown.
+     Split into TEAM (which team), FILTERS (what data), VIEW (how it
+     renders). Desktop still uses the original button-based versions
+     plus the always-visible team strip at the top of the page. */
+  const teamCardCompact = (
+    <div className="sct__card">
+      <p className="sct__card-label">Team</p>
+      <div className="sct__player-card-head">
+        {team?.logoUrl ? (
+          <img
+            className="sct__player-photo sct__player-photo--logo"
+            src={team.logoUrl}
+            alt=""
+          />
+        ) : (
+          <div className="sct__player-photo" />
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <p className="sct__player-meta-name">
+            {team?.fullName ?? team?.name ?? 'Loading…'}
+          </p>
+          <p className="sct__player-meta-sub">
+            {team ? `AP #${team.apRank} · ${team.gameCount} games` : ''}
+          </p>
+        </div>
+      </div>
+      <div className="sct__row">
+        <label className="sct__row-label">Team</label>
+        <Dropdown
+          ariaLabel="Choose team"
+          value={selectedTeamId}
+          onChange={(v) => setSelectedTeamId(v)}
+          options={sortedTeams.map((t) => ({
+            value: t.teamId,
+            label: `#${t.apRank} · ${t.fullName || t.name}`,
+          }))}
+        />
+      </div>
+    </div>
+  )
+
+  const filtersCardCompact = (
+    <div className="sct__card">
+      <p className="sct__card-label">Filters</p>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Game</label>
+        <Dropdown
+          ariaLabel="Filter by game"
+          value={filters.gameId ?? ''}
+          onChange={(v) => setFilters((f) => ({ ...f, gameId: v || null }))}
+          options={[
+            { value: '', label: `All ${games.length} games` },
+            ...games.map((g) => ({
+              value: g.gameId,
+              label: `${(g.date || '').slice(0, 10)} · vs ${g.opponent} · ${g.result}`,
+            })),
+          ]}
+        />
+      </div>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Player</label>
+        <Dropdown
+          ariaLabel="Filter by player"
+          value={selectedPlayerId ?? ''}
+          onChange={(v) => setSelectedPlayerId(v || null)}
+          options={[
+            { value: '', label: 'All players' },
+            ...(team?.roster ?? []).map((p) => ({
+              value: p.athleteId,
+              label: `${p.name}${p.jersey ? ` #${p.jersey}` : ''}`,
+            })),
+          ]}
+        />
+      </div>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Result</label>
+        <Dropdown
+          ariaLabel="Filter by result"
+          value={filters.result}
+          onChange={(v) => setFilters((f) => ({ ...f, result: v as ResultFilter }))}
+          options={[
+            { value: 'all', label: 'All shots' },
+            { value: 'made', label: 'Made only' },
+            { value: 'missed', label: 'Missed only' },
+          ]}
+        />
+      </div>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Period</label>
+        <Dropdown
+          ariaLabel="Filter by period"
+          value={filters.period === null ? '' : String(filters.period)}
+          onChange={(v) =>
+            setFilters((f) => ({ ...f, period: v ? Number(v) : null }))
+          }
+          options={[
+            { value: '', label: 'All quarters' },
+            { value: '1', label: 'Q1' },
+            { value: '2', label: 'Q2' },
+            { value: '3', label: 'Q3' },
+            { value: '4', label: 'Q4' },
+          ]}
+        />
+      </div>
+    </div>
+  )
+
+  const viewCardCompact = (
+    <div className="sct__card">
+      <p className="sct__card-label">View</p>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Chart</label>
+        <Dropdown
+          ariaLabel="Chart view"
+          value={viewMode}
+          onChange={(v) => setViewMode(v as ViewMode)}
+          options={[
+            { value: 'markers', label: 'Markers' },
+            { value: 'zones', label: 'Zones' },
+          ]}
+        />
+      </div>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Camera</label>
+        <Dropdown
+          ariaLabel="Camera preset"
+          value={lastCamera}
+          onChange={(v) => {
+            setLastCamera(v as 'default' | 'topdown')
+            if (v === 'default') setResetViewNonce((n) => n + 1)
+            if (v === 'topdown') setTopDownViewNonce((n) => n + 1)
+          }}
+          options={[
+            { value: 'default', label: 'Default' },
+            { value: 'topdown', label: 'Top down' },
+          ]}
+        />
+      </div>
+    </div>
+  )
+
   return (
-    <div className="sct">
+    <div
+      className={`sct${sheetOpen ? ' sct--sheet-open' : ''}`}
+      style={{ ['--sct-accent' as string]: accentColor }}
+    >
       {/* ============ Team strip ============ */}
       <div className="sct__team-strip" role="tablist">
         {sortedTeams.map((t) => {
@@ -257,18 +695,20 @@ export default function ShotChartTool() {
         })}
       </div>
 
-      {/* ============ Main grid ============ */}
+      {/* ============ Main grid: left sidebar · chart · right sidebar ============ */}
       <div className="sct__main">
+        {/* LEFT SIDEBAR — desktop only (hidden on mobile via CSS) */}
+        <aside className="sct__sidebar sct__sidebar--left">
+          {viewCard}
+          {filtersCard}
+          {legendCard}
+        </aside>
+
+        {/* CHART */}
         <div className="sct__chart">
           {isLoading && <div className="sct__chart-loading">Loading…</div>}
           {!isLoading && team && (
             <Suspense fallback={<div className="sct__chart-loading">Loading 3D…</div>}>
-              {/*
-                Remount the engine when the team changes so the floor canvas
-                and apron materials rebuild with the new team's primary color
-                and logo. The engine's scene useEffect has [] deps, so a
-                full remount is the safest way to propagate team-color changes.
-              */}
               <ThreeJsShotChartPrototype
                 key={team.teamId}
                 shots={engineShots}
@@ -278,6 +718,8 @@ export default function ShotChartTool() {
                 teamPrimaryColor={team.primaryColor || '#841617'}
                 teamLogoUrl={team.logoUrl || '/ou-logo.svg'}
                 teamWordmark={(team.fullName || team.name || 'OKLAHOMA').toUpperCase()}
+                resetViewNonce={resetViewNonce}
+                topDownViewNonce={topDownViewNonce}
               />
             </Suspense>
           )}
@@ -286,206 +728,88 @@ export default function ShotChartTool() {
           )}
         </div>
 
-        <aside className="sct__sidebar">
-          {/* PLAYER CARD */}
-          <div className="sct__card">
-            <p className="sct__card-label">{selectedPlayer ? 'Player' : 'Team'}</p>
-            <div className="sct__player-card-head">
-              {selectedPlayer ? (
-                <div
-                  className="sct__player-photo"
-                  style={{ backgroundImage: `url(${headshotUrl(selectedPlayer.athleteId)})` }}
-                />
-              ) : team?.logoUrl ? (
-                <img
-                  className="sct__player-photo"
-                  src={team.logoUrl}
-                  alt=""
-                  style={{ background: '#fafaf6', objectFit: 'contain', padding: 6 }}
-                />
-              ) : (
-                <div className="sct__player-photo" />
-              )}
-              <div>
-                <p className="sct__player-meta-name">
-                  {selectedPlayer ? selectedPlayer.name : team?.fullName ?? 'Loading…'}
-                </p>
-                <p className="sct__player-meta-sub">
-                  {selectedPlayer
-                    ? `${selectedPlayer.position || '–'} · #${selectedPlayer.jersey || '–'}`
-                    : team
-                    ? `AP #${team.apRank} · ${team.gameCount} games`
-                    : ''}
-                </p>
-              </div>
-            </div>
+        {/* Mobile-only stats — shown inline below the chart so the user sees
+            shooting splits without having to open the popup. Hidden on
+            desktop (where the same card lives in the right sidebar). */}
+        <div className="sct__mobile-stats">{statsCard}</div>
 
-            {selectedPlayer && (
-              <div className="sct__stat-line" style={{ marginBottom: 0 }}>
-                <div className="sct__stat">
-                  <span className="sct__stat-k">PPG</span>
-                  <span className="sct__stat-v">{selectedPlayer.ppg.toFixed(1)}</span>
-                </div>
-                <div className="sct__stat">
-                  <span className="sct__stat-k">3PA/G</span>
-                  <span className="sct__stat-v">
-                    {selectedPlayer.threePointAttemptsPerGame.toFixed(1)}
-                  </span>
-                </div>
-                <div className="sct__stat">
-                  <span className="sct__stat-k">3P%</span>
-                  <span className="sct__stat-v">
-                    {pct(selectedPlayer.threePointPercentage)}
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* STATS — shooting line + zone breakdown */}
-          <div className="sct__card">
-            <p className="sct__card-label">Shooting · selection</p>
-            <div className="sct__stat-line">
-              <div className="sct__stat">
-                <span className="sct__stat-k">FG</span>
-                <span className="sct__stat-v">{`${classic.fgm}-${classic.fga}`}</span>
-              </div>
-              <div className="sct__stat">
-                <span className="sct__stat-k">FG%</span>
-                <span className="sct__stat-v">{pct(classic.fgPct)}</span>
-              </div>
-              <div className="sct__stat">
-                <span className="sct__stat-k">eFG%</span>
-                <span className="sct__stat-v">{pct(classic.efgPct)}</span>
-              </div>
-              <div className="sct__stat">
-                <span className="sct__stat-k">3P</span>
-                <span className="sct__stat-v">{`${classic.threeMade}-${classic.threeAttempts}`}</span>
-              </div>
-              <div className="sct__stat">
-                <span className="sct__stat-k">3P%</span>
-                <span className="sct__stat-v">{pct(classic.threePct)}</span>
-              </div>
-              <div className="sct__stat">
-                <span className="sct__stat-k">PTS</span>
-                <span className="sct__stat-v">
-                  {filteredShots.reduce((sum, s) => sum + s.points, 0)}
-                </span>
-              </div>
-            </div>
-
-            <table className="sct__zone-table">
-              <thead>
-                <tr>
-                  <th>Zone</th>
-                  <th style={{ textAlign: 'right' }}>FG</th>
-                  <th className="sct__zone-pct">FG%</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(Object.keys(ZONE_LABELS) as ZoneKind[]).map((zone) => {
-                  const z = zoneAgg[zone]
-                  const p = z.attempts ? z.made / z.attempts : 0
-                  return (
-                    <tr key={zone}>
-                      <td>{ZONE_LABELS[zone]}</td>
-                      <td style={{ textAlign: 'right' }}>
-                        {z.made}-{z.attempts}
-                      </td>
-                      <td className="sct__zone-pct">{z.attempts ? pct(p) : '–'}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          {/* FILTERS */}
-          <div className="sct__card">
-            <p className="sct__card-label">Filters</p>
-
-            <div className="sct__filter-row">
-              <span className="sct__filter-label">Player</span>
-              <select
-                className="sct__select"
-                value={selectedPlayerId ?? ''}
-                onChange={(e) => setSelectedPlayerId(e.target.value || null)}
-              >
-                <option value="">All players</option>
-                {(team?.roster ?? []).map((p) => (
-                  <option key={p.athleteId} value={p.athleteId}>
-                    {p.name}
-                    {p.jersey ? ` #${p.jersey}` : ''}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="sct__filter-row">
-              <span className="sct__filter-label">Result</span>
-              <div className="sct__filter-btn-group">
-                {(['all', 'made', 'missed'] as ResultFilter[]).map((r) => (
-                  <button
-                    key={r}
-                    type="button"
-                    className={`sct__filter-btn${
-                      filters.result === r ? ' sct__filter-btn--active' : ''
-                    }`}
-                    onClick={() => setFilters((f) => ({ ...f, result: r }))}
-                  >
-                    {r}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="sct__filter-row">
-              <span className="sct__filter-label">Game</span>
-              <select
-                className="sct__select"
-                value={filters.gameId ?? ''}
-                onChange={(e) =>
-                  setFilters((f) => ({ ...f, gameId: e.target.value || null }))
-                }
-              >
-                <option value="">All {games.length} games</option>
-                {games.map((g) => (
-                  <option key={g.gameId} value={g.gameId}>
-                    {(g.date || '').slice(0, 10)} · vs {g.opponent} · {g.result}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="sct__filter-row">
-              <span className="sct__filter-label">Period</span>
-              <div className="sct__filter-btn-group">
-                <button
-                  type="button"
-                  className={`sct__filter-btn${
-                    filters.period === null ? ' sct__filter-btn--active' : ''
-                  }`}
-                  onClick={() => setFilters((f) => ({ ...f, period: null }))}
-                >
-                  All
-                </button>
-                {[1, 2, 3, 4].map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    className={`sct__filter-btn${
-                      filters.period === p ? ' sct__filter-btn--active' : ''
-                    }`}
-                    onClick={() => setFilters((f) => ({ ...f, period: p }))}
-                  >
-                    Q{p}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* RIGHT SIDEBAR — desktop only (hidden on mobile via CSS) */}
+        <aside className="sct__sidebar sct__sidebar--right">
+          {teamCard}
+          {statsCard}
         </aside>
       </div>
+
+      {/* ============ MOBILE — sticky bottom bar + popup sheet ============ */}
+      {/* CSS hides these on desktop. On mobile they replace the sidebars. */}
+      <div className="sct__mbar">
+        <div className="sct__mbar-info">
+          {selectedPlayer ? (
+            <div
+              className="sct__mbar-avatar"
+              style={{ backgroundImage: `url(${headshotUrl(selectedPlayer.athleteId)})` }}
+              aria-hidden="true"
+            />
+          ) : team?.logoUrl ? (
+            <img className="sct__mbar-avatar sct__mbar-avatar--logo" src={team.logoUrl} alt="" />
+          ) : (
+            <div className="sct__mbar-avatar" />
+          )}
+          <div className="sct__mbar-text">
+            <span className="sct__mbar-name">
+              {selectedPlayer ? selectedPlayer.name : team?.name ?? '–'}
+            </span>
+            <span className="sct__mbar-stats">
+              FG {pct(classic.fgPct)} · 3P {pct(classic.threePct)}
+            </span>
+          </div>
+        </div>
+        <button
+          type="button"
+          className="sct__mbar-open"
+          onClick={() => setSheetOpen(true)}
+          aria-haspopup="dialog"
+        >
+          Details
+          <span aria-hidden="true" className="sct__mbar-chev">▴</span>
+        </button>
+      </div>
+
+      {sheetOpen && (
+        <>
+          <button
+            type="button"
+            className="sct__sheet-backdrop"
+            onClick={() => setSheetOpen(false)}
+            aria-label="Close details"
+          />
+          <div
+            className="sct__sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Filters and stats"
+          >
+            <div className="sct__sheet-handle" aria-hidden="true" />
+            <div className="sct__sheet-header">
+              <p className="sct__sheet-title">{team?.fullName ?? team?.name ?? ''}</p>
+              <button
+                type="button"
+                className="sct__sheet-close"
+                onClick={() => setSheetOpen(false)}
+                aria-label="Close"
+              >
+                Done
+              </button>
+            </div>
+            <div className="sct__sheet-body">
+              {teamCardCompact}
+              {filtersCardCompact}
+              {viewCardCompact}
+              {legendCard}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }

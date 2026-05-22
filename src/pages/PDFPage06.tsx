@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { lazy, Suspense, useEffect, useRef, useState, Fragment } from 'react'
 import type { CSSProperties } from 'react'
 import './PDFPage06.css'

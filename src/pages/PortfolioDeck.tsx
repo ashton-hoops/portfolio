@@ -29,9 +29,10 @@ const PAGES: Pg[] = [
 ]
 
 export default function PortfolioDeck() {
-  // Scale each tile so a complete tile fits the viewport (width AND height).
-  // Sets a --deck-scale CSS variable on the stack root; the CSS uses transform
-  // for visual size and calc() for the layout box.
+  // Scale each tile so it reads comfortably. Width still hard-caps, but
+  // we let the height-fit be a bit bigger than the viewport (×1.2) so a
+  // single tile is intentionally slightly taller than the screen on desktop.
+  // Coaches scroll through the deck rather than viewing one page at a time.
   useEffect(() => {
     const TILE_W = 920 // 880 paper + small breathing room
     const TILE_H = 1170 // 1120 paper + ~50 meta label and gap
@@ -42,7 +43,7 @@ export default function PortfolioDeck() {
       const headerH = parseFloat(cs.getPropertyValue('--header-height')) || 48
       const availW = window.innerWidth - 24
       const availH = window.innerHeight - headerH - 24
-      const scale = Math.min(availW / TILE_W, availH / TILE_H, 1)
+      const scale = Math.min(availW / TILE_W, (availH / TILE_H) * 1.2, 1)
       stack.style.setProperty('--deck-scale', String(scale))
     }
     update()
@@ -50,13 +51,25 @@ export default function PortfolioDeck() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  // Forward wheel events from inside each page iframe to the outer
-  // window so cursor-over-iframe scrolling keeps moving the page stack.
-  // Without this, Safari swallows wheel events because the iframe body
-  // has padding that creates a few px of internal overflow. Same hack
-  // PDFPreviewAll uses.
+  // Forward wheel events from inside each page iframe to the outer window
+  // so cursor-over-iframe scrolling keeps moving the page stack. Wheel
+  // events fired inside an iframe contentDocument don't bubble to the
+  // parent window, so we manually re-emit scroll on the host page.
+  // Deltas are batched per animation frame so a burst of trackpad ticks
+  // doesn't jitter — each frame applies the accumulated delta as one
+  // scrollBy, matching native scroll feel.
   useEffect(() => {
     const cleanups: Array<() => void> = []
+    let pendingY = 0
+    let pendingX = 0
+    let rafId = 0
+    const flush = () => {
+      rafId = 0
+      if (pendingY === 0 && pendingX === 0) return
+      window.scrollBy({ top: pendingY, left: pendingX, behavior: 'auto' })
+      pendingY = 0
+      pendingX = 0
+    }
     PAGES.forEach((_, idx) => {
       const section = document.getElementById(`deck-tile-${idx}`)
       const iframe = section?.querySelector('iframe') as HTMLIFrameElement | null
@@ -70,7 +83,9 @@ export default function PortfolioDeck() {
           const onWheel = (e: WheelEvent) => {
             const modal = doc.getElementById('pdfModal') as HTMLElement | null
             if (modal && !modal.hidden) return
-            window.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' })
+            pendingY += e.deltaY
+            pendingX += e.deltaX
+            if (!rafId) rafId = requestAnimationFrame(flush)
           }
           doc.addEventListener('wheel', onWheel, { passive: true })
           cleanups.push(() => doc.removeEventListener('wheel', onWheel))
@@ -82,7 +97,10 @@ export default function PortfolioDeck() {
       attach()
       cleanups.push(() => iframe.removeEventListener('load', attach))
     })
-    return () => cleanups.forEach((fn) => fn())
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      cleanups.forEach((fn) => fn())
+    }
   }, [])
 
   return (

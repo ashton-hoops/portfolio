@@ -12,7 +12,11 @@
   gap: calc(24px * var(--deck-scale, 1));
   padding: 28px 16px 80px;
   background: #ddd;
+  width: 100%;
+  min-width: 100%;
   --deck-scale: 1;
+  /* Giant spread shadow fills any gap between this element and viewport edge */
+  box-shadow: 0 0 0 9999px #ddd;
 }
 
 /* Outer frame defines the SCALED layout box so the flex column stack

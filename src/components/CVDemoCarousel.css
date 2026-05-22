@@ -1,0 +1,109 @@
+/* CV demo carousel — React port of PDF page-05 video embed.
+   Two stacked <video> elements crossfade between clips so transitions
+   are seamless and the next clip is preloaded into the inactive one. */
+
+.cv-demo {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.cv-demo__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 8 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #18171a;
+  border: 1px solid rgba(24, 23, 26, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cv-demo__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  transition: opacity 1500ms ease;
+  pointer-events: none;
+}
+
+.cv-demo__video.cv-active {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: zoom-in;
+}
+
+/* Fullscreen — fit the whole frame (letterbox if needed) so the user can
+   see the full tracking output, not a cover-cropped slice. */
+.cv-demo__video:fullscreen,
+.cv-demo__video:-webkit-full-screen {
+  object-fit: contain;
+  background: #000;
+}
+
+.cv-demo__hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 5px 11px;
+  background: rgba(24, 23, 26, 0.86);
+  color: #fafaf6;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 200ms ease, background 200ms ease;
+  z-index: 2;
+}
+
+.cv-demo__frame:hover .cv-demo__hint {
+  opacity: 1;
+  background: #6b1018;
+}
+
+.cv-demo__caption {
+  font-size: 11px;
+  color: var(--text-muted, #7a7976);
+  margin: 8px 0 0;
+  font-style: italic;
+  text-align: center;
+}
+
+.cv-demo__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cv-demo__dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(24, 23, 26, 0.18);
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.cv-demo__dot:hover {
+  background: rgba(107, 16, 24, 0.55);
+  transform: scale(1.15);
+}
+
+.cv-demo__dot.active {
+  background: #6b1018;
+}
+
+.cv-demo__dot:focus-visible {
+  outline: 2px solid #6b1018;
+  outline-offset: 2px;
+}

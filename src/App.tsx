@@ -1,12 +1,16 @@
 import { lazy, Suspense } from 'react'
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import PortfolioDeck from './pages/PortfolioDeck'
-import { Projects } from './pages/Projects'
-import { ProjectDetail } from './pages/ProjectDetail'
 import { Research } from './pages/Research'
 import { Article } from './pages/Article'
+
+function ProjectRedirect() {
+  const { slug } = useParams<{ slug: string }>()
+  return <Navigate to={slug ? `/research/${slug}` : '/research'} replace />
+}
 const ShotChartTool = lazy(() => import('./pages/ShotChartTool'))
+const DefensiveAnalysis = lazy(() => import('./pages/DefensiveAnalysis'))
 
 const PDFPage06 = lazy(() => import('./pages/PDFPage06'))
 const PDFPreviewAll = lazy(() => import('./pages/PDFPreviewAll'))
@@ -17,9 +21,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<PortfolioDeck />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="projects/:slug" element={<ProjectDetail />} />
+          <Route path="projects" element={<Navigate to="/research" replace />} />
+          <Route path="projects/:slug" element={<ProjectRedirect />} />
           <Route path="research" element={<Research />} />
+          <Route
+            path="research/defensive-analysis"
+            element={
+              <Suspense fallback={<div style={{ padding: 40, fontFamily: 'system-ui' }}>Loading…</div>}>
+                <DefensiveAnalysis />
+              </Suspense>
+            }
+          />
           <Route path="research/:slug" element={<Article />} />
           <Route
             path="shot-chart"
