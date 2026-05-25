@@ -20,9 +20,17 @@ import {
 } from './data'
 import './DefensiveAnalysis.css'
 
+const DASHBOARD_URL = 'https://ou-basketball-defense.onrender.com'
+const DASHBOARD_MOBILE_QUERY = '(max-width: 768px), (pointer: coarse)'
+
+function isDashboardMobileBlocked() {
+  return typeof window !== 'undefined' && window.matchMedia(DASHBOARD_MOBILE_QUERY).matches
+}
+
 export default function DefensiveAnalysis() {
   const articleRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
+  const [dashboardMobileBlocked, setDashboardMobileBlocked] = useState(isDashboardMobileBlocked)
 
   useEffect(() => {
     const onScroll = () => {
@@ -34,6 +42,15 @@ export default function DefensiveAnalysis() {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const media = window.matchMedia(DASHBOARD_MOBILE_QUERY)
+    const updateDashboardAccess = () => setDashboardMobileBlocked(media.matches)
+
+    updateDashboardAccess()
+    media.addEventListener('change', updateDashboardAccess)
+    return () => media.removeEventListener('change', updateDashboardAccess)
   }, [])
 
   return (
@@ -144,20 +161,33 @@ export default function DefensiveAnalysis() {
           </div>
 
           <div className="da__dashboard-link-row">
-            <a
-              href="https://ou-basketball-defense.onrender.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="da__dashboard-link"
-            >
-              <span className="da__dashboard-link-text">
-                <span className="da__dashboard-link-label">VIEW DASHBOARD</span>
-                <span className="da__dashboard-link-url">ou-basketball-defense.onrender.com</span>
-              </span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-              </svg>
-            </a>
+            {dashboardMobileBlocked ? (
+              <div className="da__dashboard-link da__dashboard-link--disabled" role="note" aria-disabled="true">
+                <span className="da__dashboard-link-text">
+                  <span className="da__dashboard-link-label">DASHBOARD DESKTOP ONLY</span>
+                  <span className="da__dashboard-link-url">Open this on a laptop or desktop</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="12" rx="2" />
+                  <path d="M8 20h8M12 16v4" />
+                </svg>
+              </div>
+            ) : (
+              <a
+                href={DASHBOARD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="da__dashboard-link"
+              >
+                <span className="da__dashboard-link-text">
+                  <span className="da__dashboard-link-label">VIEW DASHBOARD</span>
+                  <span className="da__dashboard-link-url">ou-basketball-defense.onrender.com</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                </svg>
+              </a>
+            )}
           </div>
         </section>
 

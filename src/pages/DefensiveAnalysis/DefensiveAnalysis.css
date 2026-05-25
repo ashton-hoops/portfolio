@@ -858,6 +858,19 @@
   background: #521014;
 }
 
+.da__dashboard-link--disabled,
+.da__dashboard-link--disabled:hover {
+  background: #ece8df;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  cursor: not-allowed;
+}
+
+.da__dashboard-link--disabled .da__dashboard-link-label {
+  color: var(--accent);
+  opacity: 0.9;
+}
+
 .da__dashboard-link-text {
   display: flex;
   flex-direction: column;
