@@ -28,10 +28,27 @@ const PAGES: Pg[] = [
   { num: '08', label: "What I'd Bring", src: '/pdf/page-08-bring.html' },
 ]
 
+const MOBILE_BREAKPOINT = 768
+const DECK_IFRAME_BASE_HEIGHT = 1056
+const HEIGHT_SYNC_DELAYS = [50, 250, 750, 1500]
 const MOBILE_IFRAME_STYLE_ID = '__deck-mobile-style'
 const MOBILE_ORIGINAL_FONT_ATTR = 'data-deck-original-font-size'
 
 const MOBILE_IFRAME_CSS = `
+  html,
+  body {
+    height: auto !important;
+    min-height: ${DECK_IFRAME_BASE_HEIGHT}px !important;
+    overflow: visible !important;
+  }
+
+  .page,
+  .pdf06-page {
+    height: auto !important;
+    min-height: ${DECK_IFRAME_BASE_HEIGHT}px !important;
+    overflow: visible !important;
+  }
+
   .top,
   .pdf06-top {
     display: none !important;
@@ -134,8 +151,61 @@ function restoreIframeText(doc: Document) {
     })
 }
 
-function syncMobileIframeStyle(doc: Document, enabled: boolean) {
-  type DeckDocument = Document & { __deckMobileObserver?: MutationObserver }
+function getDeckScale() {
+  const stack = document.querySelector<HTMLElement>('.deck-stack')
+  if (!stack) return 1
+
+  const scale = parseFloat(getComputedStyle(stack).getPropertyValue('--deck-scale'))
+  return Number.isFinite(scale) && scale > 0 ? scale : 1
+}
+
+function getIframeContentHeight(doc: Document) {
+  const page = doc.querySelector<HTMLElement>('.page, .pdf06-page')
+  const pageRectHeight = page ? page.getBoundingClientRect().height : 0
+  const pageHeight = page ? page.scrollHeight : 0
+  const bodyHeight = doc.body?.scrollHeight ?? 0
+  const documentHeight = doc.documentElement?.scrollHeight ?? 0
+
+  return Math.max(
+    DECK_IFRAME_BASE_HEIGHT,
+    Math.ceil(pageRectHeight),
+    Math.ceil(pageHeight),
+    Math.ceil(bodyHeight),
+    Math.ceil(documentHeight),
+  )
+}
+
+function syncMobileIframeHeight(iframe: HTMLIFrameElement, enabled: boolean) {
+  const paper = iframe.closest<HTMLElement>('.deck-paper')
+  const frame = iframe.closest<HTMLElement>('.deck-tile-frame')
+
+  if (!enabled) {
+    iframe.style.removeProperty('height')
+    paper?.style.removeProperty('height')
+    frame?.style.removeProperty('height')
+    return
+  }
+
+  const doc = iframe.contentDocument
+  if (!doc?.body) return
+
+  const contentHeight = getIframeContentHeight(doc)
+  const scaledHeight = Math.ceil(contentHeight * getDeckScale())
+
+  iframe.style.setProperty('height', `${contentHeight}px`)
+  paper?.style.setProperty('height', `${contentHeight}px`)
+  frame?.style.setProperty('height', `${scaledHeight}px`)
+}
+
+function syncMobileIframeStyle(
+  doc: Document,
+  enabled: boolean,
+  onContentChange?: () => void,
+) {
+  type DeckDocument = Document & {
+    __deckMobileObserver?: MutationObserver
+    __deckMobileContentChange?: () => void
+  }
   const deckDoc = doc as DeckDocument
   const existing = doc.getElementById(MOBILE_IFRAME_STYLE_ID)
 
@@ -144,8 +214,11 @@ function syncMobileIframeStyle(doc: Document, enabled: boolean) {
     restoreIframeText(doc)
     deckDoc.__deckMobileObserver?.disconnect()
     deckDoc.__deckMobileObserver = undefined
+    deckDoc.__deckMobileContentChange = undefined
     return
   }
+
+  deckDoc.__deckMobileContentChange = onContentChange
 
   if (!existing) {
     const style = doc.createElement('style')
@@ -162,9 +235,12 @@ function syncMobileIframeStyle(doc: Document, enabled: boolean) {
     deckDoc.__deckMobileObserver = new Observer(() => {
       scaleIframeText(doc, MOBILE_TITLE_TEXT_SELECTOR, 1.04)
       scaleIframeText(doc, MOBILE_BODY_TEXT_SELECTOR, 1.08)
+      deckDoc.__deckMobileContentChange?.()
     })
     deckDoc.__deckMobileObserver.observe(doc.body, { childList: true, subtree: true })
   }
+
+  deckDoc.__deckMobileContentChange?.()
 }
 
 export default function PortfolioDeck() {
@@ -186,7 +262,7 @@ export default function PortfolioDeck() {
       if (!stack) return
       const cs = getComputedStyle(document.documentElement)
       const headerH = parseFloat(cs.getPropertyValue('--header-height')) || 48
-      const isMobile = window.innerWidth < 768
+      const isMobile = window.innerWidth < MOBILE_BREAKPOINT
       let scale: number
       if (isMobile) {
         const w = document.documentElement.clientWidth || window.innerWidth
@@ -212,9 +288,22 @@ export default function PortfolioDeck() {
   // scrollBy, matching native scroll feel.
   useEffect(() => {
     const cleanups: Array<() => void> = []
+    const heightSyncTimers = new Set<number>()
     let pendingY = 0
     let pendingX = 0
     let rafId = 0
+    const scheduleHeightSync = (iframe: HTMLIFrameElement, enabled: boolean) => {
+      syncMobileIframeHeight(iframe, enabled)
+      if (!enabled) return
+
+      HEIGHT_SYNC_DELAYS.forEach((delay) => {
+        const timer = window.setTimeout(() => {
+          heightSyncTimers.delete(timer)
+          syncMobileIframeHeight(iframe, window.innerWidth < MOBILE_BREAKPOINT)
+        }, delay)
+        heightSyncTimers.add(timer)
+      })
+    }
     const flush = () => {
       rafId = 0
       if (pendingY === 0 && pendingX === 0) return
@@ -231,7 +320,14 @@ export default function PortfolioDeck() {
           const doc = iframe.contentDocument
           if (!doc?.head) return
 
-          syncMobileIframeStyle(doc, window.innerWidth < 768)
+          const mobile = window.innerWidth < MOBILE_BREAKPOINT
+          syncMobileIframeStyle(doc, mobile, () => {
+            syncMobileIframeHeight(iframe, window.innerWidth < MOBILE_BREAKPOINT)
+          })
+          scheduleHeightSync(iframe, mobile)
+          void doc.fonts?.ready.then(() => {
+            scheduleHeightSync(iframe, window.innerWidth < MOBILE_BREAKPOINT)
+          })
 
           if (!(doc as unknown as { __wheelBound?: boolean }).__wheelBound) {
             ;(doc as unknown as { __wheelBound: boolean }).__wheelBound = true
@@ -258,7 +354,13 @@ export default function PortfolioDeck() {
       document.querySelectorAll<HTMLIFrameElement>('.deck-iframe').forEach((iframe) => {
         try {
           const doc = iframe.contentDocument
-          if (doc?.head) syncMobileIframeStyle(doc, window.innerWidth < 768)
+          if (!doc?.head) return
+
+          const mobile = window.innerWidth < MOBILE_BREAKPOINT
+          syncMobileIframeStyle(doc, mobile, () => {
+            syncMobileIframeHeight(iframe, window.innerWidth < MOBILE_BREAKPOINT)
+          })
+          scheduleHeightSync(iframe, mobile)
         } catch {
           /* cross-origin or not ready */
         }
@@ -269,6 +371,7 @@ export default function PortfolioDeck() {
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
+      heightSyncTimers.forEach((timer) => window.clearTimeout(timer))
       cleanups.forEach((fn) => fn())
     }
   }, [])
