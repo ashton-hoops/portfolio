@@ -5,9 +5,18 @@ services:
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /favicon.svg
+        name: Cache-Control
+        value: no-cache
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
       - path: /*
         name: Cache-Control
-        value: public, max-age=86400
+        value: no-cache
     routes:
       - type: rewrite
         source: /*
