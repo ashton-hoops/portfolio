@@ -78,15 +78,23 @@
   .embed-shell:hover .embed-zoom-hint { opacity: 1; background: var(--accent); }
   .embed-shell { cursor: zoom-in; }
 
-  /* Full-size PDF modal — click the small embed to expand it. Click the
-   * backdrop (or ✕) to close. Sized at letter aspect, capped at 92vh. */
+  /* Full-size report modal — click the small embed to expand it. The
+   * expanded view uses rendered page images instead of the native PDF
+   * plugin because mobile Safari can crash when a nested PDF viewer is
+   * scrolled and pinch-zoomed inside an iframe. */
   .pdf-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 18px; animation: pdf-modal-fade 180ms ease-out; }
   .pdf-modal[hidden] { display: none; }
   .pdf-modal-backdrop { position: absolute; inset: 0; background: rgba(8, 8, 10, 0.78); backdrop-filter: blur(3px); cursor: zoom-out; }
-  .pdf-modal-content { position: relative; height: min(90vh, 980px); aspect-ratio: 8.5 / 11; max-width: 94vw; background: #fafaf6; border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); overflow: hidden; }
-  .pdf-modal-content object, .pdf-modal-content iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .pdf-modal-close { position: absolute; top: -38px; right: -4px; background: transparent; border: 0; color: #fafaf6; font-size: 28px; font-weight: 300; line-height: 1; padding: 4px 12px; cursor: pointer; opacity: 0.9; }
+  .pdf-modal-content { position: relative; width: min(94vw, 760px); height: min(90vh, 980px); background: #fafaf6; border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); overflow: hidden; display: flex; flex-direction: column; }
+  .pdf-modal-toolbar { min-height: 44px; padding: 9px 12px; border-bottom: 1px solid var(--rule-light); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; background: #fafaf6; }
+  .pdf-modal-title { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); white-space: nowrap; }
+  .pdf-modal-actions { display: flex; align-items: center; gap: 8px; }
+  .pdf-modal-open { color: var(--text); text-decoration: none; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; border-bottom: 1px solid currentColor; padding-bottom: 1px; white-space: nowrap; }
+  .pdf-modal-close { width: 30px; height: 30px; border: 0; border-radius: 999px; background: rgba(24, 23, 26, 0.08); color: var(--text); font-size: 22px; font-weight: 300; line-height: 1; padding: 0 0 2px; cursor: pointer; opacity: 0.9; display: grid; place-items: center; }
   .pdf-modal-close:hover { opacity: 1; }
+  .pdf-report-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; background: #dedbd4; padding: 14px; }
+  .pdf-report-page { display: block; width: 100%; height: auto; margin: 0 auto 14px; background: #fff; border-radius: 2px; box-shadow: 0 4px 18px rgba(0,0,0,0.18); user-select: none; -webkit-user-drag: none; }
+  .pdf-report-page:last-child { margin-bottom: 0; }
   @keyframes pdf-modal-fade { from { opacity: 0; } to { opacity: 1; } }
 
   /* FOOTER */
@@ -152,17 +160,28 @@
     </footer>
   </div>
 
-  <!-- Full-size PDF modal — opens when the small embed is clicked.
-       The <object> is intentionally NOT in the markup. Safari renders
-       its native PDF viewer (and floating control HUD) for any
-       application/pdf object as soon as it's in the DOM, even if the
-       modal is display:none — that caused a second bar to bleed
-       through under the inline preview. We create the object only
-       when the modal opens and remove it on close. -->
+  <!-- Full-size report modal — rendered as image pages so mobile browsers
+       do not load a nested native PDF viewer inside the portfolio iframe. -->
   <div class="pdf-modal" id="pdfModal" hidden aria-modal="true" role="dialog" aria-label="OU Defense Report — full size">
     <div class="pdf-modal-backdrop" data-close></div>
     <div class="pdf-modal-content" id="pdfModalContent">
-      <button type="button" class="pdf-modal-close" data-close aria-label="Close">✕</button>
+      <div class="pdf-modal-toolbar">
+        <span class="pdf-modal-title">OU Defense Report</span>
+        <div class="pdf-modal-actions">
+          <a class="pdf-modal-open" href="/OU_Defense_AshtonJantz.pdf" target="_blank" rel="noopener">Open PDF</a>
+          <button type="button" class="pdf-modal-close" data-close aria-label="Close">×</button>
+        </div>
+      </div>
+      <div class="pdf-report-scroll" id="pdfReportScroll" aria-label="OU Defense Report pages">
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-01.webp" alt="OU Defense Report page 1" loading="eager" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-02.webp" alt="OU Defense Report page 2" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-03.webp" alt="OU Defense Report page 3" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-04.webp" alt="OU Defense Report page 4" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-05.webp" alt="OU Defense Report page 5" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-06.webp" alt="OU Defense Report page 6" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-07.webp" alt="OU Defense Report page 7" loading="lazy" />
+        <img class="pdf-report-page" src="/images/ou-defense-report/page-08.webp" alt="OU Defense Report page 8" loading="lazy" />
+      </div>
     </div>
   </div>
 
@@ -171,28 +190,15 @@
       var expandBtn = document.getElementById('pdfExpandBtn');
       var embedShell = document.getElementById('pdfEmbedShell');
       var modal = document.getElementById('pdfModal');
-      var modalContent = document.getElementById('pdfModalContent');
-      var PDF_URL = '/OU_Defense_AshtonJantz.pdf';
+      var reportScroll = document.getElementById('pdfReportScroll');
       function openModal() {
-        // Create the PDF object fresh each time so Safari's native
-        // viewer is only alive while the modal is visible. The inline
-        // preview is a static image, so the modal is the only place a
-        // native PDF viewer (with its floating control HUD) attaches.
-        var existing = modalContent.querySelector('object, iframe');
-        if (existing) existing.remove();
-        var obj = document.createElement('object');
-        obj.id = 'pdfModalObject';
-        obj.type = 'application/pdf';
-        obj.data = PDF_URL;
-        modalContent.appendChild(obj);
         modal.hidden = false;
+        reportScroll.scrollTop = 0;
         document.body.style.overflow = 'hidden';
       }
       function closeModal() {
         modal.hidden = true;
         document.body.style.overflow = '';
-        var existing = modalContent.querySelector('object, iframe');
-        if (existing) existing.remove();
       }
 
       expandBtn.addEventListener('click', function (e) {
