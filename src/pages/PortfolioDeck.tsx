@@ -28,22 +28,174 @@ const PAGES: Pg[] = [
   { num: '08', label: "What I'd Bring", src: '/pdf/page-08-bring.html' },
 ]
 
+const MOBILE_IFRAME_STYLE_ID = '__deck-mobile-style'
+const MOBILE_ORIGINAL_FONT_ATTR = 'data-deck-original-font-size'
+
+const MOBILE_IFRAME_CSS = `
+  .top,
+  .pdf06-top {
+    display: none !important;
+  }
+
+  .page {
+    padding-top: 34px !important;
+  }
+
+  .pdf06-page {
+    padding-top: 24px !important;
+  }
+
+  .text-col {
+    padding-top: 34px !important;
+  }
+
+  .masthead {
+    margin-top: 0 !important;
+    padding-top: 8px !important;
+  }
+
+  .pdf06-masthead {
+    margin-top: 0 !important;
+    padding-top: 4px !important;
+  }
+
+  .text-col .name-block {
+    margin-top: 16px !important;
+  }
+
+  .pdf-modal-close {
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 2 !important;
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(24, 23, 26, 0.72) !important;
+    color: #fafaf6 !important;
+  }
+`
+
+const MOBILE_TITLE_TEXT_SELECTOR = [
+  '.title',
+  '.name',
+  '.role',
+  '.stat-value',
+  '.skill-name',
+  '.ref-name',
+  '.num',
+  '.meta-v',
+  '.pdf06-title',
+].join(', ')
+
+const MOBILE_BODY_TEXT_SELECTOR = [
+  '.lede',
+  '.deck',
+  '.bio',
+  '.row-value',
+  '.block-body',
+  '.findings-table td',
+  '.caption',
+  '.caption-meta',
+  '.report-link-url',
+  '.skill-body',
+  '.ref-title',
+  '.ref-contact-value',
+  '.pdf06-lede',
+  '.pdf06-stat-v',
+  '.pdf06-zone-table td',
+].join(', ')
+
+function scaleIframeText(doc: Document, selector: string, factor: number) {
+  const win = doc.defaultView
+  if (!win) return
+
+  doc.querySelectorAll<HTMLElement>(selector).forEach((el) => {
+    let original = el.getAttribute(MOBILE_ORIGINAL_FONT_ATTR)
+    if (!original) {
+      const size = parseFloat(win.getComputedStyle(el).fontSize)
+      if (!Number.isFinite(size)) return
+      original = String(size)
+      el.setAttribute(MOBILE_ORIGINAL_FONT_ATTR, original)
+    }
+
+    const base = parseFloat(original)
+    if (!Number.isFinite(base)) return
+    el.style.setProperty('font-size', `${(base * factor).toFixed(2)}px`, 'important')
+  })
+}
+
+function restoreIframeText(doc: Document) {
+  doc
+    .querySelectorAll<HTMLElement>(`[${MOBILE_ORIGINAL_FONT_ATTR}]`)
+    .forEach((el) => {
+      el.style.removeProperty('font-size')
+      el.removeAttribute(MOBILE_ORIGINAL_FONT_ATTR)
+    })
+}
+
+function syncMobileIframeStyle(doc: Document, enabled: boolean) {
+  type DeckDocument = Document & { __deckMobileObserver?: MutationObserver }
+  const deckDoc = doc as DeckDocument
+  const existing = doc.getElementById(MOBILE_IFRAME_STYLE_ID)
+
+  if (!enabled) {
+    existing?.remove()
+    restoreIframeText(doc)
+    deckDoc.__deckMobileObserver?.disconnect()
+    deckDoc.__deckMobileObserver = undefined
+    return
+  }
+
+  if (!existing) {
+    const style = doc.createElement('style')
+    style.id = MOBILE_IFRAME_STYLE_ID
+    style.textContent = MOBILE_IFRAME_CSS
+    doc.head.appendChild(style)
+  }
+
+  scaleIframeText(doc, MOBILE_TITLE_TEXT_SELECTOR, 1.04)
+  scaleIframeText(doc, MOBILE_BODY_TEXT_SELECTOR, 1.08)
+
+  if (!deckDoc.__deckMobileObserver && doc.body) {
+    const Observer = doc.defaultView?.MutationObserver ?? MutationObserver
+    deckDoc.__deckMobileObserver = new Observer(() => {
+      scaleIframeText(doc, MOBILE_TITLE_TEXT_SELECTOR, 1.04)
+      scaleIframeText(doc, MOBILE_BODY_TEXT_SELECTOR, 1.08)
+    })
+    deckDoc.__deckMobileObserver.observe(doc.body, { childList: true, subtree: true })
+  }
+}
+
 export default function PortfolioDeck() {
-  // Scale each tile so it reads comfortably. Width still hard-caps, but
-  // we let the height-fit be a bit bigger than the viewport (×1.2) so a
-  // single tile is intentionally slightly taller than the screen on desktop.
-  // Coaches scroll through the deck rather than viewing one page at a time.
+  // Scale each tile so it reads comfortably. On desktop, fit by both
+  // width AND height (with a slight 1.2x height bias so the tile is
+  // intentionally a touch taller than the screen). On mobile, fit by
+  // width only — text ends up around 44% of design size, readable
+  // enough on a phone without needing horizontal pan.
   useEffect(() => {
-    const TILE_W = 920 // 880 paper + small breathing room
-    const TILE_H = 1170 // 1120 paper + ~50 meta label and gap
+    // On mobile we scale to the IFRAME width (816), not the paper width
+    // (880), because the mobile @media drops the paper's 32px padding —
+    // so the iframe content fills the viewport directly and renders ~8%
+    // bigger than scaling to paper width would give.
+    const IFRAME_W = 816
+    const TILE_W = 920 // desktop tile = paper + breathing room
+    const TILE_H = 1170 // paper + meta label and gap (desktop)
     const update = () => {
       const stack = document.querySelector<HTMLElement>('.deck-stack')
       if (!stack) return
       const cs = getComputedStyle(document.documentElement)
       const headerH = parseFloat(cs.getPropertyValue('--header-height')) || 48
-      const availW = window.innerWidth - 24
-      const availH = window.innerHeight - headerH - 24
-      const scale = Math.min(availW / TILE_W, (availH / TILE_H) * 1.2, 1)
+      const isMobile = window.innerWidth < 768
+      let scale: number
+      if (isMobile) {
+        const w = document.documentElement.clientWidth || window.innerWidth
+        scale = Math.min(w / IFRAME_W, 1)
+      } else {
+        const availW = window.innerWidth - 24
+        const availH = window.innerHeight - headerH - 24
+        scale = Math.min(availW / TILE_W, (availH / TILE_H) * 1.2, 1)
+      }
       stack.style.setProperty('--deck-scale', String(scale))
     }
     update()
@@ -77,18 +229,22 @@ export default function PortfolioDeck() {
       const attach = () => {
         try {
           const doc = iframe.contentDocument
-          if (!doc) return
-          if ((doc as unknown as { __wheelBound?: boolean }).__wheelBound) return
-          ;(doc as unknown as { __wheelBound: boolean }).__wheelBound = true
-          const onWheel = (e: WheelEvent) => {
-            const modal = doc.getElementById('pdfModal') as HTMLElement | null
-            if (modal && !modal.hidden) return
-            pendingY += e.deltaY
-            pendingX += e.deltaX
-            if (!rafId) rafId = requestAnimationFrame(flush)
+          if (!doc?.head) return
+
+          syncMobileIframeStyle(doc, window.innerWidth < 768)
+
+          if (!(doc as unknown as { __wheelBound?: boolean }).__wheelBound) {
+            ;(doc as unknown as { __wheelBound: boolean }).__wheelBound = true
+            const onWheel = (e: WheelEvent) => {
+              const modal = doc.getElementById('pdfModal') as HTMLElement | null
+              if (modal && !modal.hidden) return
+              pendingY += e.deltaY
+              pendingX += e.deltaX
+              if (!rafId) rafId = requestAnimationFrame(flush)
+            }
+            doc.addEventListener('wheel', onWheel, { passive: true })
+            cleanups.push(() => doc.removeEventListener('wheel', onWheel))
           }
-          doc.addEventListener('wheel', onWheel, { passive: true })
-          cleanups.push(() => doc.removeEventListener('wheel', onWheel))
         } catch {
           /* cross-origin or not ready */
         }
@@ -97,6 +253,20 @@ export default function PortfolioDeck() {
       attach()
       cleanups.push(() => iframe.removeEventListener('load', attach))
     })
+
+    const syncAllIframeStyles = () => {
+      document.querySelectorAll<HTMLIFrameElement>('.deck-iframe').forEach((iframe) => {
+        try {
+          const doc = iframe.contentDocument
+          if (doc?.head) syncMobileIframeStyle(doc, window.innerWidth < 768)
+        } catch {
+          /* cross-origin or not ready */
+        }
+      })
+    }
+    window.addEventListener('resize', syncAllIframeStyles)
+    cleanups.push(() => window.removeEventListener('resize', syncAllIframeStyles))
+
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
       cleanups.forEach((fn) => fn())

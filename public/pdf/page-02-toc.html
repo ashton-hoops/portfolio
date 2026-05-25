@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=816" />
 <title>Page 02 · Table of Contents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +28,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
   body { display: flex; justify-content: center; padding: 0; }
-  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  @media (min-width: 880px) and (min-height: 1140px) { body { padding: 40px 20px; } }
   .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; padding: 52px 64px 44px; display: flex; flex-direction: column; }
 
   /* HEADER BAND */
@@ -36,21 +37,24 @@
   .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; font-variation-settings: 'opsz' 32; }
 
   /* MASTHEAD */
-  .masthead { margin-top: 48px; }
-  .title { font-family: var(--font-display); font-size: 96px; font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; margin: 0; font-variation-settings: 'opsz' 60; }
-  .deck { font-family: var(--font-display); font-size: 19px; font-style: italic; font-weight: 400; line-height: 1.4; color: var(--text-secondary); margin: 18px 0 0; max-width: 50ch; font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
+  .masthead { margin-top: 42px; }
+  .title { font-family: var(--font-display); font-size: 64px; font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; margin: 0; font-variation-settings: 'opsz' 60; }
+  .deck { font-family: var(--font-display); font-size: 20px; font-style: italic; font-weight: 400; line-height: 1.42; color: var(--text-secondary); margin: 18px 0 0; max-width: 42ch; font-variation-settings: 'opsz' 18; letter-spacing: -0.005em; }
 
   /* LIST */
-  .toc { margin: 48px 0 0; padding: 0; list-style: none; }
-  .toc li { display: grid; grid-template-columns: 72px 1fr; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--rule-light); }
+  .toc { margin: 54px 0 0; padding: 0; list-style: none; }
+  .toc li { display: grid; grid-template-columns: 72px 1fr; align-items: start; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--rule-light); }
   .toc li:first-child { border-top: 1px solid var(--rule); }
-  .num { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
-  .name { font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.2; color: var(--text); letter-spacing: -0.015em; font-variation-settings: 'opsz' 24; }
+  .num { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--accent); line-height: 1; letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; padding-top: 2px; }
+  .item { display: flex; flex-direction: column; gap: 5px; }
+  .name { font-family: var(--font-display); font-size: 25px; font-weight: 500; line-height: 1.1; color: var(--text); letter-spacing: -0.015em; font-variation-settings: 'opsz' 24; }
+  .desc { font-size: 12px; font-weight: 500; line-height: 1.45; color: var(--text-muted); max-width: 54ch; }
 
   /* FOOTER */
   .footer { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--rule); }
   .footer-meta { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
   .pg { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+
 </style>
 </head>
 <body>
@@ -65,12 +69,30 @@
     </section>
 
     <ol class="toc">
-      <li><span class="num">03</span><span class="name">About</span></li>
-      <li><span class="num">04</span><span class="name">Defensive Analysis Dashboard</span></li>
-      <li><span class="num">05</span><span class="name">Computer Vision Pipeline</span></li>
-      <li><span class="num">06</span><span class="name">Software Development</span></li>
-      <li><span class="num">07</span><span class="name">Research</span></li>
-      <li><span class="num">08</span><span class="name">What I'd Bring as a GA</span></li>
+      <li>
+        <span class="num">03</span>
+        <span class="item"><span class="name">About</span><span class="desc">Background in analytics, film study, and Oklahoma women's basketball.</span></span>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span class="item"><span class="name">Defensive Analysis Dashboard</span><span class="desc">A custom platform for tagging opponent actions, coverages, contests, and outcomes.</span></span>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span class="item"><span class="name">Computer Vision Pipeline</span><span class="desc">Broadcast-video tracking, action labeling, and player-development applications.</span></span>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <span class="item"><span class="name">Software Development</span><span class="desc">Interactive tools built around the way coaches and players actually use information.</span></span>
+      </li>
+      <li>
+        <span class="num">07</span>
+        <span class="item"><span class="name">Research</span><span class="desc">A season-long defensive report shaped from hand-tagged possessions and dashboard exports.</span></span>
+      </li>
+      <li>
+        <span class="num">08</span>
+        <span class="item"><span class="name">What I'd Bring as a GA</span><span class="desc">How I would contribute through initiative, communication, research, and technical work.</span></span>
+      </li>
     </ol>
 
     <footer class="footer">

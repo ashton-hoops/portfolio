@@ -95,6 +95,44 @@
    applied via the --deck-scale CSS variable. */
 @media (max-width: 920px) {
   .deck-stack {
-    padding: 14px 8px 60px;
+    padding: 12px 4px 32px;
+    gap: calc(14px * var(--deck-scale, 1));
+  }
+}
+
+/* Mobile: drop the paper's 32px padding so the iframe content fills
+   100% of the viewport. The "paper" becomes a thin shell — its only
+   role is the soft shadow + background between tiles. JS scales by
+   IFRAME_W (816) so the inner content reaches viewport edges and
+   reads ~8% bigger than it would scaling to paper width (880).
+   The page-number meta label is hidden; a thin 3px grey strip
+   between tiles is all that signals a page change. */
+@media (max-width: 768px) {
+  .deck-stack {
+    padding: 0;
+    gap: 3px;
+  }
+
+  .deck-tile-frame {
+    width: calc(816px * var(--deck-scale, 1));
+    /* Match paper height exactly (1056) since the meta label is hidden
+       on mobile — otherwise the frame leaves ~68px of empty space
+       below each page, blowing up the perceived gap between tiles. */
+    height: calc(1056px * var(--deck-scale, 1));
+  }
+
+  .deck-tile {
+    width: 816px;
+    gap: 0;
+  }
+
+  .deck-tile-meta {
+    display: none;
+  }
+
+  .deck-paper {
+    width: 816px;
+    height: 1056px;
+    padding: 0;
   }
 }

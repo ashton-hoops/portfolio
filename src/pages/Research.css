@@ -152,15 +152,26 @@
 
 @media (max-width: 768px) {
   .research-page__header {
-    padding: var(--space-12) 0;
+    padding: var(--space-8) var(--space-4) var(--space-6);
   }
 
   .research-page__title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
   }
 
   .research-page__subtitle {
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    max-width: 420px;
+  }
+
+  .research-page__list {
+    padding-top: var(--space-6);
+  }
+
+  .article-card {
+    margin-bottom: var(--space-6);
   }
 
   .article-card__title {

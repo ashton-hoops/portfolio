@@ -6,6 +6,24 @@
   background: #18171a;
 }
 
+/* Poster image shown until the actual video element mounts and plays.
+   Fades out once the video has crossfaded in so the swap is invisible. */
+.media-preview__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 1;
+  transition: opacity 800ms ease 600ms;
+  z-index: 0;
+}
+
+.media-preview__poster.is-fading {
+  opacity: 0;
+}
+
 /* Two layers ping-pong: one is visible while the other preloads the next.
    The active layer crossfades in via opacity AND drifts with a slow Ken Burns
    zoom so static screenshots feel alive. */

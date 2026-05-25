@@ -10,6 +10,10 @@ import './MediaPreview.css'
  * Two layered elements ping-pong: one is visible while the other preloads the
  * next item. Source URLs are state-driven (not imperatively set) so React's
  * re-render cycle doesn't clobber them.
+ *
+ * Videos only attach `src` once the card scrolls into (or near) the viewport
+ * via IntersectionObserver, so the Research page doesn't kick off 4+ R2
+ * downloads at once on first paint. A poster image is shown until then.
  */
 
 const R2_BASE = 'https://pub-f1e4215f277b4aba9425176b59903d78.r2.dev/derived/clips/'
@@ -26,6 +30,8 @@ interface Props {
   images?: string[]
   interval?: number
   alt?: string
+  /** Image shown until the video element has loaded enough to render a frame. */
+  poster?: string
 }
 
 function clipUrl(v: VideoItem) {
@@ -38,7 +44,35 @@ function mod(n: number, m: number) {
   return ((n % m) + m) % m
 }
 
-export function MediaPreview({ videos, images, interval = 3500, alt = '' }: Props) {
+/** Track when this container is near the viewport so we can defer
+ *  loading expensive video assets until they're worth fetching. */
+function useNearViewport<T extends HTMLElement>(rootMargin = '300px') {
+  const ref = useRef<T>(null)
+  const [near, setNear] = useState(false)
+  useEffect(() => {
+    if (near) return
+    const el = ref.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') {
+      setNear(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setNear(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [near, rootMargin])
+  return { ref, near }
+}
+
+export function MediaPreview({ videos, images, interval = 3500, alt = '', poster }: Props) {
   // Each of the two layers (A, B) holds an index into the items array.
   // `active` says which layer is currently visible.
   const items = videos ?? images ?? []
@@ -50,6 +84,7 @@ export function MediaPreview({ videos, images, interval = 3500, alt = '' }: Prop
   const activeRef = useRef<0 | 1>(0)
   const aIdxRef = useRef(0)
   const bIdxRef = useRef(len > 1 ? 1 : 0)
+  const { ref: containerRef, near } = useNearViewport<HTMLDivElement>()
 
   useEffect(() => { activeRef.current = active }, [active])
   useEffect(() => { aIdxRef.current = aIdx }, [aIdx])
@@ -63,11 +98,12 @@ export function MediaPreview({ videos, images, interval = 3500, alt = '' }: Prop
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [images, interval])
 
-  // For videos: kick off playback whenever the active element changes.
+  // For videos: kick off playback whenever the active element changes,
+  // but only after the card is near the viewport.
   const aVideoRef = useRef<HTMLVideoElement>(null)
   const bVideoRef = useRef<HTMLVideoElement>(null)
   useEffect(() => {
-    if (!videos) return
+    if (!videos || !near) return
     const a = aVideoRef.current
     const b = bVideoRef.current
     if (active === 0 && a) {
@@ -77,7 +113,7 @@ export function MediaPreview({ videos, images, interval = 3500, alt = '' }: Prop
       b.currentTime = 0
       b.play().catch(() => {})
     }
-  }, [active, videos])
+  }, [active, videos, near])
 
   function advance() {
     if (len < 2) return
@@ -95,39 +131,63 @@ export function MediaPreview({ videos, images, interval = 3500, alt = '' }: Prop
   if (videos?.length) {
     // Single-video case — just a looping autoplaying clip, no carousel/swap logic.
     if (videos.length === 1) {
-      return <SingleVideo src={clipUrl(videos[0])} />
+      return (
+        <div ref={containerRef} className="media-preview">
+          {poster && (
+            <img
+              className={`media-preview__poster${near ? ' is-fading' : ''}`}
+              src={poster}
+              alt={alt}
+              loading="lazy"
+            />
+          )}
+          {near && <SingleVideo src={clipUrl(videos[0])} />}
+        </div>
+      )
     }
     return (
-      <div className="media-preview">
-        <video
-          ref={aVideoRef}
-          key={`a-${aIdx}`}
-          className={`media-preview__layer${active === 0 ? ' is-active' : ''}`}
-          src={clipUrl(videos[aIdx])}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={advance}
-        />
-        <video
-          ref={bVideoRef}
-          key={`b-${bIdx}`}
-          className={`media-preview__layer${active === 1 ? ' is-active' : ''}`}
-          src={clipUrl(videos[bIdx])}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={advance}
-        />
+      <div ref={containerRef} className="media-preview">
+        {poster && (
+          <img
+            className={`media-preview__poster${near ? ' is-fading' : ''}`}
+            src={poster}
+            alt={alt}
+            loading="lazy"
+          />
+        )}
+        {near && (
+          <>
+            <video
+              ref={aVideoRef}
+              key={`a-${aIdx}`}
+              className={`media-preview__layer${active === 0 ? ' is-active' : ''}`}
+              src={clipUrl(videos[aIdx])}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onEnded={advance}
+            />
+            <video
+              ref={bVideoRef}
+              key={`b-${bIdx}`}
+              className={`media-preview__layer${active === 1 ? ' is-active' : ''}`}
+              src={clipUrl(videos[bIdx])}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onEnded={advance}
+            />
+          </>
+        )}
       </div>
     )
   }
 
   if (images?.length) {
     return (
-      <div className="media-preview">
+      <div ref={containerRef} className="media-preview">
         <img
           className={`media-preview__layer${active === 0 ? ' is-active' : ''}`}
           src={images[aIdx]}
@@ -160,17 +220,15 @@ function SingleVideo({ src }: { src: string }) {
     else el.addEventListener('canplay', attempt, { once: true })
   }, [src])
   return (
-    <div className="media-preview">
-      <video
-        ref={ref}
-        className="media-preview__layer is-active"
-        src={src}
-        autoPlay
-        muted
-        playsInline
-        loop
-        preload="auto"
-      />
-    </div>
+    <video
+      ref={ref}
+      className="media-preview__layer is-active"
+      src={src}
+      autoPlay
+      muted
+      playsInline
+      loop
+      preload="auto"
+    />
   )
 }

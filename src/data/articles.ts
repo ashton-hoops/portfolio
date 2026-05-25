@@ -101,6 +101,7 @@ I'm also actively exploring uses in practice and player workouts to track shooti
     date: '2026-04-20',
     readingTime: '3 min read',
     tags: ['Project'],
+    coverImage: '/images/thumb-3d-shot-chart.png',
     videos: [{ src: '/videos/shot-chart-demo.mp4' }],
     content: `
 ## Why 3D?

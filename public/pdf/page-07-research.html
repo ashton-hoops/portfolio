@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=816" />
 <title>Page 07 · Research &amp; Writing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +28,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: #ddd; font-family: var(--font-sans); color: var(--text); }
   body { display: flex; justify-content: center; padding: 0; }
-  @media (min-width: 880px) { body { padding: 40px 20px; } }
+  @media (min-width: 880px) and (min-height: 1140px) { body { padding: 40px 20px; } }
   .page { width: 816px; height: 1056px; background: var(--bg); box-shadow: 0 10px 40px rgba(0,0,0,0.18); position: relative; overflow: hidden; padding: 48px 56px 36px; display: flex; flex-direction: column; }
 
   /* HEADER */
@@ -79,10 +80,10 @@
 
   /* Full-size PDF modal — click the small embed to expand it. Click the
    * backdrop (or ✕) to close. Sized at letter aspect, capped at 92vh. */
-  .pdf-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; animation: pdf-modal-fade 180ms ease-out; }
+  .pdf-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 18px; animation: pdf-modal-fade 180ms ease-out; }
   .pdf-modal[hidden] { display: none; }
   .pdf-modal-backdrop { position: absolute; inset: 0; background: rgba(8, 8, 10, 0.78); backdrop-filter: blur(3px); cursor: zoom-out; }
-  .pdf-modal-content { position: relative; height: min(78vh, 900px); aspect-ratio: 8.5 / 11; max-width: 90vw; background: #fafaf6; border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); overflow: hidden; }
+  .pdf-modal-content { position: relative; height: min(90vh, 980px); aspect-ratio: 8.5 / 11; max-width: 94vw; background: #fafaf6; border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); overflow: hidden; }
   .pdf-modal-content object, .pdf-modal-content iframe { width: 100%; height: 100%; border: 0; display: block; }
   .pdf-modal-close { position: absolute; top: -38px; right: -4px; background: transparent; border: 0; color: #fafaf6; font-size: 28px; font-weight: 300; line-height: 1; padding: 4px 12px; cursor: pointer; opacity: 0.9; }
   .pdf-modal-close:hover { opacity: 1; }
@@ -92,6 +93,7 @@
   .footer { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--rule); }
   .footer-meta { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
   .pg { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+
 </style>
 </head>
 <body>

@@ -27,7 +27,11 @@ export function Research() {
                 {hasPreview && (
                   <div className="article-card__cover">
                     {article.videos && article.videos.length > 0 ? (
-                      <MediaPreview videos={article.videos} alt={article.title} />
+                      <MediaPreview
+                        videos={article.videos}
+                        alt={article.title}
+                        poster={article.coverImage}
+                      />
                     ) : article.coverImages && article.coverImages.length > 0 ? (
                       <MediaPreview images={article.coverImages} alt={article.title} />
                     ) : article.coverImage ? (
