@@ -984,9 +984,9 @@ function loadProHoop(ouLogoImage) {
   const matBlackMetal = new THREE.MeshStandardMaterial({
     color: 0x141414, roughness: 0.45, metalness: 0.7,
   });
-  // Crimson padding on the base/arm/support pads. Unlit so it renders
-  // exactly #841617 and matches the painted 3-pt line / plinth border.
-  const matPaddingCrimson = new THREE.MeshBasicMaterial({ color: CRIMSON_HEX });
+  // Crimson padding on the base/arm/support pads. Unlit + toneMapped:false so
+  // it renders the exact team hex and matches the apron / lane crimson.
+  const matPaddingCrimson = new THREE.MeshBasicMaterial({ color: CRIMSON_HEX, toneMapped: false });
   // Backboard safety bumper stays black (standard for glass-edge padding).
   const matPaddingBlack = new THREE.MeshStandardMaterial({
     color: 0x0a0a0a, roughness: 0.88, metalness: 0.03,
@@ -1523,8 +1523,10 @@ function buildPlinth(woodImage, normalTex, roughTex) {
   const apronNormal = cloneTiled(normalTex);
   const apronRough = cloneTiled(roughTex);
 
-  // Unlit so the spotlight + ACES tonemap don't blow the crimson to pink.
-  const apronMat = new THREE.MeshBasicMaterial({ map: apronAlbedo });
+  // Unlit + toneMapped:false so neither the spotlight nor the ACES tonemap
+  // desaturates the crimson. MeshBasic is still tonemapped by default, which
+  // is what was washing the apron toward pink — the explicit flag fixes it.
+  const apronMat = new THREE.MeshBasicMaterial({ map: apronAlbedo, toneMapped: false });
   const apronSurface = new THREE.Mesh(
     new THREE.PlaneGeometry(apronW, apronD),
     apronMat
@@ -3152,7 +3154,7 @@ export default function ThreeJsShotChartPrototype({
       laneTex.anisotropy = 16;
       const laneOverlay = new THREE.Mesh(
         new THREE.PlaneGeometry(C.laneWidth, C.laneLength),
-        new THREE.MeshBasicMaterial({ map: laneTex })
+        new THREE.MeshBasicMaterial({ map: laneTex, toneMapped: false })
       );
       laneOverlay.rotation.x = -Math.PI / 2;
       laneOverlay.position.set(
