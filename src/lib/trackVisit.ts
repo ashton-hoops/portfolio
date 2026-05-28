@@ -15,6 +15,7 @@
 // Set VITE_OUTREACH_WEBHOOK in Render env vars to enable. If unset, no-op.
 
 import { REF_DIRECTORY } from './refDirectory'
+import { identifyVisitor } from './analytics'
 
 const WEBHOOK = import.meta.env.VITE_OUTREACH_WEBHOOK as string | undefined
 
@@ -45,6 +46,10 @@ export function trackVisit() {
     // Map the ref to the recipient (public name/school/role, no email).
     const who = REF_DIRECTORY[ref]
     const label = who ? `${who.name} · ${who.school} · ${who.role}` : ref
+
+    // Tag the PostHog session with the coach. Runs regardless of the Discord
+    // webhook / cooldown below so engagement always ties to the right person.
+    identifyVisitor(ref, who)
 
     if (!WEBHOOK) {
       // Dev / unconfigured: log to console so you can see it works locally.

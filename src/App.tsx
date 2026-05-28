@@ -1,13 +1,31 @@
-import { lazy, Suspense } from 'react'
-import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import {
+  HashRouter,
+  Routes,
+  Route,
+  Navigate,
+  useParams,
+  useLocation,
+} from 'react-router-dom'
 import { Layout } from './components/Layout'
 import PortfolioDeck from './pages/PortfolioDeck'
 import { Research } from './pages/Research'
 import { Article } from './pages/Article'
+import { capturePageview } from './lib/analytics'
 
 function ProjectRedirect() {
   const { slug } = useParams<{ slug: string }>()
   return <Navigate to={slug ? `/research/${slug}` : '/research'} replace />
+}
+
+// HashRouter navigation is a same-document hash change, so PostHog's automatic
+// pageview capture never fires. Capture one manually whenever the route changes.
+function RouteAnalytics() {
+  const { pathname, search } = useLocation()
+  useEffect(() => {
+    capturePageview(pathname + search)
+  }, [pathname, search])
+  return null
 }
 const ShotChartTool = lazy(() => import('./pages/ShotChartTool'))
 const DefensiveAnalysis = lazy(() => import('./pages/DefensiveAnalysis'))
@@ -21,6 +39,7 @@ const PDFPreviewAll = lazy(() => import('./pages/PDFPreviewAll'))
 function App() {
   return (
     <HashRouter>
+      <RouteAnalytics />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<PortfolioDeck />} />

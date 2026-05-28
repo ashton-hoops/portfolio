@@ -12,6 +12,7 @@
  */
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { captureEvent } from '../../lib/analytics'
 import { Dropdown } from './Dropdown'
 import './ShotChartTool.css'
 import type {
@@ -185,6 +186,17 @@ export default function ShotChartTool() {
     setSelectedPlayerId(null)
     setFilters({ result: 'all', gameId: null, period: null })
   }, [selectedTeamId])
+
+  // High-signal engagement: which team's chart the visitor actually looked at.
+  // The route is just /shot-chart, so the team lives in state — capture it once
+  // the entry resolves (fires on initial load and on each team switch).
+  useEffect(() => {
+    if (!team) return
+    captureEvent('shot_chart_team_viewed', {
+      teamId: team.teamId,
+      team: team.fullName || team.name,
+    })
+  }, [team])
 
   // Compute filtered shots
   const filteredShots: Shot[] = useMemo(() => {
