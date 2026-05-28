@@ -19,7 +19,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 CSV = ROOT / 'wbb_outreach_final.csv'
 SCHOOLS = json.loads((ROOT / 'scripts' / 'og' / 'schools.json').read_text())
-ORIGIN = 'https://ashton-portfolio.onrender.com'
+ORIGIN = 'https://ashtonjantz.com'
 
 slug_by_school = {s['school']: s['slug'] for s in SCHOOLS}
 

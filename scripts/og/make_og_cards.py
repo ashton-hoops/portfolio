@@ -156,7 +156,7 @@ def make_card(team_id: str, slug: str) -> bool:
     footer_y = H - s(45)
     d.line([(s(60), footer_y - s(14)), (W - s(60), footer_y - s(14))], fill=RULE, width=s(1))
     footer_f = font(SANS, s(15))
-    parts = ['ashtonbjantz@icloud.com', '(405) 696-9206', 'ashton-portfolio.onrender.com']
+    parts = ['ashtonbjantz@icloud.com', '(405) 696-9206', 'ashtonjantz.com']
     d.text((s(60), footer_y), parts[0], font=footer_f, fill=INK)
     url_bbox = d.textbbox((0, 0), parts[2], font=footer_f)
     d.text((W - s(60) - (url_bbox[2] - url_bbox[0]), footer_y), parts[2], font=footer_f, fill=INK)

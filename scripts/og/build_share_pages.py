@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PUB = ROOT / 'public'
 SCHOOLS = json.loads((ROOT / 'scripts' / 'og' / 'schools.json').read_text())
 
-ORIGIN = 'https://ashton-portfolio.onrender.com'
+ORIGIN = 'https://ashtonjantz.com'
 TITLE = 'Ashton Jantz · Basketball Analytics & Research'
 DESC = 'Looking to support a program through research, analytics, and software development.'
 
