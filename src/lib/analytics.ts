@@ -24,6 +24,9 @@ export function initAnalytics() {
     capture_pageview: false,
     // Pairs each visit with a leave event so time-on-page is accurate.
     capture_pageleave: true,
+    // Build full person profiles only for identified coaches (?ref= visitors);
+    // don't spend profile quota on anonymous traffic.
+    person_profiles: 'identified_only',
   })
   ready = true
 }
