@@ -14,6 +14,9 @@ export interface Article {
   links?: { label: string; url: string }[]
   coverImage?: string
   coverImages?: string[]
+  // CSS aspect-ratio override for the article-card cover. Defaults to 16/7 if unset.
+  // Use the image's natural aspect when it shouldn't be letterboxed (e.g. a wide chart GIF).
+  coverAspect?: string
 }
 
 export const articles: Article[] = [
@@ -117,6 +120,17 @@ Pick any AP Top 25 team and see their full season at a glance. Filter by player 
 The data comes from ESPN's public API, pulled per team and saved as a static dataset so the page doesn't make live calls. Per-player stats and scouting designations are computed in a Python pipeline that runs offline. The court and markers are rendered in Three.js with React handling state and UI.
     `.trim(),
     links: [{ label: 'Open 3D Shot Chart', url: '/#/shot-chart' }],
+  },
+  {
+    slug: 'two-for-one',
+    title: "The Optimal Time to Go 2-for-1 in Women's College Basketball",
+    excerpt:
+      "An analysis of the 2-for-1 strategy in D1 women's basketball, what makes the timing different from the NBA and WNBA, and how often teams get it right.",
+    date: '2026-05-26',
+    readingTime: '7 min read',
+    tags: ['Research & Analytics'],
+    coverImage: '/images/two-for-one-cover.gif',
+    content: '',
   },
 ]
 

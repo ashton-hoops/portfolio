@@ -25,7 +25,10 @@ export function Research() {
             return (
               <Link key={article.slug} to={`/research/${article.slug}`} className="article-card">
                 {hasPreview && (
-                  <div className="article-card__cover">
+                  <div
+                    className="article-card__cover"
+                    style={article.coverAspect ? { aspectRatio: article.coverAspect } : undefined}
+                  >
                     {article.videos && article.videos.length > 0 ? (
                       <MediaPreview
                         videos={article.videos}

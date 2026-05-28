@@ -11,6 +11,9 @@ function ProjectRedirect() {
 }
 const ShotChartTool = lazy(() => import('./pages/ShotChartTool'))
 const DefensiveAnalysis = lazy(() => import('./pages/DefensiveAnalysis'))
+const TwoForOne = lazy(() => import('./pages/TwoForOne'))
+const TwoForOneOptions = lazy(() => import('./pages/TwoForOne/Options'))
+const TwoForOneCoverCapture = lazy(() => import('./pages/TwoForOne/CoverCapture'))
 
 const PDFPage06 = lazy(() => import('./pages/PDFPage06'))
 const PDFPreviewAll = lazy(() => import('./pages/PDFPreviewAll'))
@@ -29,6 +32,30 @@ function App() {
             element={
               <Suspense fallback={<div style={{ padding: 40, fontFamily: 'system-ui' }}>Loading…</div>}>
                 <DefensiveAnalysis />
+              </Suspense>
+            }
+          />
+          <Route
+            path="research/two-for-one"
+            element={
+              <Suspense fallback={<div style={{ padding: 40, fontFamily: 'system-ui' }}>Loading…</div>}>
+                <TwoForOne />
+              </Suspense>
+            }
+          />
+          <Route
+            path="research/two-for-one/options"
+            element={
+              <Suspense fallback={<div style={{ padding: 40, fontFamily: 'system-ui' }}>Loading…</div>}>
+                <TwoForOneOptions />
+              </Suspense>
+            }
+          />
+          <Route
+            path="research/two-for-one/cover-capture"
+            element={
+              <Suspense fallback={<div />}>
+                <TwoForOneCoverCapture />
               </Suspense>
             }
           />
