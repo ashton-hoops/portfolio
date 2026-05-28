@@ -1,0 +1,192 @@
+[
+  {
+    "school": "Alabama",
+    "slug": "alabama",
+    "teamId": "333"
+  },
+  {
+    "school": "Arkansas",
+    "slug": "arkansas",
+    "teamId": "8"
+  },
+  {
+    "school": "Austin Peay",
+    "slug": "austin-peay",
+    "teamId": "2046"
+  },
+  {
+    "school": "Baylor",
+    "slug": "baylor",
+    "teamId": "239"
+  },
+  {
+    "school": "East Texas A&M",
+    "slug": "east-texas-am",
+    "teamId": "2837"
+  },
+  {
+    "school": "Jackson State",
+    "slug": "jackson-state",
+    "teamId": "2296"
+  },
+  {
+    "school": "Kansas City",
+    "slug": "kansas-city",
+    "teamId": "140"
+  },
+  {
+    "school": "Lamar",
+    "slug": "lamar",
+    "teamId": "2320"
+  },
+  {
+    "school": "Louisiana Tech",
+    "slug": "louisiana-tech",
+    "teamId": "2348"
+  },
+  {
+    "school": "McNeese",
+    "slug": "mcneese",
+    "teamId": "2377"
+  },
+  {
+    "school": "Memphis",
+    "slug": "memphis",
+    "teamId": "235"
+  },
+  {
+    "school": "Missouri",
+    "slug": "missouri",
+    "teamId": "142"
+  },
+  {
+    "school": "Missouri State",
+    "slug": "missouri-state",
+    "teamId": "2623"
+  },
+  {
+    "school": "Murray State",
+    "slug": "murray-state",
+    "teamId": "93"
+  },
+  {
+    "school": "Nebraska",
+    "slug": "nebraska",
+    "teamId": "158"
+  },
+  {
+    "school": "New Mexico",
+    "slug": "new-mexico",
+    "teamId": "167"
+  },
+  {
+    "school": "New Orleans",
+    "slug": "new-orleans",
+    "teamId": "2443"
+  },
+  {
+    "school": "Nicholls",
+    "slug": "nicholls",
+    "teamId": "2447"
+  },
+  {
+    "school": "North Alabama",
+    "slug": "north-alabama",
+    "teamId": "2453"
+  },
+  {
+    "school": "Omaha",
+    "slug": "omaha",
+    "teamId": "2437"
+  },
+  {
+    "school": "Prairie View A&M",
+    "slug": "prairie-view-am",
+    "teamId": "2504"
+  },
+  {
+    "school": "Rice",
+    "slug": "rice",
+    "teamId": "242"
+  },
+  {
+    "school": "SMU",
+    "slug": "smu",
+    "teamId": "2567"
+  },
+  {
+    "school": "Sam Houston",
+    "slug": "sam-houston",
+    "teamId": "2534"
+  },
+  {
+    "school": "South Alabama",
+    "slug": "south-alabama",
+    "teamId": "6"
+  },
+  {
+    "school": "Southeast Missouri",
+    "slug": "southeast-missouri",
+    "teamId": "2546"
+  },
+  {
+    "school": "Southern Illinois",
+    "slug": "southern-illinois",
+    "teamId": "79"
+  },
+  {
+    "school": "Southern Miss",
+    "slug": "southern-miss",
+    "teamId": "2572"
+  },
+  {
+    "school": "Tennessee State",
+    "slug": "tennessee-state",
+    "teamId": "2634"
+  },
+  {
+    "school": "Texas A&M",
+    "slug": "texas-am",
+    "teamId": "245"
+  },
+  {
+    "school": "Texas A&M-Corpus Christi",
+    "slug": "texas-am-corpus-christi",
+    "teamId": "357"
+  },
+  {
+    "school": "Texas Southern",
+    "slug": "texas-southern",
+    "teamId": "2640"
+  },
+  {
+    "school": "Texas Tech",
+    "slug": "texas-tech",
+    "teamId": "2641"
+  },
+  {
+    "school": "Tulane",
+    "slug": "tulane",
+    "teamId": "2655"
+  },
+  {
+    "school": "UT Arlington",
+    "slug": "ut-arlington",
+    "teamId": "250"
+  },
+  {
+    "school": "UTEP",
+    "slug": "utep",
+    "teamId": "2638"
+  },
+  {
+    "school": "UTSA",
+    "slug": "utsa",
+    "teamId": "2636"
+  },
+  {
+    "school": "Vanderbilt",
+    "slug": "vanderbilt",
+    "teamId": "238"
+  }
+]

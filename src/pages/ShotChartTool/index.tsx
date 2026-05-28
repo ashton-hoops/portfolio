@@ -11,6 +11,7 @@
  *   /data/d1/teams/{teamId}.json  — per-team shots (lazy-fetched on team switch)
  */
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Dropdown } from './Dropdown'
 import './ShotChartTool.css'
 import type {
@@ -114,10 +115,21 @@ function pct(n: number): string {
   return `${(n * 100).toFixed(1)}%`
 }
 
+// AP poll only goes to 25; the data layer tags non-AP teams with a 999
+// sentinel so they sort after the ranked teams without a separate flag.
+function isRanked(apRank: number): boolean {
+  return apRank > 0 && apRank < 100
+}
+
 export default function ShotChartTool() {
+  // Deep-link: /#/shot-chart?team={espnId} lands directly on that team's
+  // chart. Used by per-recipient outreach links and the OG-capture script.
+  const [searchParams] = useSearchParams()
   const [index, setIndex] = useState<Index | null>(null)
   const [teamFiles, setTeamFiles] = useState<Record<string, TeamFile>>({})
-  const [selectedTeamId, setSelectedTeamId] = useState<string>(DEFAULT_TEAM_ID)
+  const [selectedTeamId, setSelectedTeamId] = useState<string>(
+    () => searchParams.get('team') || DEFAULT_TEAM_ID,
+  )
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null)
   const [filters, setFilters] = useState<Filters>({ result: 'all', gameId: null, period: null })
   const [viewMode, setViewMode] = useState<ViewMode>('markers')
@@ -247,8 +259,22 @@ export default function ShotChartTool() {
   const zoneAgg = useMemo(() => aggregateZones(filteredShots), [filteredShots])
 
   const sortedTeams = useMemo(
-    () => (index?.teams ? [...index.teams].sort((a, b) => a.apRank - b.apRank) : []),
+    () =>
+      index?.teams
+        ? [...index.teams].sort((a, b) => {
+            // Ranked teams first (by rank), then unranked alphabetically.
+            if (a.apRank !== b.apRank) return a.apRank - b.apRank
+            return (a.fullName || a.name).localeCompare(b.fullName || b.name)
+          })
+        : [],
     [index],
+  )
+
+  // Top horizontal strip is the AP Top 25 showcase only; the long tail of
+  // unranked programs is reachable via the Team dropdown in the left sidebar.
+  const rankedTeams = useMemo(
+    () => sortedTeams.filter((t) => isRanked(t.apRank)),
+    [sortedTeams],
   )
 
   const games = teamFile?.games ?? []
@@ -289,7 +315,7 @@ export default function ShotChartTool() {
             {selectedPlayer
               ? `${selectedPlayer.position || '–'} · #${selectedPlayer.jersey || '–'}`
               : team
-              ? `AP #${team.apRank} · ${team.gameCount} games`
+              ? `${isRanked(team.apRank) ? `AP #${team.apRank} · ` : ''}${team.gameCount} games`
               : ''}
           </p>
         </div>
@@ -416,6 +442,24 @@ export default function ShotChartTool() {
   const filtersCard = (
     <div className="sct__card">
       <p className="sct__card-label">Filters</p>
+      {/* Team leads so a visitor can jump to any of the 60 programs without
+          scrolling the strip (which is AP Top 25 only). */}
+      <div className="sct__filter-row">
+        <span className="sct__filter-label">Team</span>
+        <select
+          className="sct__select"
+          aria-label="Choose team"
+          value={selectedTeamId}
+          onChange={(e) => setSelectedTeamId(e.target.value)}
+        >
+          {sortedTeams.map((t) => (
+            <option key={t.teamId} value={t.teamId}>
+              {isRanked(t.apRank) ? `#${t.apRank} · ` : ''}
+              {t.fullName || t.name}
+            </option>
+          ))}
+        </select>
+      </div>
       {/* Order: Game → Player → Result → Period. Picking a game narrows
           the selection more aggressively than a player, so it leads. */}
       <div className="sct__filter-row">
@@ -539,7 +583,9 @@ export default function ShotChartTool() {
             {team?.fullName ?? team?.name ?? 'Loading…'}
           </p>
           <p className="sct__player-meta-sub">
-            {team ? `AP #${team.apRank} · ${team.gameCount} games` : ''}
+            {team
+              ? `${isRanked(team.apRank) ? `AP #${team.apRank} · ` : ''}${team.gameCount} games`
+              : ''}
           </p>
         </div>
       </div>
@@ -551,7 +597,7 @@ export default function ShotChartTool() {
           onChange={(v) => setSelectedTeamId(v)}
           options={sortedTeams.map((t) => ({
             value: t.teamId,
-            label: `#${t.apRank} · ${t.fullName || t.name}`,
+            label: `${isRanked(t.apRank) ? `#${t.apRank} · ` : ''}${t.fullName || t.name}`,
           }))}
         />
       </div>
@@ -671,7 +717,7 @@ export default function ShotChartTool() {
     >
       {/* ============ Team strip ============ */}
       <div className="sct__team-strip" role="tablist">
-        {sortedTeams.map((t) => {
+        {rankedTeams.map((t) => {
           const isActive = t.teamId === selectedTeamId
           return (
             <button
@@ -689,7 +735,7 @@ export default function ShotChartTool() {
                 <div className="sct__team-btn-logo" />
               )}
               <span className="sct__team-btn-name">{t.abbreviation || t.name}</span>
-              <span className="sct__team-btn-rank">#{t.apRank}</span>
+              {isRanked(t.apRank) && <span className="sct__team-btn-rank">#{t.apRank}</span>}
             </button>
           )
         })}

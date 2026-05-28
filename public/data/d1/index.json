@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T18:26:31Z",
+  "generatedAt": "2026-05-28T20:00:12.852971+00:00",
   "season": "2025-26",
   "teams": [
     {
@@ -3281,6 +3281,4611 @@
       "shooterAthleteIds": [
         "5239666"
       ]
+    },
+    {
+      "teamId": "8",
+      "name": "Arkansas",
+      "fullName": "Arkansas Razorbacks",
+      "abbreviation": "ARK",
+      "apRank": 999,
+      "primaryColor": "#a32136",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/8.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "5178472",
+          "name": "Taleyah Jones",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 17.07,
+          "threePointAttemptsPerGame": 5.2,
+          "threePointPercentage": 0.385
+        },
+        {
+          "athleteId": "5311719",
+          "name": "Bonnie Deas",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 10.19,
+          "threePointAttemptsPerGame": 3.31,
+          "threePointPercentage": 0.245
+        },
+        {
+          "athleteId": "5178475",
+          "name": "Emily Robinson",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 7.94,
+          "threePointAttemptsPerGame": 3.31,
+          "threePointPercentage": 0.377
+        },
+        {
+          "athleteId": "5311716",
+          "name": "Harmonie Ware",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 7.47,
+          "threePointAttemptsPerGame": 2.31,
+          "threePointPercentage": 0.243
+        },
+        {
+          "athleteId": "5174254",
+          "name": "Jenna Lawrence",
+          "jersey": "34",
+          "position": "F",
+          "ppg": 7.41,
+          "threePointAttemptsPerGame": 3.09,
+          "threePointPercentage": 0.364
+        },
+        {
+          "athleteId": "4703707",
+          "name": "Wyvette Mayberry",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 6.86,
+          "threePointAttemptsPerGame": 3.93,
+          "threePointPercentage": 0.327
+        },
+        {
+          "athleteId": "5239470",
+          "name": "Maria Anais Rodriguez",
+          "jersey": "1",
+          "position": "F",
+          "ppg": 5.38,
+          "threePointAttemptsPerGame": 1.14,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5311718",
+          "name": "Ashlynn Chlarson",
+          "jersey": "21",
+          "position": "C",
+          "ppg": 4.81,
+          "threePointAttemptsPerGame": 0.59,
+          "threePointPercentage": 0.211
+        },
+        {
+          "athleteId": "5239060",
+          "name": "Jada Bates",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 2.75,
+          "threePointAttemptsPerGame": 1.36,
+          "threePointPercentage": 0.184
+        },
+        {
+          "athleteId": "5174255",
+          "name": "Maryn Archer",
+          "jersey": "44",
+          "position": "G",
+          "ppg": 1.88,
+          "threePointAttemptsPerGame": 0.79,
+          "threePointPercentage": 0.263
+        },
+        {
+          "athleteId": "5239061",
+          "name": "Danika Galea",
+          "jersey": "25",
+          "position": "C",
+          "ppg": 1.78,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5174252",
+          "name": "Cristina Sanchez Cerqueira",
+          "jersey": "7",
+          "position": "F",
+          "ppg": 1.71,
+          "threePointAttemptsPerGame": 0.12,
+          "threePointPercentage": 1.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5178472"
+      ],
+      "shooterAthleteIds": [
+        "5178475"
+      ]
+    },
+    {
+      "teamId": "2046",
+      "name": "Austin Peay",
+      "fullName": "Austin Peay Governors",
+      "abbreviation": "APSU",
+      "apRank": 999,
+      "primaryColor": "#8e0b0b",
+      "secondaryColor": null,
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2046.png",
+      "gameCount": 34,
+      "roster": [
+        {
+          "athleteId": "5240564",
+          "name": "Anovia Sheals",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 14.06,
+          "threePointAttemptsPerGame": 3.52,
+          "threePointPercentage": 0.172
+        },
+        {
+          "athleteId": "5314792",
+          "name": "Jim'Miyah Branton",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 10.94,
+          "threePointAttemptsPerGame": 1.3,
+          "threePointPercentage": 0.279
+        },
+        {
+          "athleteId": "5175460",
+          "name": "Veronaye Charlton",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 10.5,
+          "threePointAttemptsPerGame": 1.8,
+          "threePointPercentage": 0.5
+        },
+        {
+          "athleteId": "5174770",
+          "name": "Mya Williams",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 8.16,
+          "threePointAttemptsPerGame": 5.55,
+          "threePointPercentage": 0.355
+        },
+        {
+          "athleteId": "5314791",
+          "name": "Kyra Perkins",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 7.12,
+          "threePointAttemptsPerGame": 2.56,
+          "threePointPercentage": 0.28
+        },
+        {
+          "athleteId": "4900101",
+          "name": "JaNiah Newell",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 6.61,
+          "threePointAttemptsPerGame": 3.88,
+          "threePointPercentage": 0.312
+        },
+        {
+          "athleteId": "5314790",
+          "name": "Jade Rucker",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 6.48,
+          "threePointAttemptsPerGame": 4.16,
+          "threePointPercentage": 0.279
+        },
+        {
+          "athleteId": "5314794",
+          "name": "Lameria Thomas",
+          "jersey": "34",
+          "position": "F",
+          "ppg": 5.1,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5240752",
+          "name": "Ines Gnahore",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 4.58,
+          "threePointAttemptsPerGame": 1.67,
+          "threePointPercentage": 0.273
+        },
+        {
+          "athleteId": "5314793",
+          "name": "McKenzie Neal",
+          "jersey": "21",
+          "position": "F",
+          "ppg": 2.12,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5240315",
+          "name": "Maeva Fotsa",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 1.48,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5106078",
+          "name": "Jeanine Brandsma",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 1.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5240564"
+      ],
+      "shooterAthleteIds": [
+        "5174770"
+      ]
+    },
+    {
+      "teamId": "2837",
+      "name": "East Texas A&M",
+      "fullName": "East Texas A&M Lions",
+      "abbreviation": "ETAM",
+      "apRank": 999,
+      "primaryColor": "#000000",
+      "secondaryColor": null,
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2837.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5315776",
+          "name": "Tiani Ellison",
+          "jersey": "21",
+          "position": "F",
+          "ppg": 15.04,
+          "threePointAttemptsPerGame": 1.62,
+          "threePointPercentage": 0.262
+        },
+        {
+          "athleteId": "5242468",
+          "name": "Reza Po",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 12.83,
+          "threePointAttemptsPerGame": 3.97,
+          "threePointPercentage": 0.383
+        },
+        {
+          "athleteId": "5178029",
+          "name": "Cora Horvath",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 9.3,
+          "threePointAttemptsPerGame": 5.9,
+          "threePointPercentage": 0.277
+        },
+        {
+          "athleteId": "5177947",
+          "name": "Nina Horvath",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 8.0,
+          "threePointAttemptsPerGame": 2.77,
+          "threePointPercentage": 0.301
+        },
+        {
+          "athleteId": "5178031",
+          "name": "Ahmya Boyce",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 7.4,
+          "threePointAttemptsPerGame": 2.77,
+          "threePointPercentage": 0.205
+        },
+        {
+          "athleteId": "5315775",
+          "name": "Rezia Castillo",
+          "jersey": "9",
+          "position": "G",
+          "ppg": 5.31,
+          "threePointAttemptsPerGame": 1.07,
+          "threePointPercentage": 0.419
+        },
+        {
+          "athleteId": "5315774",
+          "name": "Sarah Gatwech",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 5.29,
+          "threePointAttemptsPerGame": 1.57,
+          "threePointPercentage": 0.455
+        },
+        {
+          "athleteId": "5243356",
+          "name": "J'Unti Franklin",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 3.19,
+          "threePointAttemptsPerGame": 1.38,
+          "threePointPercentage": 0.379
+        },
+        {
+          "athleteId": "5243358",
+          "name": "Nyaluak Dak",
+          "jersey": "5",
+          "position": "F",
+          "ppg": 3.14,
+          "threePointAttemptsPerGame": 0.43,
+          "threePointPercentage": 0.167
+        },
+        {
+          "athleteId": "5315777",
+          "name": "Terrayah McCoy",
+          "jersey": "32",
+          "position": "G",
+          "ppg": 2.65,
+          "threePointAttemptsPerGame": 0.75,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5117213",
+          "name": "Alva Hedrich",
+          "jersey": "54",
+          "position": "F",
+          "ppg": 1.67,
+          "threePointAttemptsPerGame": 0.33,
+          "threePointPercentage": 0.1
+        },
+        {
+          "athleteId": "5109862",
+          "name": "Trinity Moreland",
+          "jersey": "44",
+          "position": "F",
+          "ppg": 1.14,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5175519",
+          "name": "Keiori Lee",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5315776"
+      ],
+      "shooterAthleteIds": [
+        "5242468"
+      ]
+    },
+    {
+      "teamId": "2296",
+      "name": "Jackson State",
+      "fullName": "Jackson State Lady Tigers",
+      "abbreviation": "JKST",
+      "apRank": 999,
+      "primaryColor": "#123297",
+      "secondaryColor": "#b5b7ba",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2296.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5243435",
+          "name": "Leianya Massenat",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 10.8,
+          "threePointAttemptsPerGame": 3.6,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5107463",
+          "name": "Rhema Pegues",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 9.88,
+          "threePointAttemptsPerGame": 6.0,
+          "threePointPercentage": 0.347
+        },
+        {
+          "athleteId": "5107913",
+          "name": "Jaileyah Cotton",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 9.1,
+          "threePointAttemptsPerGame": 3.17,
+          "threePointPercentage": 0.326
+        },
+        {
+          "athleteId": "5315814",
+          "name": "Pierre-Noelle Tcheuhchoua",
+          "jersey": "44",
+          "position": "C",
+          "ppg": 7.74,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315812",
+          "name": "Angel Wilkinson",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 7.5,
+          "threePointAttemptsPerGame": 4.64,
+          "threePointPercentage": 0.277
+        },
+        {
+          "athleteId": "5108623",
+          "name": "Mikayla Brown",
+          "jersey": "20",
+          "position": "C",
+          "ppg": 6.87,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5110871",
+          "name": "Derrica McCall",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 6.03,
+          "threePointAttemptsPerGame": 3.16,
+          "threePointPercentage": 0.347
+        },
+        {
+          "athleteId": "5241119",
+          "name": "Jada Patton",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 5.78,
+          "threePointAttemptsPerGame": 1.04,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "4900377",
+          "name": "Skyler Christmas",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 4.42,
+          "threePointAttemptsPerGame": 1.75,
+          "threePointPercentage": 0.19
+        },
+        {
+          "athleteId": "5315811",
+          "name": "Camryn O'Neil",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 2.27,
+          "threePointAttemptsPerGame": 0.93,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5315813",
+          "name": "Laila Grant",
+          "jersey": "14",
+          "position": "F",
+          "ppg": 2.05,
+          "threePointAttemptsPerGame": 0.3,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315810",
+          "name": "Mariah Reed-Jones",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 0.57,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5177181",
+          "name": "McKenzie Stewart",
+          "jersey": "30",
+          "position": "F",
+          "ppg": 1.33,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243436",
+          "name": "Ruthie Mbugua",
+          "jersey": "24",
+          "position": "C",
+          "ppg": 0.67,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5243435"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "140",
+      "name": "Kansas City",
+      "fullName": "Kansas City Roos",
+      "abbreviation": "KC",
+      "apRank": 999,
+      "primaryColor": "#004b87",
+      "secondaryColor": "#ffc72c",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/140.png",
+      "gameCount": 30,
+      "roster": [
+        {
+          "athleteId": "5178432",
+          "name": "Emani Bennett",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 14.29,
+          "threePointAttemptsPerGame": 4.14,
+          "threePointPercentage": 0.379
+        },
+        {
+          "athleteId": "5178434",
+          "name": "Elauni Bennett",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 12.7,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108127",
+          "name": "Tierra Trotter",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 10.03,
+          "threePointAttemptsPerGame": 2.72,
+          "threePointPercentage": 0.342
+        },
+        {
+          "athleteId": "5109861",
+          "name": "Zaire Harrell",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 7.33,
+          "threePointAttemptsPerGame": 0.13,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "4898418",
+          "name": "Kelby Bannerman",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 6.21,
+          "threePointAttemptsPerGame": 0.97,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5187670",
+          "name": "Jamyah Winter",
+          "jersey": "25",
+          "position": "G",
+          "ppg": 5.8,
+          "threePointAttemptsPerGame": 5.03,
+          "threePointPercentage": 0.364
+        },
+        {
+          "athleteId": "4703851",
+          "name": "Jumoke Adaramoye",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 3.57,
+          "threePointAttemptsPerGame": 0.36,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5314633",
+          "name": "Trinity Chears",
+          "jersey": "44",
+          "position": "G",
+          "ppg": 2.85,
+          "threePointAttemptsPerGame": 0.54,
+          "threePointPercentage": 0.571
+        },
+        {
+          "athleteId": "5239535",
+          "name": "Funmi Amode",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 2.79,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5314632",
+          "name": "Claudia Frances",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 2.4,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "4899206",
+          "name": "Hallie Majoros",
+          "jersey": "33",
+          "position": "G",
+          "ppg": 2.21,
+          "threePointAttemptsPerGame": 2.5,
+          "threePointPercentage": 0.217
+        },
+        {
+          "athleteId": "5239538",
+          "name": "Alyssa Febres",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 2.15,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.385
+        },
+        {
+          "athleteId": "5107745",
+          "name": "Carleigh Andrews",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 1.78,
+          "threePointAttemptsPerGame": 0.11,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5314631",
+          "name": "Lailah Hatcher",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 1.6,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5174743",
+          "name": "Nikole Thomas",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 1.18,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5178432"
+      ],
+      "shooterAthleteIds": [
+        "5187670"
+      ]
+    },
+    {
+      "teamId": "2320",
+      "name": "Lamar",
+      "fullName": "Lamar Cardinals",
+      "abbreviation": "LAM",
+      "apRank": 999,
+      "primaryColor": "#000000",
+      "secondaryColor": "#ebebeb",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2320.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5243227",
+          "name": "Kamryn Wilson",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 10.84,
+          "threePointAttemptsPerGame": 3.71,
+          "threePointPercentage": 0.322
+        },
+        {
+          "athleteId": "5177966",
+          "name": "Jacei Denley",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 10.14,
+          "threePointAttemptsPerGame": 2.89,
+          "threePointPercentage": 0.432
+        },
+        {
+          "athleteId": "5315773",
+          "name": "Shaila Forman",
+          "jersey": "44",
+          "position": "G",
+          "ppg": 10.0,
+          "threePointAttemptsPerGame": 2.55,
+          "threePointPercentage": 0.316
+        },
+        {
+          "athleteId": "5108625",
+          "name": "R'Mani Taylor",
+          "jersey": "30",
+          "position": "G",
+          "ppg": 7.87,
+          "threePointAttemptsPerGame": 2.03,
+          "threePointPercentage": 0.328
+        },
+        {
+          "athleteId": "5315770",
+          "name": "Solenne Olenga",
+          "jersey": "6",
+          "position": "F",
+          "ppg": 6.97,
+          "threePointAttemptsPerGame": 0.1,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5177965",
+          "name": "T'Aaliyah Miner",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 5.77,
+          "threePointAttemptsPerGame": 0.8,
+          "threePointPercentage": 0.375
+        },
+        {
+          "athleteId": "4899514",
+          "name": "Taliah Hill",
+          "jersey": "13",
+          "position": "F",
+          "ppg": 4.31,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315771",
+          "name": "Molly Powell",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 3.5,
+          "threePointAttemptsPerGame": 0.7,
+          "threePointPercentage": 0.214
+        },
+        {
+          "athleteId": "5315772",
+          "name": "Chisom Oguego",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 3.43,
+          "threePointAttemptsPerGame": 0.09,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243228",
+          "name": "KJ Walker",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 3.14,
+          "threePointAttemptsPerGame": 2.66,
+          "threePointPercentage": 0.312
+        },
+        {
+          "athleteId": "5108346",
+          "name": "Alexis Parker",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 2.38,
+          "threePointAttemptsPerGame": 0.52,
+          "threePointPercentage": 0.364
+        },
+        {
+          "athleteId": "5315768",
+          "name": "Keyiona McDaniel",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 0.95,
+          "threePointPercentage": 0.167
+        }
+      ],
+      "primaryAthleteIds": [
+        "5243227"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2348",
+      "name": "Louisiana Tech",
+      "fullName": "Louisiana Tech Lady Techsters",
+      "abbreviation": "LT",
+      "apRank": 999,
+      "primaryColor": "#003087",
+      "secondaryColor": "#cb333b",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2348.png",
+      "gameCount": 33,
+      "roster": [
+        {
+          "athleteId": "5239975",
+          "name": "Paris Bradley",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 14.82,
+          "threePointAttemptsPerGame": 5.64,
+          "threePointPercentage": 0.376
+        },
+        {
+          "athleteId": "5177806",
+          "name": "Jianna Morris",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 11.21,
+          "threePointAttemptsPerGame": 7.12,
+          "threePointPercentage": 0.345
+        },
+        {
+          "athleteId": "5239972",
+          "name": "Jordan Marshall",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 10.7,
+          "threePointAttemptsPerGame": 0.42,
+          "threePointPercentage": 0.214
+        },
+        {
+          "athleteId": "5312927",
+          "name": "Alexia Weaver",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 10.24,
+          "threePointAttemptsPerGame": 4.45,
+          "threePointPercentage": 0.388
+        },
+        {
+          "athleteId": "5239976",
+          "name": "Averi Aaron",
+          "jersey": "25",
+          "position": "F",
+          "ppg": 6.39,
+          "threePointAttemptsPerGame": 1.39,
+          "threePointPercentage": 0.348
+        },
+        {
+          "athleteId": "5312930",
+          "name": "Kaleigh Thompson",
+          "jersey": "30",
+          "position": "G",
+          "ppg": 6.3,
+          "threePointAttemptsPerGame": 1.36,
+          "threePointPercentage": 0.178
+        },
+        {
+          "athleteId": "5174760",
+          "name": "Joy Madison-Key",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 5.27,
+          "threePointAttemptsPerGame": 0.39,
+          "threePointPercentage": 0.154
+        },
+        {
+          "athleteId": "5312928",
+          "name": "Hillary Dawson",
+          "jersey": "3",
+          "position": "F",
+          "ppg": 3.77,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5239973",
+          "name": "Isla Airey",
+          "jersey": "18",
+          "position": "F",
+          "ppg": 2.5,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5312929",
+          "name": "Jayden Terry",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 1.86,
+          "threePointAttemptsPerGame": 0.36,
+          "threePointPercentage": 0.3
+        },
+        {
+          "athleteId": "4899085",
+          "name": "Mackenzie Wurm",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 1.25,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5239975"
+      ],
+      "shooterAthleteIds": [
+        "5312927"
+      ]
+    },
+    {
+      "teamId": "2377",
+      "name": "McNeese",
+      "fullName": "McNeese Cowgirls",
+      "abbreviation": "MCN",
+      "apRank": 999,
+      "primaryColor": "#00529C",
+      "secondaryColor": "#ffd204",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2377.png",
+      "gameCount": 35,
+      "roster": [
+        {
+          "athleteId": "5315766",
+          "name": "Dakota Howard",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 12.94,
+          "threePointAttemptsPerGame": 0.06,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5178023",
+          "name": "Arianna Patton",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 11.03,
+          "threePointAttemptsPerGame": 6.37,
+          "threePointPercentage": 0.399
+        },
+        {
+          "athleteId": "5108644",
+          "name": "Jalencia Pierre",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 9.65,
+          "threePointAttemptsPerGame": 1.18,
+          "threePointPercentage": 0.275
+        },
+        {
+          "athleteId": "5108633",
+          "name": "Lexi Alexander",
+          "jersey": "0",
+          "position": "F",
+          "ppg": 8.68,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243330",
+          "name": "Tyreona Sibley",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 8.34,
+          "threePointAttemptsPerGame": 0.83,
+          "threePointPercentage": 0.276
+        },
+        {
+          "athleteId": "5108645",
+          "name": "Allasia Washington",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 5.34,
+          "threePointAttemptsPerGame": 1.94,
+          "threePointPercentage": 0.279
+        },
+        {
+          "athleteId": "4900425",
+          "name": "Kaili Chamberlin",
+          "jersey": "6",
+          "position": "G",
+          "ppg": 4.69,
+          "threePointAttemptsPerGame": 3.4,
+          "threePointPercentage": 0.294
+        },
+        {
+          "athleteId": "5315765",
+          "name": "Carley Hamilton",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 4.21,
+          "threePointAttemptsPerGame": 1.24,
+          "threePointPercentage": 0.317
+        },
+        {
+          "athleteId": "5178026",
+          "name": "Avari Berry",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 3.2,
+          "threePointAttemptsPerGame": 0.23,
+          "threePointPercentage": 0.125
+        },
+        {
+          "athleteId": "5315767",
+          "name": "A'Yiana Flemings",
+          "jersey": "33",
+          "position": "C",
+          "ppg": 1.33,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315764",
+          "name": "Jamar'i Bell",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 1.22,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.278
+        },
+        {
+          "athleteId": "5243332",
+          "name": "Mo'Nique Joseph",
+          "jersey": "13",
+          "position": "F",
+          "ppg": 0.59,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5315766"
+      ],
+      "shooterAthleteIds": [
+        "5178023"
+      ]
+    },
+    {
+      "teamId": "235",
+      "name": "Memphis",
+      "fullName": "Memphis Tigers",
+      "abbreviation": "MEM",
+      "apRank": 999,
+      "primaryColor": "#004991",
+      "secondaryColor": "#8e908f",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "5178424",
+          "name": "Daejah Richmond",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 13.53,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5240917",
+          "name": "Tamya Smith",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 12.06,
+          "threePointAttemptsPerGame": 1.9,
+          "threePointPercentage": 0.254
+        },
+        {
+          "athleteId": "5107954",
+          "name": "Chae Harris",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 11.67,
+          "threePointAttemptsPerGame": 6.0,
+          "threePointPercentage": 0.271
+        },
+        {
+          "athleteId": "5175678",
+          "name": "Cori Allen",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 6.45,
+          "threePointAttemptsPerGame": 0.61,
+          "threePointPercentage": 0.105
+        },
+        {
+          "athleteId": "5239066",
+          "name": "Jordan Hunter",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 6.11,
+          "threePointAttemptsPerGame": 1.96,
+          "threePointPercentage": 0.302
+        },
+        {
+          "athleteId": "4565523",
+          "name": "Amauri Williams",
+          "jersey": "32",
+          "position": "F",
+          "ppg": 5.97,
+          "threePointAttemptsPerGame": 0.16,
+          "threePointPercentage": 0.4
+        },
+        {
+          "athleteId": "5175748",
+          "name": "Paris Gaines",
+          "jersey": "7",
+          "position": "F",
+          "ppg": 5.68,
+          "threePointAttemptsPerGame": 0.56,
+          "threePointPercentage": 0.071
+        },
+        {
+          "athleteId": "5240947",
+          "name": "Kennedi Alexander",
+          "jersey": "33",
+          "position": "G",
+          "ppg": 3.74,
+          "threePointAttemptsPerGame": 1.32,
+          "threePointPercentage": 0.22
+        },
+        {
+          "athleteId": "5240945",
+          "name": "Brooklyn Alexander",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 2.59,
+          "threePointAttemptsPerGame": 1.62,
+          "threePointPercentage": 0.277
+        },
+        {
+          "athleteId": "5314302",
+          "name": "Brooklynn Charlo",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 2.16,
+          "threePointAttemptsPerGame": 1.92,
+          "threePointPercentage": 0.271
+        },
+        {
+          "athleteId": "5314303",
+          "name": "Jah'Naesia Spiers",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 0.61,
+          "threePointAttemptsPerGame": 0.21,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5174308",
+          "name": "Bailey Gilmore",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 0.48,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5178424"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "142",
+      "name": "Missouri",
+      "fullName": "Missouri Tigers",
+      "abbreviation": "MIZ",
+      "apRank": 999,
+      "primaryColor": "#f1b82d",
+      "secondaryColor": "#000000",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png",
+      "gameCount": 34,
+      "roster": [
+        {
+          "athleteId": "5174274",
+          "name": "Grace Slaughter",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 18.68,
+          "threePointAttemptsPerGame": 4.53,
+          "threePointPercentage": 0.383
+        },
+        {
+          "athleteId": "5178275",
+          "name": "Shannon Dowell",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 14.9,
+          "threePointAttemptsPerGame": 2.03,
+          "threePointPercentage": 0.295
+        },
+        {
+          "athleteId": "5108646",
+          "name": "Jordana Reisma",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 10.41,
+          "threePointAttemptsPerGame": 1.31,
+          "threePointPercentage": 0.368
+        },
+        {
+          "athleteId": "5240803",
+          "name": "Chloe Sotell",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 8.03,
+          "threePointAttemptsPerGame": 5.62,
+          "threePointPercentage": 0.372
+        },
+        {
+          "athleteId": "4899061",
+          "name": "Jayla Smith",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 7.76,
+          "threePointAttemptsPerGame": 2.97,
+          "threePointPercentage": 0.296
+        },
+        {
+          "athleteId": "5174277",
+          "name": "Abbey Schreacke",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 7.21,
+          "threePointAttemptsPerGame": 4.94,
+          "threePointPercentage": 0.357
+        },
+        {
+          "athleteId": "5175730",
+          "name": "Lisa Thompson",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 3.88,
+          "threePointAttemptsPerGame": 1.03,
+          "threePointPercentage": 0.182
+        },
+        {
+          "athleteId": "4682781",
+          "name": "Saniah Tyler",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 3.4,
+          "threePointAttemptsPerGame": 1.97,
+          "threePointPercentage": 0.356
+        },
+        {
+          "athleteId": "5311599",
+          "name": "Reka Toman",
+          "jersey": "55",
+          "position": "F",
+          "ppg": 1.6,
+          "threePointAttemptsPerGame": 0.76,
+          "threePointPercentage": 0.368
+        },
+        {
+          "athleteId": "5239092",
+          "name": "Ma'Riya Vincent",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 1.44,
+          "threePointAttemptsPerGame": 0.4,
+          "threePointPercentage": 0.3
+        }
+      ],
+      "primaryAthleteIds": [
+        "5174274"
+      ],
+      "shooterAthleteIds": [
+        "5240803"
+      ]
+    },
+    {
+      "teamId": "2623",
+      "name": "Missouri State",
+      "fullName": "Missouri State Lady Bears",
+      "abbreviation": "MOST",
+      "apRank": 999,
+      "primaryColor": "#5e0009",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2623.png",
+      "gameCount": 36,
+      "roster": [
+        {
+          "athleteId": "5178529",
+          "name": "Kaemyn Bekemeier",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 17.42,
+          "threePointAttemptsPerGame": 5.44,
+          "threePointPercentage": 0.342
+        },
+        {
+          "athleteId": "5242177",
+          "name": "Lainie Douglas",
+          "jersey": "2",
+          "position": "F",
+          "ppg": 13.64,
+          "threePointAttemptsPerGame": 0.06,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5312941",
+          "name": "Maiesha Washington",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 7.89,
+          "threePointAttemptsPerGame": 0.28,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5106127",
+          "name": "Faith Lee",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 7.33,
+          "threePointAttemptsPerGame": 0.25,
+          "threePointPercentage": 0.111
+        },
+        {
+          "athleteId": "5107741",
+          "name": "Cady Pauley",
+          "jersey": "32",
+          "position": "G",
+          "ppg": 5.96,
+          "threePointAttemptsPerGame": 2.33,
+          "threePointPercentage": 0.27
+        },
+        {
+          "athleteId": "5312939",
+          "name": "Kendal Brueggen",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 5.83,
+          "threePointAttemptsPerGame": 2.39,
+          "threePointPercentage": 0.244
+        },
+        {
+          "athleteId": "5312940",
+          "name": "Maycee James",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 3.0,
+          "threePointAttemptsPerGame": 0.39,
+          "threePointPercentage": 0.214
+        },
+        {
+          "athleteId": "5242176",
+          "name": "JaNyla Bush",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 3.0,
+          "threePointAttemptsPerGame": 1.64,
+          "threePointPercentage": 0.356
+        },
+        {
+          "athleteId": "5312942",
+          "name": "Audrey Hopkins",
+          "jersey": "31",
+          "position": "G",
+          "ppg": 2.03,
+          "threePointAttemptsPerGame": 1.09,
+          "threePointPercentage": 0.297
+        },
+        {
+          "athleteId": "4899456",
+          "name": "Angel Scott",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 1.54,
+          "threePointAttemptsPerGame": 1.54,
+          "threePointPercentage": 0.3
+        },
+        {
+          "athleteId": "5239465",
+          "name": "Zoe Canfield",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 0.9,
+          "threePointAttemptsPerGame": 1.6,
+          "threePointPercentage": 0.188
+        },
+        {
+          "athleteId": "5177905",
+          "name": "Victoria Dixon",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 0.56,
+          "threePointAttemptsPerGame": 0.11,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5177950",
+          "name": "Tyra Robinson",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 0.5,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5178531",
+          "name": "Blake O'Grady",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 0.22,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5178529"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "93",
+      "name": "Murray State",
+      "fullName": "Murray State Racers",
+      "abbreviation": "MUR",
+      "apRank": 999,
+      "primaryColor": "#002148",
+      "secondaryColor": "#000e00",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/93.png",
+      "gameCount": 35,
+      "roster": [
+        {
+          "athleteId": "5177987",
+          "name": "Halli Poock",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 22.51,
+          "threePointAttemptsPerGame": 6.83,
+          "threePointPercentage": 0.347
+        },
+        {
+          "athleteId": "5106836",
+          "name": "Sharnecce Currie-Jelks",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 17.37,
+          "threePointAttemptsPerGame": 1.06,
+          "threePointPercentage": 0.27
+        },
+        {
+          "athleteId": "5178532",
+          "name": "Haven Ford",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 17.11,
+          "threePointAttemptsPerGame": 5.54,
+          "threePointPercentage": 0.32
+        },
+        {
+          "athleteId": "5178282",
+          "name": "Keslyn Secrist",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 13.0,
+          "threePointAttemptsPerGame": 2.97,
+          "threePointPercentage": 0.365
+        },
+        {
+          "athleteId": "5109359",
+          "name": "Briley Pena",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 4.85,
+          "threePointAttemptsPerGame": 3.82,
+          "threePointPercentage": 0.308
+        },
+        {
+          "athleteId": "5242182",
+          "name": "Braxcynn Baker",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 4.31,
+          "threePointAttemptsPerGame": 3.2,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5178533",
+          "name": "Destiny Thomas",
+          "jersey": "25",
+          "position": "G",
+          "ppg": 2.62,
+          "threePointAttemptsPerGame": 0.35,
+          "threePointPercentage": 0.111
+        },
+        {
+          "athleteId": "5242185",
+          "name": "Jada Cook",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 2.6,
+          "threePointAttemptsPerGame": 1.6,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5240225",
+          "name": "Ellery Minch",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 1.93,
+          "threePointAttemptsPerGame": 0.74,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5314953",
+          "name": "Gabby Spink",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 1.33,
+          "threePointAttemptsPerGame": 0.83,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5242186",
+          "name": "Cam Hoover",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 0.53,
+          "threePointAttemptsPerGame": 0.47,
+          "threePointPercentage": 0.111
+        }
+      ],
+      "primaryAthleteIds": [
+        "5177987"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "158",
+      "name": "Nebraska",
+      "fullName": "Nebraska Cornhuskers",
+      "abbreviation": "NEB",
+      "apRank": 999,
+      "primaryColor": "#e31937",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/158.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "5240195",
+          "name": "Britt Prince",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 17.88,
+          "threePointAttemptsPerGame": 2.88,
+          "threePointPercentage": 0.457
+        },
+        {
+          "athleteId": "5240196",
+          "name": "Amiah Hargrove",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 12.68,
+          "threePointAttemptsPerGame": 1.9,
+          "threePointPercentage": 0.407
+        },
+        {
+          "athleteId": "5175709",
+          "name": "Jessica Petrie",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 11.33,
+          "threePointAttemptsPerGame": 3.23,
+          "threePointPercentage": 0.289
+        },
+        {
+          "athleteId": "5175708",
+          "name": "Logan Nissley",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 8.9,
+          "threePointAttemptsPerGame": 5.0,
+          "threePointPercentage": 0.433
+        },
+        {
+          "athleteId": "5106158",
+          "name": "Eliza Maupin",
+          "jersey": "21",
+          "position": "F",
+          "ppg": 7.35,
+          "threePointAttemptsPerGame": 0.96,
+          "threePointPercentage": 0.28
+        },
+        {
+          "athleteId": "5108518",
+          "name": "Callin Hake",
+          "jersey": "14",
+          "position": "G",
+          "ppg": 7.22,
+          "threePointAttemptsPerGame": 4.03,
+          "threePointPercentage": 0.349
+        },
+        {
+          "athleteId": "5240197",
+          "name": "Petra Bozan",
+          "jersey": "4",
+          "position": "F",
+          "ppg": 6.62,
+          "threePointAttemptsPerGame": 0.94,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5243562",
+          "name": "Claire Johnson",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 3.48,
+          "threePointAttemptsPerGame": 1.39,
+          "threePointPercentage": 0.233
+        },
+        {
+          "athleteId": "5240194",
+          "name": "Kennadi Williams",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 2.44,
+          "threePointAttemptsPerGame": 1.38,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "4611769",
+          "name": "Hailey Weaver",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 2.42,
+          "threePointAttemptsPerGame": 0.94,
+          "threePointPercentage": 0.414
+        },
+        {
+          "athleteId": "5175687",
+          "name": "Emily Fisher",
+          "jersey": "34",
+          "position": "G",
+          "ppg": 1.67,
+          "threePointAttemptsPerGame": 0.17,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5311590",
+          "name": "Alanna Neale",
+          "jersey": "00",
+          "position": "G",
+          "ppg": 1.25,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.25
+        }
+      ],
+      "primaryAthleteIds": [
+        "5240195"
+      ],
+      "shooterAthleteIds": [
+        "5175708"
+      ]
+    },
+    {
+      "teamId": "167",
+      "name": "New Mexico",
+      "fullName": "New Mexico Lobos",
+      "abbreviation": "UNM",
+      "apRank": 999,
+      "primaryColor": "#ba0c2f",
+      "secondaryColor": "#a7a8aa",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/167.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "5242465",
+          "name": "Destinee Hooks",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 13.38,
+          "threePointAttemptsPerGame": 4.53,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5312955",
+          "name": "Cacia Antonio",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 10.31,
+          "threePointAttemptsPerGame": 2.79,
+          "threePointPercentage": 0.309
+        },
+        {
+          "athleteId": "5242467",
+          "name": "Joana Magalhaes",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 8.73,
+          "threePointAttemptsPerGame": 2.73,
+          "threePointPercentage": 0.232
+        },
+        {
+          "athleteId": "5242466",
+          "name": "Nayli Padilla",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 8.03,
+          "threePointAttemptsPerGame": 4.62,
+          "threePointPercentage": 0.351
+        },
+        {
+          "athleteId": "5312961",
+          "name": "Laila Abdurraqib",
+          "jersey": "44",
+          "position": "G",
+          "ppg": 7.47,
+          "threePointAttemptsPerGame": 4.38,
+          "threePointPercentage": 0.379
+        },
+        {
+          "athleteId": "4898851",
+          "name": "Alyssa Hargrove",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 6.53,
+          "threePointAttemptsPerGame": 3.62,
+          "threePointPercentage": 0.259
+        },
+        {
+          "athleteId": "4898617",
+          "name": "Clarissa Craig",
+          "jersey": "40",
+          "position": "F",
+          "ppg": 6.5,
+          "threePointAttemptsPerGame": 0.1,
+          "threePointPercentage": 1.0
+        },
+        {
+          "athleteId": "5312960",
+          "name": "Jessie Joaquim",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 4.0,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5312959",
+          "name": "Emma Najjuma",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 3.16,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5178271",
+          "name": "Drew Jordon",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 2.81,
+          "threePointAttemptsPerGame": 0.47,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5312954",
+          "name": "Kaia Foster",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 2.62,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5312958",
+          "name": "Tyler Jones",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 1.0,
+          "threePointAttemptsPerGame": 0.62,
+          "threePointPercentage": 0.067
+        },
+        {
+          "athleteId": "5312957",
+          "name": "Leonor Peixinho",
+          "jersey": "14",
+          "position": "F",
+          "ppg": 0.54,
+          "threePointAttemptsPerGame": 0.08,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5242465"
+      ],
+      "shooterAthleteIds": [
+        "5242466"
+      ]
+    },
+    {
+      "teamId": "2443",
+      "name": "New Orleans",
+      "fullName": "New Orleans Privateers",
+      "abbreviation": "UNO",
+      "apRank": 999,
+      "primaryColor": "#005da6",
+      "secondaryColor": "#a2a9ae",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2443.png",
+      "gameCount": 30,
+      "roster": [
+        {
+          "athleteId": "5243257",
+          "name": "Brialle Washington",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 9.86,
+          "threePointAttemptsPerGame": 4.25,
+          "threePointPercentage": 0.294
+        },
+        {
+          "athleteId": "5243255",
+          "name": "Shanihya Brown",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 9.45,
+          "threePointAttemptsPerGame": 1.24,
+          "threePointPercentage": 0.222
+        },
+        {
+          "athleteId": "5186511",
+          "name": "Lauren Banks",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 9.23,
+          "threePointAttemptsPerGame": 2.67,
+          "threePointPercentage": 0.237
+        },
+        {
+          "athleteId": "4705090",
+          "name": "Jayla Kimbrough",
+          "jersey": "33",
+          "position": "G",
+          "ppg": 7.21,
+          "threePointAttemptsPerGame": 0.79,
+          "threePointPercentage": 0.045
+        },
+        {
+          "athleteId": "5315708",
+          "name": "Mikayla Johnson",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 5.56,
+          "threePointAttemptsPerGame": 1.33,
+          "threePointPercentage": 0.208
+        },
+        {
+          "athleteId": "5177784",
+          "name": "Hailee Brennen",
+          "jersey": "0",
+          "position": "F",
+          "ppg": 5.1,
+          "threePointAttemptsPerGame": 1.33,
+          "threePointPercentage": 0.3
+        },
+        {
+          "athleteId": "4899558",
+          "name": "Aaliyah Ellis",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 4.5,
+          "threePointAttemptsPerGame": 2.08,
+          "threePointPercentage": 0.28
+        },
+        {
+          "athleteId": "5178460",
+          "name": "Jayla Owen",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 4.0,
+          "threePointAttemptsPerGame": 3.43,
+          "threePointPercentage": 0.208
+        },
+        {
+          "athleteId": "5178471",
+          "name": "Sephora Kayolo",
+          "jersey": "2",
+          "position": "F",
+          "ppg": 3.69,
+          "threePointAttemptsPerGame": 1.44,
+          "threePointPercentage": 0.261
+        },
+        {
+          "athleteId": "5315706",
+          "name": "Mariah Hart",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 3.6,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.167
+        },
+        {
+          "athleteId": "5315710",
+          "name": "Trinity Bane",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 3.36,
+          "threePointAttemptsPerGame": 0.73,
+          "threePointPercentage": 0.375
+        },
+        {
+          "athleteId": "5315707",
+          "name": "Sharon Smith",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 2.58,
+          "threePointAttemptsPerGame": 1.04,
+          "threePointPercentage": 0.4
+        },
+        {
+          "athleteId": "5243258",
+          "name": "Chenai Mushore",
+          "jersey": "14",
+          "position": "F",
+          "ppg": 1.9,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315709",
+          "name": "Logan Johnson",
+          "jersey": "20",
+          "position": "F",
+          "ppg": 1.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5243257"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2447",
+      "name": "Nicholls",
+      "fullName": "Nicholls Colonels",
+      "abbreviation": "NICH",
+      "apRank": 999,
+      "primaryColor": "#C41230",
+      "secondaryColor": "#f0f0f0",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2447.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5177922",
+          "name": "Sh'Diamond McKnight",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 12.26,
+          "threePointAttemptsPerGame": 4.03,
+          "threePointPercentage": 0.248
+        },
+        {
+          "athleteId": "5241089",
+          "name": "Marie Kenembeni",
+          "jersey": "14",
+          "position": "F",
+          "ppg": 9.87,
+          "threePointAttemptsPerGame": 1.23,
+          "threePointPercentage": 0.289
+        },
+        {
+          "athleteId": "5243623",
+          "name": "Tanita Swift",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 9.5,
+          "threePointAttemptsPerGame": 1.33,
+          "threePointPercentage": 0.125
+        },
+        {
+          "athleteId": "5243622",
+          "name": "Jesslynn Jalomo",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 8.35,
+          "threePointAttemptsPerGame": 5.16,
+          "threePointPercentage": 0.312
+        },
+        {
+          "athleteId": "5176105",
+          "name": "Jasmine Matthews",
+          "jersey": "13",
+          "position": "F",
+          "ppg": 7.85,
+          "threePointAttemptsPerGame": 0.48,
+          "threePointPercentage": 0.308
+        },
+        {
+          "athleteId": "5315703",
+          "name": "Anyra Wilson",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 6.06,
+          "threePointAttemptsPerGame": 1.03,
+          "threePointPercentage": 0.125
+        },
+        {
+          "athleteId": "4900385",
+          "name": "Emani Burks",
+          "jersey": "30",
+          "position": "F",
+          "ppg": 4.94,
+          "threePointAttemptsPerGame": 0.61,
+          "threePointPercentage": 0.263
+        },
+        {
+          "athleteId": "5315702",
+          "name": "Makayla Charles",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 4.5,
+          "threePointAttemptsPerGame": 0.17,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5323963",
+          "name": "Sanaiya Morris",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 3.93,
+          "threePointAttemptsPerGame": 1.04,
+          "threePointPercentage": 0.214
+        },
+        {
+          "athleteId": "5315705",
+          "name": "India McMahon",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 3.25,
+          "threePointAttemptsPerGame": 0.25,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243625",
+          "name": "Laryn Scott",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 2.87,
+          "threePointAttemptsPerGame": 0.29,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315704",
+          "name": "Reese Hoadley",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 1.52,
+          "threePointAttemptsPerGame": 1.87,
+          "threePointPercentage": 0.186
+        },
+        {
+          "athleteId": "5243626",
+          "name": "Caroline Adams",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 0.83,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5323964",
+          "name": "Makensie Charles",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5177922"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2453",
+      "name": "North Alabama",
+      "fullName": "North Alabama Lions",
+      "abbreviation": "UNA",
+      "apRank": 999,
+      "primaryColor": "#000000",
+      "secondaryColor": null,
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2453.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5252496",
+          "name": "Alexsandra Alvarado",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 13.74,
+          "threePointAttemptsPerGame": 6.06,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5240605",
+          "name": "Sofia Ceppellotti",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 11.52,
+          "threePointAttemptsPerGame": 4.52,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5315572",
+          "name": "Cameron McNamara",
+          "jersey": "40",
+          "position": "F",
+          "ppg": 10.14,
+          "threePointAttemptsPerGame": 0.14,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5175461",
+          "name": "Katie Criswell",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 8.42,
+          "threePointAttemptsPerGame": 3.52,
+          "threePointPercentage": 0.312
+        },
+        {
+          "athleteId": "5111103",
+          "name": "India Howard",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 8.1,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 1.0
+        },
+        {
+          "athleteId": "5315570",
+          "name": "Gabby Jackson",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 7.71,
+          "threePointAttemptsPerGame": 2.48,
+          "threePointPercentage": 0.273
+        },
+        {
+          "athleteId": "5175845",
+          "name": "Bukky Akinsola",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 6.31,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.192
+        },
+        {
+          "athleteId": "5107465",
+          "name": "Alyssa Clutter",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 4.82,
+          "threePointAttemptsPerGame": 0.73,
+          "threePointPercentage": 0.375
+        },
+        {
+          "athleteId": "5240607",
+          "name": "Jazzy Klinge",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 4.58,
+          "threePointAttemptsPerGame": 0.13,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5240606",
+          "name": "Venla Ulander",
+          "jersey": "3",
+          "position": "F",
+          "ppg": 2.96,
+          "threePointAttemptsPerGame": 1.36,
+          "threePointPercentage": 0.289
+        },
+        {
+          "athleteId": "5315568",
+          "name": "Greta Ramon",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 2.13,
+          "threePointAttemptsPerGame": 1.6,
+          "threePointPercentage": 0.146
+        },
+        {
+          "athleteId": "5315567",
+          "name": "Brooke Hallman",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 2.1,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.3
+        }
+      ],
+      "primaryAthleteIds": [
+        "5252496"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2437",
+      "name": "Omaha",
+      "fullName": "Omaha Mavericks",
+      "abbreviation": "OMA",
+      "apRank": 999,
+      "primaryColor": "#e3193e",
+      "secondaryColor": "#474648",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2437.png",
+      "gameCount": 33,
+      "roster": [
+        {
+          "athleteId": "5178467",
+          "name": "Cora Olsen",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 17.33,
+          "threePointAttemptsPerGame": 3.0,
+          "threePointPercentage": 0.444
+        },
+        {
+          "athleteId": "5175420",
+          "name": "Sarai Estupi\u00f1an",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 12.82,
+          "threePointAttemptsPerGame": 5.21,
+          "threePointPercentage": 0.297
+        },
+        {
+          "athleteId": "5314666",
+          "name": "Regan Juenemann",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 11.75,
+          "threePointAttemptsPerGame": 4.62,
+          "threePointPercentage": 0.412
+        },
+        {
+          "athleteId": "5178466",
+          "name": "Ali Stephens",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 8.0,
+          "threePointAttemptsPerGame": 6.15,
+          "threePointPercentage": 0.271
+        },
+        {
+          "athleteId": "5314659",
+          "name": "Leekaya Burke Perryman",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 5.94,
+          "threePointAttemptsPerGame": 1.88,
+          "threePointPercentage": 0.226
+        },
+        {
+          "athleteId": "5314662",
+          "name": "Elsa Vedral",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 4.13,
+          "threePointAttemptsPerGame": 3.23,
+          "threePointPercentage": 0.268
+        },
+        {
+          "athleteId": "5314663",
+          "name": "Avril Smith",
+          "jersey": "14",
+          "position": "F",
+          "ppg": 3.42,
+          "threePointAttemptsPerGame": 0.06,
+          "threePointPercentage": 1.0
+        },
+        {
+          "athleteId": "5241835",
+          "name": "Daria Shelby",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 3.4,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.233
+        },
+        {
+          "athleteId": "5314667",
+          "name": "Lillian Merow",
+          "jersey": "33",
+          "position": "C",
+          "ppg": 2.5,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5314661",
+          "name": "Esra Kurban",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 0.89,
+          "threePointAttemptsPerGame": 1.05,
+          "threePointPercentage": 0.15
+        },
+        {
+          "athleteId": "5314665",
+          "name": "Erikka Gooden",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.07,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5117384",
+          "name": "Reilly Palmer",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.29,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5331725",
+          "name": "Lainey Maehl",
+          "jersey": "25",
+          "position": "F",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5178467"
+      ],
+      "shooterAthleteIds": [
+        "5314666"
+      ]
+    },
+    {
+      "teamId": "2504",
+      "name": "Prairie View A&M",
+      "fullName": "Prairie View A&M Lady Panthers",
+      "abbreviation": "PV",
+      "apRank": 999,
+      "primaryColor": "#582c83",
+      "secondaryColor": "#eaaa00",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2504.png",
+      "gameCount": 30,
+      "roster": [
+        {
+          "athleteId": "5243455",
+          "name": "Crystal Schultz",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 14.31,
+          "threePointAttemptsPerGame": 6.52,
+          "threePointPercentage": 0.296
+        },
+        {
+          "athleteId": "5243454",
+          "name": "CJ Wilson",
+          "jersey": "14",
+          "position": "PG",
+          "ppg": 13.79,
+          "threePointAttemptsPerGame": 2.24,
+          "threePointPercentage": 0.215
+        },
+        {
+          "athleteId": "5315746",
+          "name": "Alana Shields",
+          "jersey": "1",
+          "position": "PG",
+          "ppg": 8.6,
+          "threePointAttemptsPerGame": 4.8,
+          "threePointPercentage": 0.229
+        },
+        {
+          "athleteId": "5315749",
+          "name": "Jacque Giron",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 5.69,
+          "threePointAttemptsPerGame": 4.1,
+          "threePointPercentage": 0.235
+        },
+        {
+          "athleteId": "5315747",
+          "name": "Margan Allen",
+          "jersey": "3",
+          "position": "PG",
+          "ppg": 5.46,
+          "threePointAttemptsPerGame": 3.19,
+          "threePointPercentage": 0.289
+        },
+        {
+          "athleteId": "5315754",
+          "name": "Taiya Kikunga",
+          "jersey": "32",
+          "position": "PF",
+          "ppg": 4.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315753",
+          "name": "MarcKalia Celestine",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 2.48,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243457",
+          "name": "Ja'nya Polk",
+          "jersey": "31",
+          "position": "C",
+          "ppg": 2.13,
+          "threePointAttemptsPerGame": 0.04,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315751",
+          "name": "Mercy Wamet",
+          "jersey": "13",
+          "position": "F",
+          "ppg": 1.8,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315752",
+          "name": "Preston Young",
+          "jersey": "15",
+          "position": "C",
+          "ppg": 1.69,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243456",
+          "name": "Laila Robinson",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 1.64,
+          "threePointAttemptsPerGame": 0.09,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5250554",
+          "name": "Krislyn Biscette",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 0.65,
+          "threePointAttemptsPerGame": 0.25,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5315748",
+          "name": "Alaysia Gude",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5243455"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "242",
+      "name": "Rice",
+      "fullName": "Rice Owls",
+      "abbreviation": "RICE",
+      "apRank": 999,
+      "primaryColor": "#00205b",
+      "secondaryColor": "#c1c6c8",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/242.png",
+      "gameCount": 35,
+      "roster": [
+        {
+          "athleteId": "5108318",
+          "name": "Dominique Ennis",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 13.14,
+          "threePointAttemptsPerGame": 7.46,
+          "threePointPercentage": 0.345
+        },
+        {
+          "athleteId": "5175791",
+          "name": "Victoria Flores",
+          "jersey": "55",
+          "position": "G",
+          "ppg": 12.18,
+          "threePointAttemptsPerGame": 4.45,
+          "threePointPercentage": 0.299
+        },
+        {
+          "athleteId": "5108323",
+          "name": "Shelby Hayes",
+          "jersey": "44",
+          "position": "C",
+          "ppg": 12.03,
+          "threePointAttemptsPerGame": 0.11,
+          "threePointPercentage": 0.5
+        },
+        {
+          "athleteId": "5240923",
+          "name": "Aniah Alexis",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 10.03,
+          "threePointAttemptsPerGame": 3.86,
+          "threePointPercentage": 0.319
+        },
+        {
+          "athleteId": "5108319",
+          "name": "Hailey Adams",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 8.34,
+          "threePointAttemptsPerGame": 0.26,
+          "threePointPercentage": 0.111
+        },
+        {
+          "athleteId": "5195389",
+          "name": "Louann Battiston",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 6.97,
+          "threePointAttemptsPerGame": 3.71,
+          "threePointPercentage": 0.338
+        },
+        {
+          "athleteId": "5315555",
+          "name": "Jordin Blackmon",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 3.29,
+          "threePointAttemptsPerGame": 0.89,
+          "threePointPercentage": 0.226
+        },
+        {
+          "athleteId": "5315554",
+          "name": "Mylee Guinn",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 3.15,
+          "threePointAttemptsPerGame": 1.85,
+          "threePointPercentage": 0.417
+        },
+        {
+          "athleteId": "5178494",
+          "name": "Layla Conley",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 0.67,
+          "threePointPercentage": 1.0
+        },
+        {
+          "athleteId": "5238320",
+          "name": "Myah Hazelton",
+          "jersey": "21",
+          "position": "C",
+          "ppg": 1.97,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108320",
+          "name": "Kennedy Clifton",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 1.38,
+          "threePointAttemptsPerGame": 0.44,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5240922",
+          "name": "Jill Twiehaus",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 1.0,
+          "threePointAttemptsPerGame": 1.25,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5178493",
+          "name": "Pace Rickard",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.14,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5108318"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2534",
+      "name": "Sam Houston",
+      "fullName": "Sam Houston Bearkats",
+      "abbreviation": "SHSU",
+      "apRank": 999,
+      "primaryColor": "#f56423",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2534.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5239982",
+          "name": "Fanta Kone",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 12.97,
+          "threePointAttemptsPerGame": 2.5,
+          "threePointPercentage": 0.28
+        },
+        {
+          "athleteId": "5108133",
+          "name": "Deborah Ogayemi",
+          "jersey": "8",
+          "position": "F",
+          "ppg": 11.93,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5239984",
+          "name": "Nyla Inmon",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 10.58,
+          "threePointAttemptsPerGame": 0.58,
+          "threePointPercentage": 0.056
+        },
+        {
+          "athleteId": "5107488",
+          "name": "Whitney Dunn",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 10.32,
+          "threePointAttemptsPerGame": 3.87,
+          "threePointPercentage": 0.283
+        },
+        {
+          "athleteId": "5239983",
+          "name": "Aysia Ward-Strong",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 7.19,
+          "threePointAttemptsPerGame": 0.61,
+          "threePointPercentage": 0.263
+        },
+        {
+          "athleteId": "4595282",
+          "name": "Annika Corcoran",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 6.68,
+          "threePointAttemptsPerGame": 3.76,
+          "threePointPercentage": 0.287
+        },
+        {
+          "athleteId": "5178135",
+          "name": "Esther Rodellar",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 2.43,
+          "threePointAttemptsPerGame": 0.87,
+          "threePointPercentage": 0.308
+        },
+        {
+          "athleteId": "5177820",
+          "name": "Kelis Grant",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5313006",
+          "name": "Kaylie Carr",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 1.87,
+          "threePointAttemptsPerGame": 0.22,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5108005",
+          "name": "Bryana Block",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 1.71,
+          "threePointAttemptsPerGame": 1.32,
+          "threePointPercentage": 0.293
+        },
+        {
+          "athleteId": "5178417",
+          "name": "Alaisha Brown",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 1.63,
+          "threePointAttemptsPerGame": 0.43,
+          "threePointPercentage": 0.231
+        },
+        {
+          "athleteId": "5109750",
+          "name": "Blessing Okoh",
+          "jersey": "21",
+          "position": "F",
+          "ppg": 1.48,
+          "threePointAttemptsPerGame": 0.48,
+          "threePointPercentage": 0.3
+        },
+        {
+          "athleteId": "5239985",
+          "name": "Lea Salinas Beamen",
+          "jersey": "25",
+          "position": "C",
+          "ppg": 1.28,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5239982"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2567",
+      "name": "SMU",
+      "fullName": "SMU Mustangs",
+      "abbreviation": "SMU",
+      "apRank": 999,
+      "primaryColor": "#a80000",
+      "secondaryColor": "#0033a1",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
+      "gameCount": 30,
+      "roster": [
+        {
+          "athleteId": "5239494",
+          "name": "Zahra King",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 14.43,
+          "threePointAttemptsPerGame": 3.87,
+          "threePointPercentage": 0.388
+        },
+        {
+          "athleteId": "4704510",
+          "name": "Tyi Skinner",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 13.62,
+          "threePointAttemptsPerGame": 5.75,
+          "threePointPercentage": 0.304
+        },
+        {
+          "athleteId": "5108052",
+          "name": "Kyla Deck",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 10.08,
+          "threePointAttemptsPerGame": 3.69,
+          "threePointPercentage": 0.396
+        },
+        {
+          "athleteId": "4698732",
+          "name": "Paulina Paris",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 9.6,
+          "threePointAttemptsPerGame": 3.8,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5174286",
+          "name": "Sahnya Jah",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 9.32,
+          "threePointAttemptsPerGame": 1.56,
+          "threePointPercentage": 0.154
+        },
+        {
+          "athleteId": "5106832",
+          "name": "Anaya Brown",
+          "jersey": "4",
+          "position": "F",
+          "ppg": 6.8,
+          "threePointAttemptsPerGame": 1.43,
+          "threePointPercentage": 0.395
+        },
+        {
+          "athleteId": "5108566",
+          "name": "Ayanna Thompson",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 6.2,
+          "threePointAttemptsPerGame": 3.03,
+          "threePointPercentage": 0.341
+        },
+        {
+          "athleteId": "4433537",
+          "name": "Jzaniya Harriel",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 5.94,
+          "threePointAttemptsPerGame": 2.31,
+          "threePointPercentage": 0.351
+        },
+        {
+          "athleteId": "4691703",
+          "name": "Grace Hall",
+          "jersey": "7",
+          "position": "F",
+          "ppg": 4.56,
+          "threePointAttemptsPerGame": 1.81,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "4899220",
+          "name": "Miriam Ibezim",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 3.77,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5312412",
+          "name": "Elizaveta Filchagina",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 0.95,
+          "threePointAttemptsPerGame": 0.58,
+          "threePointPercentage": 0.091
+        },
+        {
+          "athleteId": "5312411",
+          "name": "Jazzy Gipson",
+          "jersey": "6",
+          "position": "F",
+          "ppg": 0.94,
+          "threePointAttemptsPerGame": 0.94,
+          "threePointPercentage": 0.059
+        }
+      ],
+      "primaryAthleteIds": [
+        "5239494"
+      ],
+      "shooterAthleteIds": [
+        "5108052"
+      ]
+    },
+    {
+      "teamId": "6",
+      "name": "South Alabama",
+      "fullName": "South Alabama Jaguars",
+      "abbreviation": "USA",
+      "apRank": 999,
+      "primaryColor": "#00205b",
+      "secondaryColor": "#bf0d3e",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/6.png",
+      "gameCount": 36,
+      "roster": [
+        {
+          "athleteId": "5315172",
+          "name": "Amyah Sutton",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 11.57,
+          "threePointAttemptsPerGame": 6.54,
+          "threePointPercentage": 0.306
+        },
+        {
+          "athleteId": "5109846",
+          "name": "Cordasia Harris",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 10.97,
+          "threePointAttemptsPerGame": 0.54,
+          "threePointPercentage": 0.263
+        },
+        {
+          "athleteId": "5107576",
+          "name": "Daniela Gonzalez",
+          "jersey": "20",
+          "position": "F",
+          "ppg": 9.91,
+          "threePointAttemptsPerGame": 4.71,
+          "threePointPercentage": 0.376
+        },
+        {
+          "athleteId": "5178192",
+          "name": "Tamara Ortiz",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 9.21,
+          "threePointAttemptsPerGame": 3.85,
+          "threePointPercentage": 0.283
+        },
+        {
+          "athleteId": "5179307",
+          "name": "Diawna Carter-Hartley",
+          "jersey": "25",
+          "position": "F",
+          "ppg": 8.78,
+          "threePointAttemptsPerGame": 2.83,
+          "threePointPercentage": 0.314
+        },
+        {
+          "athleteId": "5176124",
+          "name": "Chrysta Narcisse",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 8.23,
+          "threePointAttemptsPerGame": 1.83,
+          "threePointPercentage": 0.359
+        },
+        {
+          "athleteId": "5175959",
+          "name": "Ronaltha Marc",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 4.71,
+          "threePointAttemptsPerGame": 0.51,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5315173",
+          "name": "Jeriyah Baines",
+          "jersey": "30",
+          "position": "F",
+          "ppg": 3.38,
+          "threePointAttemptsPerGame": 0.62,
+          "threePointPercentage": 0.5
+        },
+        {
+          "athleteId": "5241096",
+          "name": "Alicia Spann",
+          "jersey": "21",
+          "position": "C",
+          "ppg": 3.36,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315170",
+          "name": "Miyah Holmes",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 1.86,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5241095",
+          "name": "Princess Okafor Nweze",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 1.38,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5241093",
+          "name": "Aroa Mangas",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 1.24,
+          "threePointAttemptsPerGame": 1.47,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5315171",
+          "name": "Chloe Donnell",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 0.89,
+          "threePointAttemptsPerGame": 1.22,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5315172"
+      ],
+      "shooterAthleteIds": [
+        "5107576"
+      ]
+    },
+    {
+      "teamId": "2546",
+      "name": "Southeast Missouri",
+      "fullName": "Southeast Missouri State Redhawks",
+      "abbreviation": "SEMO",
+      "apRank": 999,
+      "primaryColor": "#c8102e",
+      "secondaryColor": "#000000",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2546.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "4909888",
+          "name": "Carmen Taylor",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 12.81,
+          "threePointAttemptsPerGame": 6.78,
+          "threePointPercentage": 0.336
+        },
+        {
+          "athleteId": "5242676",
+          "name": "Lexi McCully",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 11.22,
+          "threePointAttemptsPerGame": 4.5,
+          "threePointPercentage": 0.306
+        },
+        {
+          "athleteId": "5242678",
+          "name": "Ainaya Williams",
+          "jersey": "21",
+          "position": "C",
+          "ppg": 9.97,
+          "threePointAttemptsPerGame": 0.07,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243443",
+          "name": "Kearra Jones",
+          "jersey": "4",
+          "position": "F",
+          "ppg": 9.47,
+          "threePointAttemptsPerGame": 0.81,
+          "threePointPercentage": 0.231
+        },
+        {
+          "athleteId": "5107618",
+          "name": "Raissa Nsabua",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 8.13,
+          "threePointAttemptsPerGame": 1.06,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5263337",
+          "name": "Da'Kariya Jackson",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 6.61,
+          "threePointAttemptsPerGame": 3.3,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "4909882",
+          "name": "Charmen Taylor",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 4.5,
+          "threePointAttemptsPerGame": 1.04,
+          "threePointPercentage": 0.24
+        },
+        {
+          "athleteId": "5315605",
+          "name": "Madison Ayers",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 3.62,
+          "threePointAttemptsPerGame": 2.17,
+          "threePointPercentage": 0.173
+        },
+        {
+          "athleteId": "5315603",
+          "name": "Zoey Rixter",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 3.09,
+          "threePointAttemptsPerGame": 0.28,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5315607",
+          "name": "Aa'Mya Stacker",
+          "jersey": "25",
+          "position": "C",
+          "ppg": 2.76,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315606",
+          "name": "Addison Tarr",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 2.5,
+          "threePointAttemptsPerGame": 0.67,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5315604",
+          "name": "Noelani Dunn",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 1.07,
+          "threePointAttemptsPerGame": 0.4,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5242677",
+          "name": "Anjelicia Del Valle",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315608",
+          "name": "Evie Caruso",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "4909888"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "79",
+      "name": "Southern Illinois",
+      "fullName": "Southern Illinois Salukis",
+      "abbreviation": "SIU",
+      "apRank": 999,
+      "primaryColor": "#85283D",
+      "secondaryColor": "#c2c3c0",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/79.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5240735",
+          "name": "Alayna Kraus",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 15.8,
+          "threePointAttemptsPerGame": 3.97,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5109358",
+          "name": "Indya Green",
+          "jersey": "34",
+          "position": "F",
+          "ppg": 13.03,
+          "threePointAttemptsPerGame": 0.13,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5106163",
+          "name": "Kayla Cooper",
+          "jersey": "14",
+          "position": "G",
+          "ppg": 10.77,
+          "threePointAttemptsPerGame": 4.7,
+          "threePointPercentage": 0.298
+        },
+        {
+          "athleteId": "4704872",
+          "name": "Jeniah Thompson",
+          "jersey": "45",
+          "position": "G",
+          "ppg": 9.93,
+          "threePointAttemptsPerGame": 1.43,
+          "threePointPercentage": 0.302
+        },
+        {
+          "athleteId": "5178537",
+          "name": "Tkiyah Nelson",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 5.5,
+          "threePointAttemptsPerGame": 0.27,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108354",
+          "name": "Karris Allen",
+          "jersey": "33",
+          "position": "G",
+          "ppg": 4.14,
+          "threePointAttemptsPerGame": 0.79,
+          "threePointPercentage": 0.435
+        },
+        {
+          "athleteId": "5314962",
+          "name": "Kynnedi Davis",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 3.74,
+          "threePointAttemptsPerGame": 0.96,
+          "threePointPercentage": 0.182
+        },
+        {
+          "athleteId": "5314964",
+          "name": "Carmen Morales",
+          "jersey": "22",
+          "position": "C",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5314963",
+          "name": "Hiba Malkawi",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 1.68,
+          "threePointAttemptsPerGame": 1.18,
+          "threePointPercentage": 0.269
+        },
+        {
+          "athleteId": "5242205",
+          "name": "Mia Gaines",
+          "jersey": "10",
+          "position": "C",
+          "ppg": 1.23,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5242202",
+          "name": "Ternadoo Agatha Agba",
+          "jersey": "6",
+          "position": "G",
+          "ppg": 0.76,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5178538",
+          "name": "Angela Samuel",
+          "jersey": "25",
+          "position": "C",
+          "ppg": 0.67,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5242206",
+          "name": "Kelowna Ngoyi",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 0.62,
+          "threePointAttemptsPerGame": 0.1,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5240735"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2572",
+      "name": "Southern Miss",
+      "fullName": "Southern Miss Lady Eagles",
+      "abbreviation": "USM",
+      "apRank": 999,
+      "primaryColor": "#ffc72c",
+      "secondaryColor": "#231f20",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2572.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5105395",
+          "name": "Jakayla Johnson",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 15.58,
+          "threePointAttemptsPerGame": 3.13,
+          "threePointPercentage": 0.392
+        },
+        {
+          "athleteId": "5174273",
+          "name": "Meloney Thames",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 13.26,
+          "threePointAttemptsPerGame": 5.74,
+          "threePointPercentage": 0.247
+        },
+        {
+          "athleteId": "5110441",
+          "name": "Hayleigh Breland",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 11.73,
+          "threePointAttemptsPerGame": 4.3,
+          "threePointPercentage": 0.295
+        },
+        {
+          "athleteId": "5174413",
+          "name": "Sakyia White",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 11.31,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5174253",
+          "name": "Carly Keats",
+          "jersey": "21",
+          "position": "PG",
+          "ppg": 10.19,
+          "threePointAttemptsPerGame": 6.45,
+          "threePointPercentage": 0.37
+        },
+        {
+          "athleteId": "5241104",
+          "name": "Whitney Hart",
+          "jersey": "35",
+          "position": "C",
+          "ppg": 6.26,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "4704534",
+          "name": "Brikayla Gray",
+          "jersey": "6",
+          "position": "G",
+          "ppg": 4.0,
+          "threePointAttemptsPerGame": 0.29,
+          "threePointPercentage": 0.222
+        },
+        {
+          "athleteId": "5176128",
+          "name": "Morgan Sieper",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 3.14,
+          "threePointAttemptsPerGame": 3.1,
+          "threePointPercentage": 0.256
+        },
+        {
+          "athleteId": "5174259",
+          "name": "Timya Thurman",
+          "jersey": "32",
+          "position": "C",
+          "ppg": 2.28,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315196",
+          "name": "Ramiah Augurson",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 2.0,
+          "threePointAttemptsPerGame": 0.24,
+          "threePointPercentage": 0.286
+        },
+        {
+          "athleteId": "5239089",
+          "name": "Anaisha Carriere",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 1.62,
+          "threePointAttemptsPerGame": 0.23,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5241102",
+          "name": "Je'Mya Evans",
+          "jersey": "20",
+          "position": "F",
+          "ppg": 1.35,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5243428",
+          "name": "Miriam Prince",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 0.6,
+          "threePointAttemptsPerGame": 0.3,
+          "threePointPercentage": 0.667
+        }
+      ],
+      "primaryAthleteIds": [
+        "5105395"
+      ],
+      "shooterAthleteIds": [
+        "5174253"
+      ]
+    },
+    {
+      "teamId": "2634",
+      "name": "Tennessee State",
+      "fullName": "Tennessee State Lady Tigers",
+      "abbreviation": "TNST",
+      "apRank": 999,
+      "primaryColor": "#171796",
+      "secondaryColor": "#f0f0f0",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2634.png",
+      "gameCount": 29,
+      "roster": [
+        {
+          "athleteId": "5107536",
+          "name": "Aaniya Webb",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 11.69,
+          "threePointAttemptsPerGame": 5.88,
+          "threePointPercentage": 0.281
+        },
+        {
+          "athleteId": "5242686",
+          "name": "Xai Whitfield",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 9.28,
+          "threePointAttemptsPerGame": 1.84,
+          "threePointPercentage": 0.457
+        },
+        {
+          "athleteId": "5242691",
+          "name": "Erin Martin",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 8.62,
+          "threePointAttemptsPerGame": 1.59,
+          "threePointPercentage": 0.326
+        },
+        {
+          "athleteId": "5242687",
+          "name": "Somah Kamara",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 8.33,
+          "threePointAttemptsPerGame": 2.56,
+          "threePointPercentage": 0.174
+        },
+        {
+          "athleteId": "5315628",
+          "name": "Kaliyah Montoya",
+          "jersey": "10",
+          "position": "C",
+          "ppg": 6.57,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315629",
+          "name": "Sadie Sanchez",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 6.4,
+          "threePointAttemptsPerGame": 3.3,
+          "threePointPercentage": 0.303
+        },
+        {
+          "athleteId": "5247009",
+          "name": "Kiki Roberts",
+          "jersey": "3",
+          "position": "F",
+          "ppg": 5.83,
+          "threePointAttemptsPerGame": 0.1,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5108669",
+          "name": "Brianna Wooldridge",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 4.7,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5175947",
+          "name": "Amiyah Ferguson",
+          "jersey": "55",
+          "position": "G",
+          "ppg": 4.45,
+          "threePointAttemptsPerGame": 1.86,
+          "threePointPercentage": 0.259
+        },
+        {
+          "athleteId": "5242689",
+          "name": "Genesis Harris",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 3.74,
+          "threePointAttemptsPerGame": 2.26,
+          "threePointPercentage": 0.295
+        },
+        {
+          "athleteId": "5242953",
+          "name": "Laila Lancaster",
+          "jersey": "21",
+          "position": "C",
+          "ppg": 1.86,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315630",
+          "name": "Icesis Thomas",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 1.57,
+          "threePointAttemptsPerGame": 0.33,
+          "threePointPercentage": 0.143
+        },
+        {
+          "athleteId": "5315631",
+          "name": "Zoe Young",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 1.14,
+          "threePointAttemptsPerGame": 0.29,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5107536"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "245",
+      "name": "Texas A&M",
+      "fullName": "Texas A&M Aggies",
+      "abbreviation": "TA&M",
+      "apRank": 999,
+      "primaryColor": "#500000",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/245.png",
+      "gameCount": 27,
+      "roster": [
+        {
+          "athleteId": "5106084",
+          "name": "Ny'Ceara Pryor",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 16.26,
+          "threePointAttemptsPerGame": 1.89,
+          "threePointPercentage": 0.314
+        },
+        {
+          "athleteId": "5178583",
+          "name": "Fatmata Janneh",
+          "jersey": "44",
+          "position": "F",
+          "ppg": 11.44,
+          "threePointAttemptsPerGame": 3.26,
+          "threePointPercentage": 0.33
+        },
+        {
+          "athleteId": "5174268",
+          "name": "Janae Kent",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 9.0,
+          "threePointAttemptsPerGame": 3.41,
+          "threePointPercentage": 0.315
+        },
+        {
+          "athleteId": "4433422",
+          "name": "Lauren Ware",
+          "jersey": "32",
+          "position": "F",
+          "ppg": 6.56,
+          "threePointAttemptsPerGame": 0.12,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5175426",
+          "name": "Salese Blow",
+          "jersey": "25",
+          "position": "G",
+          "ppg": 6.26,
+          "threePointAttemptsPerGame": 1.33,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5105713",
+          "name": "Lemyah Hylton",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 5.62,
+          "threePointAttemptsPerGame": 2.62,
+          "threePointPercentage": 0.309
+        },
+        {
+          "athleteId": "4704350",
+          "name": "Jordan Webster",
+          "jersey": "6",
+          "position": "G",
+          "ppg": 4.89,
+          "threePointAttemptsPerGame": 4.15,
+          "threePointPercentage": 0.259
+        },
+        {
+          "athleteId": "5178407",
+          "name": "Emerald Parker",
+          "jersey": "24",
+          "position": "C",
+          "ppg": 2.35,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5107444",
+          "name": "Pien Steenbergen",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 2.12,
+          "threePointAttemptsPerGame": 1.94,
+          "threePointPercentage": 0.194
+        },
+        {
+          "athleteId": "5311562",
+          "name": "Anita Franchini",
+          "jersey": "26",
+          "position": "F",
+          "ppg": 1.38,
+          "threePointAttemptsPerGame": 0.19,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5311558",
+          "name": "Chaney Spencer",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 0.76,
+          "threePointAttemptsPerGame": 0.6,
+          "threePointPercentage": 0.267
+        },
+        {
+          "athleteId": "5174304",
+          "name": "Vanessa Saidu",
+          "jersey": "5",
+          "position": "F",
+          "ppg": 0.64,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5311559",
+          "name": "Talia Kavoka",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.2,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5311560",
+          "name": "Ibifaa Azogu",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5311561",
+          "name": "Gianna Gentry",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5106084"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "357",
+      "name": "Texas A&M-Corpus Christi",
+      "fullName": "Texas A&M-Corpus Christi Islanders",
+      "abbreviation": "AMCC",
+      "apRank": 999,
+      "primaryColor": "#0067c5",
+      "secondaryColor": "#007f3e",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/357.png",
+      "gameCount": 29,
+      "roster": [
+        {
+          "athleteId": "5107550",
+          "name": "Samora Watson",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 10.55,
+          "threePointAttemptsPerGame": 0.73,
+          "threePointPercentage": 0.312
+        },
+        {
+          "athleteId": "4704470",
+          "name": "Chelsea Wooten",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 9.82,
+          "threePointAttemptsPerGame": 7.68,
+          "threePointPercentage": 0.265
+        },
+        {
+          "athleteId": "5106104",
+          "name": "Marissa Shelton",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 8.83,
+          "threePointAttemptsPerGame": 4.59,
+          "threePointPercentage": 0.331
+        },
+        {
+          "athleteId": "5240658",
+          "name": "K'Nari Holliday",
+          "jersey": "32",
+          "position": "F",
+          "ppg": 7.74,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5182300",
+          "name": "Asha Walker",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 7.62,
+          "threePointAttemptsPerGame": 5.69,
+          "threePointPercentage": 0.358
+        },
+        {
+          "athleteId": "5178035",
+          "name": "Torie Sevier",
+          "jersey": "20",
+          "position": "C",
+          "ppg": 6.83,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5242462",
+          "name": "Rayna Williams",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 4.48,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5175535",
+          "name": "Trinity Slocum",
+          "jersey": "9",
+          "position": "G",
+          "ppg": 3.29,
+          "threePointAttemptsPerGame": 1.29,
+          "threePointPercentage": 0.139
+        },
+        {
+          "athleteId": "5108649",
+          "name": "Bruna Anguera",
+          "jersey": "14",
+          "position": "C",
+          "ppg": 1.04,
+          "threePointAttemptsPerGame": 0.04,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5179429",
+          "name": "Tamar voor de Poort",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 0.29,
+          "threePointAttemptsPerGame": 0.18,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5107550"
+      ],
+      "shooterAthleteIds": [
+        "5182300"
+      ]
+    },
+    {
+      "teamId": "2640",
+      "name": "Texas Southern",
+      "fullName": "Texas Southern Tigers",
+      "abbreviation": "TXSO",
+      "apRank": 999,
+      "primaryColor": "#860038",
+      "secondaryColor": "#ffffff",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2640.png",
+      "gameCount": 31,
+      "roster": [
+        {
+          "athleteId": "5242485",
+          "name": "Taliyah Logwood",
+          "jersey": "22",
+          "position": "G",
+          "ppg": 14.5,
+          "threePointAttemptsPerGame": 3.13,
+          "threePointPercentage": 0.277
+        },
+        {
+          "athleteId": "4704024",
+          "name": "Daeja Holmes",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 11.96,
+          "threePointAttemptsPerGame": 5.28,
+          "threePointPercentage": 0.348
+        },
+        {
+          "athleteId": "5174747",
+          "name": "Aaliyah Henderson",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 7.91,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.227
+        },
+        {
+          "athleteId": "5108741",
+          "name": "Jordyn Marshall",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 7.22,
+          "threePointAttemptsPerGame": 3.52,
+          "threePointPercentage": 0.309
+        },
+        {
+          "athleteId": "5241834",
+          "name": "Lauren Perry",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 6.64,
+          "threePointAttemptsPerGame": 2.64,
+          "threePointPercentage": 0.155
+        },
+        {
+          "athleteId": "5176486",
+          "name": "Ayanna Jackson",
+          "jersey": "12",
+          "position": "F",
+          "ppg": 6.1,
+          "threePointAttemptsPerGame": 1.19,
+          "threePointPercentage": 0.216
+        },
+        {
+          "athleteId": "5175549",
+          "name": "Maci Quiller",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 5.71,
+          "threePointAttemptsPerGame": 4.29,
+          "threePointPercentage": 0.211
+        },
+        {
+          "athleteId": "5177241",
+          "name": "Malaya LeSueur",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 5.28,
+          "threePointAttemptsPerGame": 0.48,
+          "threePointPercentage": 0.143
+        },
+        {
+          "athleteId": "4905446",
+          "name": "Da'Myiah Lewis",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 4.5,
+          "threePointAttemptsPerGame": 2.1,
+          "threePointPercentage": 0.206
+        },
+        {
+          "athleteId": "5315744",
+          "name": "Fenishka Bertho",
+          "jersey": "44",
+          "position": "F",
+          "ppg": 3.65,
+          "threePointAttemptsPerGame": 0.05,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5240360",
+          "name": "Alisa Blalock",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 2.71,
+          "threePointAttemptsPerGame": 1.08,
+          "threePointPercentage": 0.077
+        },
+        {
+          "athleteId": "4705397",
+          "name": "Ciara Brannon",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 2.28,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5242485"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2641",
+      "name": "Texas Tech",
+      "fullName": "Texas Tech Lady Raiders",
+      "abbreviation": "TTU",
+      "apRank": 999,
+      "primaryColor": "#da291c",
+      "secondaryColor": "#000000",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png",
+      "gameCount": 34,
+      "roster": [
+        {
+          "athleteId": "5106173",
+          "name": "Bailey Maupin",
+          "jersey": "20",
+          "position": "G",
+          "ppg": 15.24,
+          "threePointAttemptsPerGame": 6.06,
+          "threePointPercentage": 0.335
+        },
+        {
+          "athleteId": "4704453",
+          "name": "Snudda Collins",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 14.41,
+          "threePointAttemptsPerGame": 3.76,
+          "threePointPercentage": 0.391
+        },
+        {
+          "athleteId": "5175487",
+          "name": "Jalynn Bristow",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 10.38,
+          "threePointAttemptsPerGame": 4.0,
+          "threePointPercentage": 0.309
+        },
+        {
+          "athleteId": "4898394",
+          "name": "Denae Fritz",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 7.12,
+          "threePointAttemptsPerGame": 4.24,
+          "threePointPercentage": 0.361
+        },
+        {
+          "athleteId": "4433526",
+          "name": "Jada Malone",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 7.03,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5107737",
+          "name": "Gemma Nu\u00f1ez",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 5.21,
+          "threePointAttemptsPerGame": 1.85,
+          "threePointPercentage": 0.254
+        },
+        {
+          "athleteId": "5239473",
+          "name": "Sarengbe Sanogo",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 5.03,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108349",
+          "name": "Sidney Love",
+          "jersey": "10",
+          "position": "G",
+          "ppg": 4.28,
+          "threePointAttemptsPerGame": 1.59,
+          "threePointPercentage": 0.326
+        },
+        {
+          "athleteId": "5105733",
+          "name": "Adlee Blacklock",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 2.46,
+          "threePointAttemptsPerGame": 1.32,
+          "threePointPercentage": 0.405
+        },
+        {
+          "athleteId": "5239472",
+          "name": "Kalysta Martin",
+          "jersey": "7",
+          "position": "G",
+          "ppg": 0.71,
+          "threePointAttemptsPerGame": 0.86,
+          "threePointPercentage": 0.167
+        },
+        {
+          "athleteId": "5241765",
+          "name": "Mariam Sanogo",
+          "jersey": "17",
+          "position": "F",
+          "ppg": 0.68,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5311816",
+          "name": "Julie Nekoln\u00e1",
+          "jersey": "3",
+          "position": "F",
+          "ppg": 0.43,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5106173"
+      ],
+      "shooterAthleteIds": [
+        "4898394"
+      ]
+    },
+    {
+      "teamId": "2655",
+      "name": "Tulane",
+      "fullName": "Tulane Green Wave",
+      "abbreviation": "TULN",
+      "apRank": 999,
+      "primaryColor": "#006747",
+      "secondaryColor": "#418fde",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2655.png",
+      "gameCount": 32,
+      "roster": [
+        {
+          "athleteId": "5174767",
+          "name": "Kanija Daniel",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 11.58,
+          "threePointAttemptsPerGame": 4.81,
+          "threePointPercentage": 0.275
+        },
+        {
+          "athleteId": "5315055",
+          "name": "Mecailin Marshall",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 10.52,
+          "threePointAttemptsPerGame": 4.39,
+          "threePointPercentage": 0.294
+        },
+        {
+          "athleteId": "5107584",
+          "name": "Amira Mabry",
+          "jersey": "23",
+          "position": "F",
+          "ppg": 9.94,
+          "threePointAttemptsPerGame": 2.84,
+          "threePointPercentage": 0.284
+        },
+        {
+          "athleteId": "5107328",
+          "name": "Dyllan Hanna",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 7.45,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "4704479",
+          "name": "CC Mays",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 7.07,
+          "threePointAttemptsPerGame": 2.85,
+          "threePointPercentage": 0.247
+        },
+        {
+          "athleteId": "5240941",
+          "name": "Kendall Sneed",
+          "jersey": "9",
+          "position": "G",
+          "ppg": 7.04,
+          "threePointAttemptsPerGame": 1.12,
+          "threePointPercentage": 0.321
+        },
+        {
+          "athleteId": "5174928",
+          "name": "Jayda Brown",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 5.84,
+          "threePointAttemptsPerGame": 2.0,
+          "threePointPercentage": 0.258
+        },
+        {
+          "athleteId": "5240943",
+          "name": "Sadie Shores",
+          "jersey": "33",
+          "position": "G",
+          "ppg": 4.14,
+          "threePointAttemptsPerGame": 1.43,
+          "threePointPercentage": 0.2
+        },
+        {
+          "athleteId": "5315056",
+          "name": "Shiloh Kimpson",
+          "jersey": "24",
+          "position": "G",
+          "ppg": 3.38,
+          "threePointAttemptsPerGame": 0.92,
+          "threePointPercentage": 0.125
+        },
+        {
+          "athleteId": "5110094",
+          "name": "Kayla Hampton",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 2.77,
+          "threePointAttemptsPerGame": 1.15,
+          "threePointPercentage": 0.533
+        },
+        {
+          "athleteId": "4899505",
+          "name": "Jordyn Weaver",
+          "jersey": "0",
+          "position": "F",
+          "ppg": 2.26,
+          "threePointAttemptsPerGame": 0.22,
+          "threePointPercentage": 0.333
+        },
+        {
+          "athleteId": "5109823",
+          "name": "Tamiah Robinson",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 2.17,
+          "threePointAttemptsPerGame": 1.33,
+          "threePointPercentage": 0.188
+        },
+        {
+          "athleteId": "5315057",
+          "name": "Madison Gordon",
+          "jersey": "32",
+          "position": "F",
+          "ppg": 0.23,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5174767"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "250",
+      "name": "UT Arlington",
+      "fullName": "UT Arlington Mavericks",
+      "abbreviation": "UTA",
+      "apRank": 999,
+      "primaryColor": "#004b7c",
+      "secondaryColor": "#f58024",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/250.png",
+      "gameCount": 33,
+      "roster": [
+        {
+          "athleteId": "5315728",
+          "name": "Kira Reynolds",
+          "jersey": "11",
+          "position": "F",
+          "ppg": 13.03,
+          "threePointAttemptsPerGame": 0.06,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108115",
+          "name": "Nya Threatt",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 9.07,
+          "threePointAttemptsPerGame": 1.43,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5175882",
+          "name": "Jadyn Atchison",
+          "jersey": "13",
+          "position": "G",
+          "ppg": 8.18,
+          "threePointAttemptsPerGame": 2.18,
+          "threePointPercentage": 0.306
+        },
+        {
+          "athleteId": "4565530",
+          "name": "Mila Reynolds",
+          "jersey": "15",
+          "position": "F",
+          "ppg": 6.72,
+          "threePointAttemptsPerGame": 1.94,
+          "threePointPercentage": 0.29
+        },
+        {
+          "athleteId": "5175518",
+          "name": "Kali Haizlip",
+          "jersey": "0",
+          "position": "G",
+          "ppg": 5.91,
+          "threePointAttemptsPerGame": 3.03,
+          "threePointPercentage": 0.4
+        },
+        {
+          "athleteId": "5241798",
+          "name": "Kendal Robinson",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 5.65,
+          "threePointAttemptsPerGame": 0.85,
+          "threePointPercentage": 0.318
+        },
+        {
+          "athleteId": "5175522",
+          "name": "Miraya Perkins",
+          "jersey": "24",
+          "position": "F",
+          "ppg": 4.62,
+          "threePointAttemptsPerGame": 0.12,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108118",
+          "name": "Alexsyah Goudeau",
+          "jersey": "21",
+          "position": "G",
+          "ppg": 4.18,
+          "threePointAttemptsPerGame": 1.82,
+          "threePointPercentage": 0.267
+        },
+        {
+          "athleteId": "5107658",
+          "name": "Laura Bello",
+          "jersey": "4",
+          "position": "F",
+          "ppg": 3.53,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5188184",
+          "name": "Erin Sellers",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 2.72,
+          "threePointAttemptsPerGame": 0.5,
+          "threePointPercentage": 0.188
+        },
+        {
+          "athleteId": "5175720",
+          "name": "Amiyah Reynolds",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 2.61,
+          "threePointAttemptsPerGame": 0.18,
+          "threePointPercentage": 0.167
+        },
+        {
+          "athleteId": "5315729",
+          "name": "Jeanne Rodriguez",
+          "jersey": "42",
+          "position": "C",
+          "ppg": 1.83,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5315728"
+      ],
+      "shooterAthleteIds": [
+        "5175518"
+      ]
+    },
+    {
+      "teamId": "2638",
+      "name": "UTEP",
+      "fullName": "UTEP Miners",
+      "abbreviation": "UTEP",
+      "apRank": 999,
+      "primaryColor": "#ff8200",
+      "secondaryColor": "#041e42",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
+      "gameCount": 30,
+      "roster": [
+        {
+          "athleteId": "4899513",
+          "name": "Portia Adams",
+          "jersey": "11",
+          "position": "G",
+          "ppg": 12.13,
+          "threePointAttemptsPerGame": 2.87,
+          "threePointPercentage": 0.384
+        },
+        {
+          "athleteId": "5108540",
+          "name": "Ivane Tensaie",
+          "jersey": "3",
+          "position": "G",
+          "ppg": 10.8,
+          "threePointAttemptsPerGame": 7.4,
+          "threePointPercentage": 0.347
+        },
+        {
+          "athleteId": "5239990",
+          "name": "Ndack Mbengue",
+          "jersey": "13",
+          "position": "F",
+          "ppg": 9.34,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5109393",
+          "name": "Sirviva Legions",
+          "jersey": "2",
+          "position": "G",
+          "ppg": 9.29,
+          "threePointAttemptsPerGame": 0.62,
+          "threePointPercentage": 0.231
+        },
+        {
+          "athleteId": "5239992",
+          "name": "Mary Moses Amaniyo",
+          "jersey": "22",
+          "position": "F",
+          "ppg": 8.6,
+          "threePointAttemptsPerGame": 0.33,
+          "threePointPercentage": 0.1
+        },
+        {
+          "athleteId": "5239986",
+          "name": "Heaven Samayoa-Mathis",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 7.23,
+          "threePointAttemptsPerGame": 3.23,
+          "threePointPercentage": 0.299
+        },
+        {
+          "athleteId": "5177889",
+          "name": "Delma Zita",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 4.62,
+          "threePointAttemptsPerGame": 0.83,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5313017",
+          "name": "Aolani Woldai",
+          "jersey": "23",
+          "position": "G",
+          "ppg": 2.76,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.095
+        },
+        {
+          "athleteId": "5313014",
+          "name": "Brooklyn Terry",
+          "jersey": "8",
+          "position": "G",
+          "ppg": 2.29,
+          "threePointAttemptsPerGame": 1.76,
+          "threePointPercentage": 0.135
+        },
+        {
+          "athleteId": "5313015",
+          "name": "Tatiana Collazo",
+          "jersey": "14",
+          "position": "G",
+          "ppg": 1.72,
+          "threePointAttemptsPerGame": 1.22,
+          "threePointPercentage": 0.273
+        },
+        {
+          "athleteId": "5239991",
+          "name": "Abby Priscilla",
+          "jersey": "15",
+          "position": "G",
+          "ppg": 1.5,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5239993",
+          "name": "Osadebamwen Igbinedion Omoruyi",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 1.43,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5239989",
+          "name": "Irene Asensio",
+          "jersey": "12",
+          "position": "G",
+          "ppg": 1.38,
+          "threePointAttemptsPerGame": 1.42,
+          "threePointPercentage": 0.216
+        },
+        {
+          "athleteId": "5262164",
+          "name": "Aaliyah Davis",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 1.17,
+          "threePointAttemptsPerGame": 0.25,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "4899513"
+      ],
+      "shooterAthleteIds": []
+    },
+    {
+      "teamId": "2636",
+      "name": "UTSA",
+      "fullName": "UTSA Roadrunners",
+      "abbreviation": "UTSA",
+      "apRank": 999,
+      "primaryColor": "#0c2340",
+      "secondaryColor": "#f15a22",
+      "logoUrl": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
+      "gameCount": 34,
+      "roster": [
+        {
+          "athleteId": "5108035",
+          "name": "Cheyenne Rowe",
+          "jersey": "21",
+          "position": "F",
+          "ppg": 13.91,
+          "threePointAttemptsPerGame": 1.45,
+          "threePointPercentage": 0.25
+        },
+        {
+          "athleteId": "5108300",
+          "name": "Ereauna Hardaway",
+          "jersey": "2",
+          "position": "PG",
+          "ppg": 11.3,
+          "threePointAttemptsPerGame": 2.85,
+          "threePointPercentage": 0.426
+        },
+        {
+          "athleteId": "5175421",
+          "name": "Idara Udo",
+          "jersey": "25",
+          "position": "F",
+          "ppg": 9.31,
+          "threePointAttemptsPerGame": 0.23,
+          "threePointPercentage": 0.167
+        },
+        {
+          "athleteId": "5240953",
+          "name": "Damara Allen",
+          "jersey": "4",
+          "position": "G",
+          "ppg": 8.26,
+          "threePointAttemptsPerGame": 3.76,
+          "threePointPercentage": 0.328
+        },
+        {
+          "athleteId": "5240954",
+          "name": "Mia Hammonds",
+          "jersey": "5",
+          "position": "G",
+          "ppg": 6.85,
+          "threePointAttemptsPerGame": 1.15,
+          "threePointPercentage": 0.179
+        },
+        {
+          "athleteId": "5315341",
+          "name": "Adriana Robles",
+          "jersey": "16",
+          "position": "PG",
+          "ppg": 4.97,
+          "threePointAttemptsPerGame": 1.74,
+          "threePointPercentage": 0.237
+        },
+        {
+          "athleteId": "5175515",
+          "name": "Jayda Holiman",
+          "jersey": "11",
+          "position": "PG",
+          "ppg": 4.0,
+          "threePointAttemptsPerGame": 3.06,
+          "threePointPercentage": 0.288
+        },
+        {
+          "athleteId": "5240956",
+          "name": "Emilia Dannebauer",
+          "jersey": "33",
+          "position": "F",
+          "ppg": 2.45,
+          "threePointAttemptsPerGame": 0.03,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5315340",
+          "name": "Sanaa Bean",
+          "jersey": "10",
+          "position": "F",
+          "ppg": 1.32,
+          "threePointAttemptsPerGame": 0.0,
+          "threePointPercentage": 0.0
+        },
+        {
+          "athleteId": "5108347",
+          "name": "Siena Guttadauro",
+          "jersey": "1",
+          "position": "G",
+          "ppg": 0.86,
+          "threePointAttemptsPerGame": 1.57,
+          "threePointPercentage": 0.136
+        },
+        {
+          "athleteId": "5326279",
+          "name": "Marie Han",
+          "jersey": "14",
+          "position": "G",
+          "ppg": 0.0,
+          "threePointAttemptsPerGame": 1.0,
+          "threePointPercentage": 0.0
+        }
+      ],
+      "primaryAthleteIds": [
+        "5108035"
+      ],
+      "shooterAthleteIds": []
     }
   ]
 }
