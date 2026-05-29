@@ -334,11 +334,15 @@ export default function PortfolioDeck() {
             const onWheel = (e: WheelEvent) => {
               const modal = doc.getElementById('pdfModal') as HTMLElement | null
               if (modal && !modal.hidden) return
+              // A wheel over a same-origin, non-scrolling iframe ALSO chains a
+              // native scroll to the parent. Cancel it so only the forwarded
+              // scrollBy applies — otherwise every tick scrolls the page twice.
+              e.preventDefault()
               pendingY += e.deltaY
               pendingX += e.deltaX
               if (!rafId) rafId = requestAnimationFrame(flush)
             }
-            doc.addEventListener('wheel', onWheel, { passive: true })
+            doc.addEventListener('wheel', onWheel, { passive: false })
             cleanups.push(() => doc.removeEventListener('wheel', onWheel))
           }
         } catch {

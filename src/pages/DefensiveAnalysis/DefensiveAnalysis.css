@@ -27,7 +27,7 @@
 }
 
 .da__header-inner {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
@@ -151,7 +151,7 @@
 }
 
 .da__prose {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
@@ -173,7 +173,7 @@
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
   color: var(--text);
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: 0 auto var(--space-6);
   padding: 0 var(--space-6);
   line-height: var(--leading-snug);
@@ -181,14 +181,14 @@
 
 /* ---------- Chart breakout width ---------- */
 .da__chart-wide {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: var(--space-8) auto;
   padding: 0 var(--space-6);
 }
 
 /* ---------- Callout box ---------- */
 .da-callout {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: var(--space-6) auto;
   padding: var(--space-5) var(--space-6);
   padding-left: calc(var(--space-6) + 4px);
@@ -211,7 +211,7 @@
 
 /* ---------- Table ---------- */
 .da__table-wrap {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: var(--space-6) auto;
   padding: 0 var(--space-6);
   overflow-x: auto;
@@ -787,7 +787,7 @@
    10 frames · 4s hold + 1.7s crossfade = 5.7s slot · 57s total cycle
    ========================================================================== */
 .da__slideshow {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: var(--space-5) auto;
   padding: 0 var(--space-6);
 }
@@ -836,7 +836,7 @@
 
 /* Dashboard link callout — matches portfolio page-04 .report-link */
 .da__dashboard-link-row {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: var(--space-3) auto 0;
   padding: 0 var(--space-6);
 }
@@ -1012,7 +1012,7 @@
 }
 
 .da__footer-inner {
-  max-width: 860px;
+  max-width: var(--max-width-narrow);
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
