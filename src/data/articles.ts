@@ -29,12 +29,12 @@ export const articles: Article[] = [
     readingTime: '10 min read',
     tags: ['Research & Analytics'],
     coverImages: [
-      '/images/full-defense-team.png',
-      '/images/full-defense-shot-chart.png',
-      '/images/full-defense-tagger.png',
-      '/images/full-defense-lineups.png',
-      '/images/full-defense-trends.png',
-      '/images/full-defense-game-detail.png',
+      '/images/cover-defense-team.webp',
+      '/images/cover-defense-shot-chart.webp',
+      '/images/cover-defense-tagger.webp',
+      '/images/cover-defense-lineups.webp',
+      '/images/cover-defense-trends.webp',
+      '/images/cover-defense-game-detail.webp',
     ],
     content: `
 During the 2025-26 season I independently tagged every half-court defensive possession across 15 tournament-level opponents. 811 possessions total. Each one was tagged with the play name or formation, the actions involved, the sequence of those actions, the defensive coverage, the shot-contest level, paint touches, scouting role, and the outcome. I built the tagging dashboard, the data pipeline, and the visualization layer from scratch. The goal was to connect exact opponent actions, coverages, and outcomes in a way that standard film and box-score platforms don't capture.
@@ -85,7 +85,7 @@ This report establishes a baseline for analyzing half-court defense by tagging a
     date: '2026-04-25',
     readingTime: 'Project',
     tags: ['Project'],
-    coverImage: '/images/thumb-cv-pipeline.png',
+    coverImage: '/images/thumb-cv-pipeline.webp',
     content: `
 Over the past year I've been building a custom computer vision pipeline that takes broadcast footage and automatically detects and tracks all 10 players, their on court locations, and key actions such as passes, screens, DHOs, shot contests, and more. It can process a full game overnight from broadcast video alone to produce tracking quality data and labeled events similar to something like Synergy's in arena camera package, and it can be tailored to a team's specific play style and philosophies.
 
@@ -104,7 +104,7 @@ I'm also actively exploring uses in practice and player workouts to track shooti
     date: '2026-04-20',
     readingTime: '3 min read',
     tags: ['Project'],
-    coverImage: '/images/thumb-3d-shot-chart.png',
+    coverImage: '/images/thumb-3d-shot-chart.webp',
     videos: [{ src: '/videos/shot-chart-demo.mp4' }],
     content: `
 ## Why 3D?
