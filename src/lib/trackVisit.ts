@@ -35,13 +35,37 @@ function deviceType(): string {
 export function trackVisit() {
   try {
     const url = new URL(window.location.href)
-    const ref = url.searchParams.get('ref')
+
+    // A ref can arrive two ways:
+    //   1. ?ref=jackson-state-dobo            (legacy query form)
+    //   2. /s/jackson-state-d  (clean path)   served to the SPA by the
+    //      render.yaml  /* -> /index.html  rewrite. The path form needs NO
+    //      per-recipient page and NO redeploy — any /s/<ref> just works, so
+    //      new schools/people can be added forever without touching the site.
+    //      The short role suffix (-d/-a) expands back to the full ref so the
+    //      directory lookup and PostHog/Discord identity stay unchanged.
+    let ref = url.searchParams.get('ref')
+    let fromPath = false
+    if (!ref) {
+      const m = url.pathname.match(/^\/s\/([^/]+)\/?$/)
+      if (m) {
+        fromPath = true
+        const p = m[1]
+        ref = p.endsWith('-d') ? p.slice(0, -2) + '-dobo'
+            : p.endsWith('-a') ? p.slice(0, -2) + '-asst'
+            : p
+      }
+    }
     if (!ref) return
 
-    // Strip the ref from the URL so it's not visible / shareable.
-    url.searchParams.delete('ref')
-    const cleanPath = url.pathname + (url.search || '') + (url.hash || '')
-    window.history.replaceState({}, '', cleanPath)
+    // Strip the ref/path from the URL so it's not visible / shareable.
+    if (fromPath) {
+      window.history.replaceState({}, '', '/' + (url.hash || '#/'))
+    } else {
+      url.searchParams.delete('ref')
+      const cleanPath = url.pathname + (url.search || '') + (url.hash || '')
+      window.history.replaceState({}, '', cleanPath)
+    }
 
     // Map the ref to the recipient (public name/school/role, no email).
     const who = REF_DIRECTORY[ref]
