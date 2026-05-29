@@ -71,7 +71,7 @@ export default function DefensiveAnalysis() {
           </p>
 
           <div className="da__tags">
-            {['Defense', 'Film Study', 'Research', 'Data'].map((t) => (
+            {['Research & Analytics'].map((t) => (
               <span key={t} className="da__tag">{t}</span>
             ))}
           </div>

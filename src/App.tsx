@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, type ComponentType } from 'react'
 import {
   HashRouter,
   Routes,
@@ -27,14 +27,39 @@ function RouteAnalytics() {
   }, [pathname, search])
   return null
 }
-const ShotChartTool = lazy(() => import('./pages/ShotChartTool'))
-const DefensiveAnalysis = lazy(() => import('./pages/DefensiveAnalysis'))
-const TwoForOne = lazy(() => import('./pages/TwoForOne'))
-const TwoForOneOptions = lazy(() => import('./pages/TwoForOne/Options'))
-const TwoForOneCoverCapture = lazy(() => import('./pages/TwoForOne/CoverCapture'))
+// After a new deploy, an already-open tab still points at the previous
+// build's chunk filenames, so the first lazy import for a route rejects with
+// a ChunkLoadError and renders blank until a manual reload. Catch that once
+// and reload to pull fresh HTML + assets, so the route loads on first click.
+function lazyWithRetry<T extends ComponentType<unknown>>(
+  factory: () => Promise<{ default: T }>
+) {
+  return lazy(async () => {
+    const KEY = 'chunk-reload-once'
+    try {
+      const mod = await factory()
+      window.sessionStorage.removeItem(KEY)
+      return mod
+    } catch (err) {
+      if (!window.sessionStorage.getItem(KEY)) {
+        window.sessionStorage.setItem(KEY, '1')
+        window.location.reload()
+        // Keep the Suspense fallback up until the reload takes over.
+        return new Promise<{ default: T }>(() => {})
+      }
+      throw err
+    }
+  })
+}
 
-const PDFPage06 = lazy(() => import('./pages/PDFPage06'))
-const PDFPreviewAll = lazy(() => import('./pages/PDFPreviewAll'))
+const ShotChartTool = lazyWithRetry(() => import('./pages/ShotChartTool'))
+const DefensiveAnalysis = lazyWithRetry(() => import('./pages/DefensiveAnalysis'))
+const TwoForOne = lazyWithRetry(() => import('./pages/TwoForOne'))
+const TwoForOneOptions = lazyWithRetry(() => import('./pages/TwoForOne/Options'))
+const TwoForOneCoverCapture = lazyWithRetry(() => import('./pages/TwoForOne/CoverCapture'))
+
+const PDFPage06 = lazyWithRetry(() => import('./pages/PDFPage06'))
+const PDFPreviewAll = lazyWithRetry(() => import('./pages/PDFPreviewAll'))
 
 function App() {
   return (
