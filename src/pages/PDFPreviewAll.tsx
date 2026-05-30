@@ -129,6 +129,7 @@ export default function PDFPreviewAll() {
                 src={p.src}
                 scrolling="no"
                 style={iframeStyle}
+                allow="autoplay; fullscreen"
               />
             </div>
           </section>

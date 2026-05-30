@@ -395,6 +395,7 @@ export default function PortfolioDeck() {
                 title={`Page ${p.num} · ${p.label}`}
                 src={p.src}
                 scrolling="no"
+                allow="autoplay; fullscreen"
               />
             </div>
           </div>
