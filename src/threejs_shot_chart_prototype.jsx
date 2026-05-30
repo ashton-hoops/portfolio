@@ -1641,21 +1641,18 @@ const SHOT_ZONES = [
   { key: "c3R",   label: "CORNER 3",             dist: "22 ft",    n: 117, ppp: 1.00 },
 ];
 
-// Font families mirroring the report style guide. The same TTFs the ReportLab
-// PDF builders use (SFNS + Georgia) are served from /fonts — the @font-face
-// block below registers them as "OU-SFNS" / "OU-Georgia" so canvas-rendered
-// text in the 3D chart matches the PDF exactly.
-const FONT_TITLE = `"OU-SFNS-Bold", -apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif`;
-const FONT_UI    = `"OU-SFNS", -apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif`;
-const FONT_BODY  = `"OU-Georgia", Georgia, "Times New Roman", serif`;
-const FONT_BODY_BOLD = `"OU-Georgia-Bold", Georgia, "Times New Roman", serif`;
+// Font families mirroring the report style guide. The previous build registered
+// /fonts/*.ttf via @font-face from a sibling project; those files were never
+// shipped on this site, so the requests 404'd on every page that loaded this
+// chunk. The chunk is prefetched on the homepage, so the noise hit everyone.
+// Apple system fonts and built-in Georgia render the canvas labels correctly
+// on every platform we care about, so the @font-face block is dropped.
+const FONT_TITLE = `-apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif`;
+const FONT_UI    = `-apple-system, "SF Pro Display", BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif`;
+const FONT_BODY  = `Georgia, "Times New Roman", serif`;
+const FONT_BODY_BOLD = `Georgia, "Times New Roman", serif`;
 
-const REPORT_FONT_FACES = `
-  @font-face { font-family: "OU-SFNS"; src: url("/fonts/SFNS-Regular-static.ttf") format("truetype"); font-weight: normal; font-display: block; }
-  @font-face { font-family: "OU-SFNS-Bold"; src: url("/fonts/SFNS-Bold-static.ttf") format("truetype"); font-weight: bold; font-display: block; }
-  @font-face { font-family: "OU-Georgia"; src: url("/fonts/Georgia.ttf") format("truetype"); font-weight: normal; font-display: block; }
-  @font-face { font-family: "OU-Georgia-Bold"; src: url("/fonts/Georgia%20Bold.ttf") format("truetype"); font-weight: bold; font-display: block; }
-`;
+const REPORT_FONT_FACES = ``;
 
 // Label centroids on the court floor (world x, z). `rot` is the text rotation
 // (radians) on the canvas — corner 3 zones are narrow strips so we rotate
@@ -3022,13 +3019,7 @@ export default function ThreeJsShotChartPrototype({
         new THREE.TextureLoader().loadAsync("/textures/wood_floor/normal.jpg"),
         new THREE.TextureLoader().loadAsync("/textures/wood_floor/rough.jpg"),
         document.fonts
-          ? Promise.all([
-              document.fonts.load('400 120px "Graduate"').catch(() => null),
-              document.fonts.load('700 200px "OU-SFNS-Bold"').catch(() => null),
-              document.fonts.load('400 120px "OU-SFNS"').catch(() => null),
-              document.fonts.load('400 120px "OU-Georgia"').catch(() => null),
-              document.fonts.load('700 120px "OU-Georgia-Bold"').catch(() => null),
-            ])
+          ? document.fonts.load('400 120px "Graduate"').catch(() => null)
           : null,
       ]);
       if (disposed) return;

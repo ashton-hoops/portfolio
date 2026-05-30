@@ -33,7 +33,9 @@
   font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 600;
-  color: var(--text-muted);
+  /* Darker than --text-muted (#7a7976 gave 3.78:1 against #efefef, below WCAG AA);
+     #595755 hits 5.3:1 on the same background while keeping the muted tone. */
+  color: #595755;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
