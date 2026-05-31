@@ -271,10 +271,14 @@
 }
 
 .da-vchart__title {
-  font-size: 13px;
+  /* Scale title size + tracking with viewport width so even the longest
+     chart name ("OPPONENT PAINT TOUCH % BY FORMATION / SET") stays on a
+     single line at phone widths without forcing a wrap. */
+  font-size: clamp(8px, 2.6vw, 13px);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: clamp(0.02em, 0.5vw, 0.1em);
+  white-space: nowrap;
   color: white;
   text-align: center;
   padding: 10px 16px;
@@ -493,10 +497,12 @@
 }
 
 .da-hchart__title {
-  font-size: 13px;
+  /* Same single-line-on-mobile scaling as the vertical chart title. */
+  font-size: clamp(8px, 2.6vw, 13px);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: clamp(0.02em, 0.5vw, 0.1em);
+  white-space: nowrap;
   color: white;
   text-align: center;
 }
@@ -719,10 +725,12 @@
 }
 
 .da-stacked__title {
-  font-size: 13px;
+  /* Same single-line-on-mobile scaling as the other chart titles. */
+  font-size: clamp(8px, 2.6vw, 13px);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: clamp(0.02em, 0.5vw, 0.1em);
+  white-space: nowrap;
   color: white;
 }
 
