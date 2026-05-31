@@ -139,19 +139,16 @@ function HorizontalBarChartInner({
         <span className="da-hchart__title">{title}</span>
       </div>
 
-      <div className="da-hchart__rows">
-        {/* Average vertical dashed line — bar area only */}
-        <div
-          className={`da-hchart__avg-line ${inView ? 'visible' : ''}`}
-          style={{ left: `${(avg / max) * 100}%` }}
-        />
-        {/* AVG label floats at top, aligned to the dashed line */}
-        <span
-          className="da-hchart__avg-note"
-          style={{ left: `${(avg / max) * 100}%` }}
-        >
-          {avgLabel}
-        </span>
+      <div
+        className="da-hchart__rows"
+        style={{ ['--avg-pos' as string]: avg / max }}
+      >
+        {/* Average vertical dashed line. The line position is calc'd from
+            CSS variables --label-w / --val-w (per-breakpoint) and --avg-pos
+            (the avg as a fraction of max), so it stays inside the bar area
+            at every viewport instead of being pushed off-screen on mobile. */}
+        <div className={`da-hchart__avg-line ${inView ? 'visible' : ''}`} />
+        <span className="da-hchart__avg-note">{avgLabel}</span>
 
         {data.map((item, i) => {
           const pct = (item.value / max) * 100

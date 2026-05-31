@@ -494,16 +494,24 @@
 .da-hchart__rows {
   position: relative;
   padding: 24px 16px 8px;
-  /* Reserve space on the left for action names so the bar area starts where it should */
+  /* Reserve space on the left for action names so the bar area starts where it should.
+     --label-w and --val-w let the avg line position itself relative to the bar area
+     only (label col + gap on the left, value text on the right). They get overridden
+     per-breakpoint so the line stays aligned with the bars at every viewport. */
+  --label-w: 186px;
+  --val-w: 44px;
 }
 
-/* Average vertical dashed line — confined to the bar area */
+/* Average vertical dashed line — confined to the bar area.
+   Old version used `margin-left: 186px` plus `left: X%` of the full rows width,
+   but X% of full width != X% of just the bar area. On mobile that pushed the line
+   off-screen. New: position is (label-col-edge) + (avg/max) * (bar-area-width). */
 .da-hchart__avg-line {
   position: absolute;
   top: 16px;
   bottom: 0;
   width: 0;
-  margin-left: 186px; /* matches label-col width + gap */
+  left: calc(var(--label-w) + (100% - var(--label-w) - var(--val-w)) * var(--avg-pos, 0));
   border-left: 1.5px dashed rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 0.5s ease 0.6s;
@@ -515,9 +523,9 @@
   opacity: 1;
 }
 
-/* Offset the floating avg label by the same label-col width */
+/* AVG label rides on the same position as the line, anchored above. */
 .da-hchart__rows > .da-hchart__avg-note {
-  margin-left: 186px;
+  left: calc(var(--label-w) + (100% - var(--label-w) - var(--val-w)) * var(--avg-pos, 0));
 }
 
 /* Rows */
@@ -1162,9 +1170,11 @@
     width: 130px;
   }
 
-  .da-hchart__rows > .da-hchart__avg-note,
-  .da-hchart__avg-line {
-    margin-left: 142px;
+  /* Tell the avg-line/avg-note where the bar area starts on this breakpoint
+     so the calc() positioning stays accurate (label width 130px + gap ~12px). */
+  .da-hchart__rows {
+    --label-w: 142px;
+    --val-w: 40px;
   }
 
   .da-stacked__avg-note {
@@ -1283,9 +1293,10 @@
     line-height: 1.2;
   }
 
-  .da-hchart__rows > .da-hchart__avg-note,
-  .da-hchart__avg-line {
-    margin-left: 122px; /* label-col width + gap */
+  /* Sub-tablet bar-area positioning (label 110px + gap ~12px). */
+  .da-hchart__rows {
+    --label-w: 122px;
+    --val-w: 36px;
   }
 
   .da-stacked__avg-note {
