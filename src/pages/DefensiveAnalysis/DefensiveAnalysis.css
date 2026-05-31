@@ -485,8 +485,11 @@
   font-style: italic;
   color: var(--text);
   white-space: nowrap;
-  transform: translateX(-100%);
-  padding-right: 6px;
+  /* Center the AVG label horizontally on the dashed line instead of
+     anchoring its right edge to the line. Background paints over the
+     line where the label sits so the dash doesn't run through text. */
+  transform: translateX(-50%);
+  padding: 0 6px;
   background: #f4f4f0;
   z-index: 3;
 }
