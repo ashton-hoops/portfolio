@@ -352,26 +352,31 @@
 .da-vchart__val {
   font-size: var(--text-base);
   font-weight: var(--font-bold);
-  color: var(--text);
-  /* Float above each bar, anchored by `bottom` (set inline as bar's pct).
-     Short bars get a low value, tall bars get a high one. Background +
-     padding lets the value punch cleanly through the AVG label when a
-     bar height happens to land near the average line. */
+  color: #f4f4f0;
+  /* Sit at the vertical center of each bar (bar.height / 2 from bottom).
+     translate(-50%, 50%) recenters the pill on that point so the label is
+     truly centered on the bar instead of sitting above it. Cream text on
+     the dark red bars reads clearly and stays well below the AVG line. */
   position: absolute;
   left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: #f4f4f0;
-  padding: 0 4px 6px;
+  transform: translate(-50%, 50%);
+  padding: 0 4px;
   opacity: 0;
   z-index: 3;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease 0.2s;
   pointer-events: none;
   white-space: nowrap;
 }
 
 .da-vchart__val.visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+}
+
+/* Low-sample bars are pink and would wash white text out; flip the value
+   color back to dark for those rows so it stays legible. */
+.da-vchart__bar.low + .da-vchart__val,
+.da-vchart__bar-wrap:has(.da-vchart__bar.low) .da-vchart__val {
+  color: var(--text);
 }
 
 .da-vchart__bar-wrap {

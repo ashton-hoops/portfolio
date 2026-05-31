@@ -98,13 +98,14 @@ function VerticalBarChartInner({
           return (
             <div key={item.label} className="da-vchart__col">
               <div className="da-vchart__bar-wrap">
-                {/* Value rides at the top of each bar (anchored to the bar's
-                    own height) so short bars get a low value and tall bars
-                    get a high value, instead of clustering at the top. */}
+                {/* Value sits at the vertical center of each bar (half the
+                    bar's own height from the bottom) so the AVG dashed line
+                    can never overlap it — short bars get a low pill, tall
+                    bars get a high pill, all comfortably below the line. */}
                 <span
                   className={`da-vchart__val ${inView ? 'visible' : ''}`}
                   style={{
-                    bottom: `${pct}%`,
+                    bottom: `${pct / 2}%`,
                     transitionDelay: `${i * 100 + 700}ms`,
                   }}
                 >
