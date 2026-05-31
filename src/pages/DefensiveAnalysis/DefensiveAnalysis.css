@@ -731,8 +731,12 @@
   font-size: 11px;
   font-style: italic;
   color: var(--text);
-  padding: 6px 16px 4px 190px;
-  text-align: left;
+  /* No dashed AVG line on the stacked chart, so the note isn't anchored to
+     a specific bar position. Center it across the chart and keep it on a
+     single line. */
+  padding: 6px 16px 4px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .da-stacked__rows {
@@ -1206,8 +1210,10 @@
     --val-w: 40px;
   }
 
+  /* Stacked-chart avg note is now centered (see base rule); shrink the
+     font instead of repositioning so the line fits on tablets. */
   .da-stacked__avg-note {
-    padding-left: 146px;
+    font-size: 10px;
   }
 
   .da-hchart__name {
@@ -1331,8 +1337,12 @@
     --val-w: 36px;
   }
 
+  /* On phones the centered avg note is the smallest viewport it has to fit,
+     so squeeze the font once more and let padding shrink to keep it on one
+     line without bleeding into the chart edges. */
   .da-stacked__avg-note {
-    padding-left: 126px;
+    font-size: 9px;
+    padding: 6px 6px 4px;
   }
 
   .da-hchart__row,
