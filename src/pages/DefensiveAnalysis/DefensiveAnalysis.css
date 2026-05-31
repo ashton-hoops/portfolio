@@ -335,7 +335,10 @@
   font-weight: 700;
   color: var(--text);
   white-space: nowrap;
-  background: #f4f4f0;
+  /* No background — the cream fill used to paint a rectangle over any bar
+     that sat behind the label text on mobile. The label sits 2px above the
+     dashed line, so the dash never runs through the text, and the bars
+     stay visually clean underneath. */
   padding-right: 6px;
 }
 
