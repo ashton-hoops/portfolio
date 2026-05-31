@@ -74,7 +74,10 @@
   letter-spacing: -0.02em;
   color: var(--text);
   margin-bottom: var(--space-4);
-  white-space: nowrap;
+  /* Was nowrap, which clipped "Defensive Analysis: 2025-26 Season" on phones
+     to "Defensive Analysis Seaso". Let it wrap on narrow viewports. */
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .da__subtitle {
@@ -1101,10 +1104,19 @@
 
   /* Vertical bar chart */
   .da-vchart__body {
-    height: 220px;
+    /* Shrink the bar area on tablets/phones so tall bars (and the value
+       above them) don't crash into the title bar. Use min-height instead of
+       a fixed height so the wrapped label + (n Poss.) gets full room. */
+    --bar-area: 180px;
+    height: auto;
+    min-height: calc(var(--bar-area) + 130px);
     gap: 6px;
-    /* Reserve extra room below bars for wrapped 2-line labels + (n Poss.) */
-    padding-bottom: 96px;
+    padding: 40px 12px 96px;
+  }
+
+  /* Keep the bar wrapper in sync with the shrunken bar area. */
+  .da-vchart__bar-wrap {
+    height: var(--bar-area, 220px);
   }
 
   /* Allow columns to flex equally and let labels claim the column width.
@@ -1215,11 +1227,18 @@
   }
 
   .da-vchart__body {
-    height: 200px;
-    /* Extra bottom padding so wrapped 2-line labels + (n Poss.) don't get
-       clipped by the chart container's overflow:hidden. */
-    padding: 28px 6px 92px;
+    /* Shrink the bar area further on phones; top padding has to clear the
+       value pill from the title bar, bottom has to clear the wrapped label
+       + (n Poss.) below. min-height grows the body so nothing overlaps. */
+    --bar-area: 150px;
+    height: auto;
+    min-height: calc(var(--bar-area) + 132px);
+    padding: 44px 6px 88px;
     gap: 4px;
+  }
+
+  .da-vchart__bar-wrap {
+    height: var(--bar-area, 220px);
   }
 
   /* On phones, drop the 100px column cap so labels can wrap inside their
