@@ -67,33 +67,46 @@ function VerticalBarChartInner({
   return (
     <div ref={ref} className="da-vchart">
       <div className="da-vchart__title">{title}</div>
-      <div className="da-vchart__body">
+      {/* --avg-pct drives the dashed line position relative to --bar-area
+          (set in CSS per breakpoint), so the line stays at avg/max of the
+          actual bar area whether that's 220px desktop or 150px on phones. */}
+      <div
+        className="da-vchart__body"
+        style={{ ['--avg-pct' as string]: avg / max }}
+      >
         {/* Average line — PDF style: label above the dashed line on the left */}
-        <div
-          className={`da-vchart__avg ${inView ? 'visible' : ''}`}
-          style={{ bottom: `calc(64px + ${(avg / max) * BAR_AREA_PX}px)` }}
-        >
+        <div className={`da-vchart__avg ${inView ? 'visible' : ''}`}>
           <span className="da-vchart__avg-label">{avgLabel}</span>
           <span className="da-vchart__avg-line" />
         </div>
 
         {/* Bars */}
         {data.map((item, i) => {
-          const targetPx = (item.value / max) * BAR_AREA_PX
+          // Use a percentage so both the bar height and the value's bottom
+          // position scale with the bar-wrap's actual height (which shrinks
+          // on phones via --bar-area). Pixel offsets would push the value
+          // above the wrap on mobile where the wrap is only 150px tall.
+          const pct = (item.value / max) * 100
           return (
             <div key={item.label} className="da-vchart__col">
-              <span
-                className={`da-vchart__val ${inView ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 100 + 700}ms` }}
-              >
-                {item.value}
-                {unit}
-              </span>
               <div className="da-vchart__bar-wrap">
+                {/* Value rides at the top of each bar (anchored to the bar's
+                    own height) so short bars get a low value and tall bars
+                    get a high value, instead of clustering at the top. */}
+                <span
+                  className={`da-vchart__val ${inView ? 'visible' : ''}`}
+                  style={{
+                    bottom: `${pct}%`,
+                    transitionDelay: `${i * 100 + 700}ms`,
+                  }}
+                >
+                  {item.value}
+                  {unit}
+                </span>
                 <div
                   className={`da-vchart__bar ${item.lowSample ? 'low' : ''}`}
                   style={{
-                    height: `${targetPx}px`,
+                    height: `${pct}%`,
                     transform: inView ? 'scaleY(1)' : 'scaleY(0)',
                     transitionDelay: `${i * 100}ms`,
                   }}

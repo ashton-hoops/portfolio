@@ -292,6 +292,9 @@
   padding: 32px 16px 64px;
   background: transparent;
   --bar-area: 220px;
+  /* Where the bar-wrap bottoms out from the body's bottom edge — must
+     match the body's padding-bottom so the avg dashed line lines up. */
+  --bar-bottom-pad: 64px;
   min-height: calc(var(--bar-area) + 96px);
 }
 
@@ -301,6 +304,10 @@
   left: 16px;
   right: 16px;
   height: 0;
+  /* Position the dashed line at avg/max of the bar area, sitting on top
+     of the body's bottom padding (which is where the bar-wrap bottoms out).
+     --bar-bottom-pad and --bar-area both come from the breakpoint rules. */
+  bottom: calc(var(--bar-bottom-pad, 64px) + var(--bar-area, 220px) * var(--avg-pct, 0));
   opacity: 0;
   pointer-events: none;
   z-index: 2;
@@ -346,16 +353,25 @@
   font-size: var(--text-base);
   font-weight: var(--font-bold);
   color: var(--text);
-  margin-bottom: var(--space-2);
+  /* Float above each bar, anchored by `bottom` (set inline as bar's pct).
+     Short bars get a low value, tall bars get a high one. Background +
+     padding lets the value punch cleanly through the AVG label when a
+     bar height happens to land near the average line. */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: #f4f4f0;
+  padding: 0 4px 6px;
   opacity: 0;
-  transform: translateY(6px);
-  z-index: 2;
+  z-index: 3;
   transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .da-vchart__val.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .da-vchart__bar-wrap {
@@ -1117,8 +1133,10 @@
   .da-vchart__body {
     /* Shrink the bar area on tablets/phones so tall bars (and the value
        above them) don't crash into the title bar. Use min-height instead of
-       a fixed height so the wrapped label + (n Poss.) gets full room. */
+       a fixed height so the wrapped label + (n Poss.) gets full room.
+       --bar-bottom-pad matches the bottom padding so the avg line lines up. */
     --bar-area: 180px;
+    --bar-bottom-pad: 96px;
     height: auto;
     min-height: calc(var(--bar-area) + 130px);
     gap: 6px;
@@ -1242,8 +1260,11 @@
   .da-vchart__body {
     /* Shrink the bar area further on phones; top padding has to clear the
        value pill from the title bar, bottom has to clear the wrapped label
-       + (n Poss.) below. min-height grows the body so nothing overlaps. */
+       + (n Poss.) below. min-height grows the body so nothing overlaps.
+       --bar-bottom-pad matches the body's padding-bottom so the AVG line
+       sits exactly at avg/max of the bar area. */
     --bar-area: 150px;
+    --bar-bottom-pad: 88px;
     height: auto;
     min-height: calc(var(--bar-area) + 132px);
     padding: 44px 6px 88px;
