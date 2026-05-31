@@ -1,6 +1,14 @@
 import { memo, useRef, useState, useEffect } from 'react'
 import type { BarItem, StackedItem, CourtZone } from './data'
 
+// Format a bar value with consistent decimals. PPP-style charts (no unit)
+// show 2 decimals so 1.00 reads as "1.00" alongside 0.79 / 1.06 instead
+// of collapsing to "1". Percentage charts stay as integers ("12%").
+function formatVal(v: number, unit?: string): string {
+  if (unit === '%') return `${v}%`
+  return `${v.toFixed(2)}${unit ?? ''}`
+}
+
 /* ==========================================================================
    useInView — fires once when element scrolls into view
    ========================================================================== */
@@ -100,8 +108,7 @@ function VerticalBarChartInner({
                     transitionDelay: `${i * 100 + 700}ms`,
                   }}
                 >
-                  {item.value}
-                  {unit}
+                  {formatVal(item.value, unit)}
                 </span>
                 <div
                   className={`da-vchart__bar ${item.lowSample ? 'low' : ''}`}
@@ -187,8 +194,7 @@ function HorizontalBarChartInner({
                 className={`da-hchart__val ${inView ? 'visible' : ''}`}
                 style={{ transitionDelay: `${i * 50 + 600}ms` }}
               >
-                {item.value}
-                {unit}
+                {formatVal(item.value, unit)}
               </span>
             </div>
           )
