@@ -19,7 +19,7 @@ OUT_DIR = PUB / 'og' / 'teams'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 SCHOOLS = json.loads((ROOT / 'scripts' / 'og' / 'schools.json').read_text())
 
-SCALE = 2
+SCALE = 3
 W, H = 1200 * SCALE, 630 * SCALE
 CREAM = '#fafaf6'
 INK = '#18171a'

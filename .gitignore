@@ -29,3 +29,7 @@ wbb_outreach_final.csv
 # OG-card working artifacts
 scripts/og/.courts/
 public/data/d1/_index_new_fragment.json
+.mcp.json
+_archive/
+wbb_cards/
+wbb_outreach_schedule.md

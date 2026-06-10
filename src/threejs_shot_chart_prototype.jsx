@@ -1483,8 +1483,10 @@ function buildPlinth(woodImage, normalTex, roughTex) {
     }
   }
 
-  // Team wordmark in white — collegiate block font.
-  ctx.fillStyle = "#ffffff";
+  // Team wordmark — collegiate block font. Auto-contrast against the apron's
+  // team color: white on dark primaries (most teams), near-black on light
+  // ones (e.g. Toronto's pale Borealis Blue) so the wordmark stays legible.
+  ctx.fillStyle = isHexDark(CRIMSON) ? "#ffffff" : "#111111";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   const text = TEAM_WORDMARK;

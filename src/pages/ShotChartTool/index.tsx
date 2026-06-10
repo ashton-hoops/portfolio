@@ -147,6 +147,13 @@ export default function ShotChartTool() {
   // trigger shows it instead of a placeholder.
   const [lastCamera, setLastCamera] = useState<'default' | 'topdown'>('default')
 
+  // Team-strip filtering. Default = AP Top 25 so the top bar isn't 380 buttons.
+  // 'ap25' shows ranked teams only; 'd1' shows all D1; 'wnba' shows WNBA only.
+  // Conference dropdown narrows within D1.
+  const [stripScope, setStripScope] = useState<'ap25' | 'd1' | 'wnba'>('ap25')
+  const [stripConference, setStripConference] = useState<string>('all')
+  const [stripSearch, setStripSearch] = useState<string>('')
+
   // Load index on mount
   useEffect(() => {
     fetch('/data/d1/index.json')
@@ -155,18 +162,26 @@ export default function ShotChartTool() {
       .catch(() => setIndex({ generatedAt: '', season: '', teams: [] }))
   }, [])
 
-  // Fetch the selected team's shot file if we haven't already
+  // Fetch the selected team's shot file if we haven't already.
+  // Falls back to shotsTeamId (e.g. "333" Alabama) for teams without real data
+  // so cold-rendered cards still show shot markers in the team's colors.
   useEffect(() => {
     if (!index) return
     if (teamFiles[selectedTeamId]) return
+    const teamMeta = index.teams.find((t) => t.teamId === selectedTeamId)
+    const fetchId =
+      (teamMeta as unknown as { shotsTeamId?: string })?.shotsTeamId || selectedTeamId
     setLoadingTeam(selectedTeamId)
-    fetch(`/data/d1/teams/${selectedTeamId}.json`)
+    fetch(`/data/d1/teams/${fetchId}.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((data: TeamFile) => {
-        setTeamFiles((prev) => ({ ...prev, [selectedTeamId]: data }))
+        // Keep the file but re-key it under the selected team
+        setTeamFiles((prev) => ({
+          ...prev,
+          [selectedTeamId]: { ...data, teamId: selectedTeamId },
+        }))
       })
       .catch(() => {
-        // Mark as empty so we don't refetch forever
         setTeamFiles((prev) => ({
           ...prev,
           [selectedTeamId]: { teamId: selectedTeamId, season: '', games: [] },
@@ -282,12 +297,48 @@ export default function ShotChartTool() {
     [index],
   )
 
-  // Top horizontal strip is the AP Top 25 showcase only; the long tail of
-  // unranked programs is reachable via the Team dropdown in the left sidebar.
-  const rankedTeams = useMemo(
-    () => sortedTeams.filter((t) => isRanked(t.apRank)),
-    [sortedTeams],
-  )
+  // Top horizontal strip honors the scope/conference/search controls. Default
+  // is AP Top 25 so the strip stays compact; user can broaden to any D1
+  // conference or to WNBA, or type to search by school name.
+  const rankedTeams = useMemo(() => {
+    const allTeams = sortedTeams
+    let pool: typeof allTeams
+    if (stripScope === 'ap25') {
+      pool = allTeams.filter((t) => isRanked(t.apRank))
+    } else if (stripScope === 'wnba') {
+      pool = allTeams.filter(
+        (t) => (t as unknown as { league?: string }).league === 'wnba',
+      )
+    } else {
+      pool = allTeams.filter(
+        (t) => (t as unknown as { league?: string }).league !== 'wnba',
+      )
+    }
+    if (stripScope === 'd1' && stripConference !== 'all') {
+      pool = pool.filter(
+        (t) =>
+          (t as unknown as { conference?: string }).conference === stripConference,
+      )
+    }
+    if (stripSearch.trim()) {
+      const q = stripSearch.toLowerCase()
+      pool = pool.filter((t) =>
+        (t.fullName || t.name).toLowerCase().includes(q) ||
+        (t.abbreviation || '').toLowerCase().includes(q),
+      )
+    }
+    return pool
+  }, [sortedTeams, stripScope, stripConference, stripSearch])
+
+  // Distinct D1 conferences for the dropdown
+  const d1Conferences = useMemo(() => {
+    const set = new Set<string>()
+    for (const t of sortedTeams) {
+      const tt = t as unknown as { league?: string; conference?: string }
+      if (tt.league !== 'wnba' && tt.conference) set.add(tt.conference)
+    }
+    return Array.from(set).sort()
+  }, [sortedTeams])
 
   const games = teamFile?.games ?? []
   const isLoading = !index || loadingTeam === selectedTeamId
@@ -297,6 +348,52 @@ export default function ShotChartTool() {
   // color so nothing on the page is "default maroon" — it always tracks the
   // team the chart is currently colored for.
   const accentColor = team?.primaryColor || '#841617'
+
+  /* Team filter controls — pills for league scope, conference dropdown,
+     and a search box. Lives as its own card sitting right above the TEAM
+     card so filtering is the first thing you reach when picking a team. */
+  const teamFilterCard = (
+    <div className="sct__card">
+      <p className="sct__card-label">Browse teams</p>
+      <div className="sct__team-filters">
+        <div className="sct__team-filter-scope" role="tablist">
+          {(['ap25', 'd1', 'wnba'] as const).map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              role="tab"
+              aria-selected={stripScope === opt}
+              onClick={() => setStripScope(opt)}
+              className={`sct__team-filter-pill${stripScope === opt ? ' sct__team-filter-pill--active' : ''}`}
+            >
+              {opt === 'ap25' ? 'AP 25' : opt === 'd1' ? 'D1' : 'WNBA'}
+            </button>
+          ))}
+        </div>
+        {stripScope === 'd1' && (
+          <select
+            className="sct__team-filter-select"
+            value={stripConference}
+            onChange={(e) => setStripConference(e.target.value)}
+            aria-label="Conference"
+          >
+            <option value="all">All conferences</option>
+            {d1Conferences.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        )}
+        <input
+          type="search"
+          className="sct__team-filter-search"
+          placeholder="Search teams…"
+          value={stripSearch}
+          onChange={(e) => setStripSearch(e.target.value)}
+          aria-label="Search teams"
+        />
+      </div>
+    </div>
+  )
 
   /* Card JSX is reused by both the desktop sidebars and the mobile popup
      sheet. Extracting as consts keeps the two render paths in sync without
@@ -454,8 +551,46 @@ export default function ShotChartTool() {
   const filtersCard = (
     <div className="sct__card">
       <p className="sct__card-label">Filters</p>
-      {/* Team leads so a visitor can jump to any of the 60 programs without
-          scrolling the strip (which is AP Top 25 only). */}
+      {/* Team scope, conference, and search — narrows the Team dropdown
+          below from 376 entries down to whatever the user's looking for. */}
+      <div className="sct__team-filters">
+        <div className="sct__team-filter-scope" role="tablist">
+          {(['ap25', 'd1', 'wnba'] as const).map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              role="tab"
+              aria-selected={stripScope === opt}
+              onClick={() => setStripScope(opt)}
+              className={`sct__team-filter-pill${stripScope === opt ? ' sct__team-filter-pill--active' : ''}`}
+            >
+              {opt === 'ap25' ? 'AP 25' : opt === 'd1' ? 'D1' : 'WNBA'}
+            </button>
+          ))}
+        </div>
+        {stripScope === 'd1' && (
+          <select
+            className="sct__team-filter-select"
+            value={stripConference}
+            onChange={(e) => setStripConference(e.target.value)}
+            aria-label="Conference"
+          >
+            <option value="all">All conferences</option>
+            {d1Conferences.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        )}
+        <input
+          type="search"
+          className="sct__team-filter-search"
+          placeholder="Search teams…"
+          value={stripSearch}
+          onChange={(e) => setStripSearch(e.target.value)}
+          aria-label="Search teams"
+        />
+      </div>
+      {/* TEAM dropdown — limited to the currently filtered set above */}
       <div className="sct__filter-row">
         <span className="sct__filter-label">Team</span>
         <select
@@ -464,7 +599,7 @@ export default function ShotChartTool() {
           value={selectedTeamId}
           onChange={(e) => setSelectedTeamId(e.target.value)}
         >
-          {sortedTeams.map((t) => (
+          {rankedTeams.map((t) => (
             <option key={t.teamId} value={t.teamId}>
               {isRanked(t.apRank) ? `#${t.apRank} · ` : ''}
               {t.fullName || t.name}
@@ -620,6 +755,57 @@ export default function ShotChartTool() {
     <div className="sct__card">
       <p className="sct__card-label">Filters</p>
 
+      <div className="sct__team-filters">
+        <div className="sct__team-filter-scope" role="tablist">
+          {(['ap25', 'd1', 'wnba'] as const).map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              role="tab"
+              aria-selected={stripScope === opt}
+              onClick={() => setStripScope(opt)}
+              className={`sct__team-filter-pill${stripScope === opt ? ' sct__team-filter-pill--active' : ''}`}
+            >
+              {opt === 'ap25' ? 'AP 25' : opt === 'd1' ? 'D1' : 'WNBA'}
+            </button>
+          ))}
+        </div>
+        {stripScope === 'd1' && (
+          <select
+            className="sct__team-filter-select"
+            value={stripConference}
+            onChange={(e) => setStripConference(e.target.value)}
+            aria-label="Conference"
+          >
+            <option value="all">All conferences</option>
+            {d1Conferences.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        )}
+        <input
+          type="search"
+          className="sct__team-filter-search"
+          placeholder="Search teams…"
+          value={stripSearch}
+          onChange={(e) => setStripSearch(e.target.value)}
+          aria-label="Search teams"
+        />
+      </div>
+
+      <div className="sct__row">
+        <label className="sct__row-label">Team</label>
+        <Dropdown
+          ariaLabel="Choose team"
+          value={selectedTeamId}
+          onChange={(v) => setSelectedTeamId(v)}
+          options={rankedTeams.map((t) => ({
+            value: t.teamId,
+            label: `${isRanked(t.apRank) ? `#${t.apRank} · ` : ''}${t.fullName || t.name}`,
+          }))}
+        />
+      </div>
+
       <div className="sct__row">
         <label className="sct__row-label">Game</label>
         <Dropdown
@@ -727,7 +913,6 @@ export default function ShotChartTool() {
       className={`sct${sheetOpen ? ' sct--sheet-open' : ''}`}
       style={{ ['--sct-accent' as string]: accentColor }}
     >
-      {/* ============ Team strip ============ */}
       <div className="sct__team-strip" role="tablist">
         {rankedTeams.map((t) => {
           const isActive = t.teamId === selectedTeamId

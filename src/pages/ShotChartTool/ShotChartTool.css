@@ -30,13 +30,102 @@
 }
 
 /* ============================================================
-   Team strip — horizontal AP25 team logos row
+   Team filters — scope pills + conference + search above the strip
+   ============================================================ */
+
+.sct__team-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+}
+
+.sct__team-filter-scope {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--sct-rule-light, #e5e5e5);
+  padding: 2px;
+  border-radius: 999px;
+}
+
+.sct__team-filter-pill {
+  border: 0;
+  background: transparent;
+  color: var(--sct-ink, #18171a);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.sct__team-filter-pill:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.sct__team-filter-pill--active {
+  background: var(--sct-accent, #841617);
+  color: #fff;
+}
+
+.sct__team-filter-select,
+.sct__team-filter-search {
+  font-size: 13px;
+  padding: 7px 12px;
+  border: 1px solid var(--sct-rule-light, #d7d9df);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--sct-ink, #18171a);
+  min-width: 160px;
+}
+
+.sct__team-filter-search {
+  flex: 1 1 100%;
+  min-width: 0;
+  max-width: none;
+}
+
+.sct__team-filter-select {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.sct__team-filter-search:focus,
+.sct__team-filter-select:focus {
+  outline: 2px solid var(--sct-accent, #841617);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.sct__team-filter-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--sct-muted, #7a7976);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .sct__team-filter-search,
+  .sct__team-filter-select {
+    flex: 1;
+    min-width: 0;
+  }
+  .sct__team-filter-count {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+   Team strip — horizontal team logos row
    ============================================================ */
 
 .sct__team-strip {
   display: flex;
   gap: 4px;
-  padding: 12px 16px;
+  padding: 8px 16px 12px;
   background: var(--sct-bg);
   border-bottom: 1px solid var(--sct-rule-light);
   overflow-x: auto;
@@ -52,7 +141,7 @@
 }
 
 .sct__team-btn {
-  flex-shrink: 0;
+  flex: 1 0 88px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +153,7 @@
   cursor: pointer;
   color: var(--sct-text);
   transition: background 150ms ease, border-color 150ms ease;
-  min-width: 88px;
+  max-width: 140px;
 }
 
 .sct__team-btn:hover {

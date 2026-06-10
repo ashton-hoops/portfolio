@@ -22,6 +22,9 @@ BASE = 'http://localhost:5173/#/shot-chart?team={team_id}'
 
 def main(only_team: str | None = None) -> int:
     targets = [s for s in SCHOOLS if not only_team or s['teamId'] == only_team]
+    # Resume: skip teams that already have a captured court image
+    targets = [s for s in targets if not (COURTS / f"{s['teamId']}.png").exists()]
+    print(f'Capturing {len(targets)} teams (skipping already-captured)')
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context(viewport={'width': 1600, 'height': 1100},
