@@ -56,7 +56,7 @@ export function Header() {
 
         <div className="header__contact-wrap">
           <span className="header__contact">
-            Seeking GA Position · 2026–27
+            Seeking Volunteer Analytics Role · 2026–27
           </span>
         </div>
       </div>
