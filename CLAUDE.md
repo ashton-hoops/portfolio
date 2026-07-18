@@ -22,16 +22,22 @@ program for the 2026–27 season.** The portfolio, the outreach campaign, and mo
 projects exist to land this role. When suggesting work, optimize for *what makes
 a college coaching staff want to bring Ashton on.*
 
+**Ashton's core value to a program:** he can build things — real tools — that
+directly support coaching staffs and players. He's not just an analyst who reads
+numbers; he engineers the systems (film tracking, tagging automation, dashboards,
+scouting tools) that a staff would otherwise have to buy or do by hand. Frame him
+as someone who *ships useful software for the program*, not only research.
+
 ### Background
 - **OU Women's Basketball — Practice Player (2024–2026).** Two seasons running
   scout-team simulations of opponent sets. Independently built a full defensive
   analytics platform for the program (film tagging, shot charts, lineup metrics,
   statistical reports) from scratch. Tagged **811 half-court possessions across
   15 tournament-level opponents.**
-- **Hoops & Heritage — Founder (2021–present).** Design brand making decorative
-  mini basketball hoops as functional art. Built brand, product line,
-  e-commerce, and wholesale from zero; collaborations with NBA players, art
-  institutions, and independent retailers.
+- **Hoops & Heritage — Founder (2021–present).** *Side project, not central to
+  the analytics mission — mention only if directly relevant.* Design brand making
+  decorative mini basketball hoops as functional art; built brand, e-commerce, and
+  wholesale from zero; collaborations with NBA players and art institutions.
 - **Norman Optimist Club Basketball — Head Coach, 5th–7th grade (2021–2024).**
 
 ### Skills
@@ -45,15 +51,37 @@ a college coaching staff want to bring Ashton on.*
 - **Michael Neal** — Director of Player Development, Oklahoma WBB
 
 ### Signature projects
-- **Defensive Analysis Dashboard** (React · Python · PostgreSQL · Cloudflare R2) —
-  possession-by-possession film tagging (14 action types), 3D shot charts,
-  lineup metrics. The 811-possession study is the flagship research piece.
-- **Computer Vision Pipeline** (Python · OpenCV · PyTorch · YOLO) — tracks all 10
-  players, court locations, and actions (screens, DHOs, shot contests) from
-  broadcast film; can process a full game overnight.
-- **3D Shot Chart** (Three.js) — interactive shot viewer for the 2025-26 AP Top
-  25 women's D1 teams, rendered on a real court. Data from ESPN's public API.
-- **2-for-1 study** — optimal timing to go 2-for-1 in women's college basketball.
+
+**⭐ FLAGSHIP — Computer Vision Pipeline (the biggest deal).**
+*Work in progress, but the single most important project. Treat it as Ashton's
+headline capability in any framing, outreach, or portfolio work.* A CV system that
+takes **a single broadcast angle** and automatically extracts tracking-quality data
+and labeled events — think **Synergy's in-arena camera package, but more, from one
+broadcast feed.** Vision is essentially limitless: "if you can think it, it can
+likely be done."
+- **Auto-detects plays, sets, and coverages:** named actions and offensive sets
+  (e.g. a *Horns Flare*), how the defense guarded each one, screen coverages,
+  number of actions per possession — anything and everything, possession by possession.
+- **Could replace manual tagging** in SportsCode and the hand-tagging behind the
+  Defensive Analysis Dashboard — huge time savings for a staff.
+- **Beyond games:** usable in **practices and shooting workouts** (shot
+  consistency: release point, arc, release speed; drill/rep tracking).
+- **Talent evaluation / scouting:** grade high school, college, and overseas
+  prospects — **biomechanics, speed, moves, decision-making** — the kind of
+  detailed feedback recruits would love to see about themselves.
+- **Tech:** player + **pose tracking**, **homography** for court mapping, **ball
+  and rim** tracking, and **OCR** for players / teams / actions. Python · OpenCV ·
+  PyTorch · YOLO. Can process a full game overnight from broadcast video alone.
+
+**Defensive Analysis Dashboard** (React · Python · PostgreSQL · Cloudflare R2) —
+possession-by-possession film tagging (14 action types), 3D shot charts, lineup
+metrics. The **811-possession study** is the flagship *research* piece (the CV
+pipeline is being built to automate exactly this kind of tagging at scale).
+
+**3D Shot Chart** (Three.js) — interactive shot viewer for the 2025-26 AP Top 25
+women's D1 teams, rendered on a real court. Data from ESPN's public API.
+
+**2-for-1 study** — optimal timing to go 2-for-1 in women's college basketball.
 
 ---
 
