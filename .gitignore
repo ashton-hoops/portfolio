@@ -23,8 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Outreach CSV holds personal staff emails — public repo, never commit
+# Outreach data holds personal / staff-targeting info — public repo, never commit
 wbb_outreach_final.csv
+wnba_outreach_targets.csv
 
 # OG-card working artifacts
 scripts/og/.courts/
