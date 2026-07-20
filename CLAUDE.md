@@ -8,19 +8,29 @@ this automatically at the start of every session. It covers **who Ashton is**
 
 ## About Ashton (the person)
 
-**Ashton Jantz** — Basketball Analytics & Software Development. Based in Norman, OK.
+**Ashton Jantz** — Basketball Analytics & Software Development. Based in
+**Celina, TX (Dallas–Fort Worth area)** — recently relocated from Norman, OK.
 
-- **Contact:** ashtonbjantz@icloud.com · (405) 696-9206 · Norman, OK
+- **Contact:** ashtonbjantz@icloud.com · (405) 696-9206 · Celina, TX (DFW area)
   - Also uses: ashton@hoopsandheritage.com (Hoops & Heritage brand)
 - **Site:** https://ashtonjantz.com (also deployed at ashton-portfolio.onrender.com)
-- **Education:** B.B.A., Sports Business — University of Oklahoma, May 2026.
-  Sports Analytics concentration.
+- **Education:** B.B.A., Sports Business (Sports Analytics concentration) —
+  University of Oklahoma, 2026 graduate (no longer at OU; now in the DFW area).
 
-### The mission / current goal
-Seeking a **volunteer analytics role with a Division I women's basketball
-program for the 2026–27 season.** The portfolio, the outreach campaign, and most
-projects exist to land this role. When suggesting work, optimize for *what makes
-a college coaching staff want to bring Ashton on.*
+### The mission / goals
+**Now (near-term):** actively seeking a **volunteer analytics role with a Division I
+program in the Dallas–Fort Worth area** for the 2026–27 season — a foot in the door
+close to his new home base.
+
+**Long-term:** land either **(a) a graduate assistant (GA) role at a strong college
+program** next year, or **(b) a WNBA front-office or coaching-staff analytics role.**
+
+**How he's pursuing it:** building real relationships and connections through
+**targeted email / DM outreach that leads with his portfolio and actual work** — the
+computer-vision pipeline, the defensive dashboard, and the research. The WNBA
+staff-contact research and the coach-outreach campaign both exist to open these doors.
+When suggesting work, optimize for *what makes a college staff or WNBA front office
+want to bring Ashton on — and for outreach that builds those connections.*
 
 **Ashton's core value to a program:** he can build things — real tools — that
 directly support coaching staffs and players. He's not just an analyst who reads
