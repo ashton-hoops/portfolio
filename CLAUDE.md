@@ -26,9 +26,11 @@ close to his new home base.
 program** next year, or **(b) a WNBA front-office or coaching-staff analytics role.**
 
 **How he's pursuing it:** building real relationships and connections through
-**targeted email / DM outreach that leads with his portfolio and actual work** — the
-computer-vision pipeline, the defensive dashboard, and the research. The WNBA
-staff-contact research and the coach-outreach campaign both exist to open these doors.
+**targeted email outreach that leads with his portfolio and actual work** — the
+computer-vision pipeline, the defensive dashboard, and the research. **Email-first:
+Ashton prefers email over LinkedIn/X DMs — default to finding/using email, not social
+DMs.** The WNBA staff-contact research and the coach-outreach campaign both exist to
+open these doors.
 When suggesting work, optimize for *what makes a college staff or WNBA front office
 want to bring Ashton on — and for outreach that builds those connections.*
 
