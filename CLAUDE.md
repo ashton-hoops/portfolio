@@ -106,10 +106,15 @@ local to DFW). Practitioner-tier contacts (analytics owners, video coordinators,
 player-development/strategy) live in the gitignored `wnba_outreach_targets.csv`.
 
 **College GA / dream schools** — criteria: strong program, analytically driven or
-open, **woman head coach preferred** (verify coaches each cycle — they change):
-- **Warm connections (start here):** **Alabama** (Kristy Curry; Ashton's reference
-  Cal Watson is their Dir. of Scouting & Analytics), **Oklahoma** (Jennie
-  Baranczyk; reference Michael Neal — Ashton's alma mater).
+open, **woman head coach preferred**. ⚠ **Coach names below are NOT live-verified —
+confirm EVERY one before any outreach; they change constantly** (e.g., Alabama's HC
+became Pauline Love in April 2026 — memory had the old coach).
+- **Warm connections (start here):** **Alabama** — HC **Pauline Love** (hired Apr
+  2026, came from Oklahoma). Ashton's reference **Cal Watson** just became Alabama's
+  **Director of Scouting & Analytics / Assistant Coach** (also arrived from OU, Apr
+  2026) — an analytics-minded champion on the inside, plus an OU→Alabama pipeline.
+  **Oklahoma** (Jennie Baranczyk; reference Michael Neal — Ashton's alma mater;
+  re-verify Neal is still on staff).
 - **Elite + woman HC + analytics-forward:** UCLA (Cori Close), USC (Lindsay
   Gottlieb), South Carolina (Dawn Staley), LSU (Kim Mulkey), Notre Dame (Niele
   Ivey), Duke (Kara Lawson), Maryland (Brenda Frese), Baylor (Nicki Collen),
