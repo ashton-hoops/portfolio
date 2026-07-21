@@ -57,6 +57,11 @@ as someone who *ships useful software for the program*, not only research.
 - **Data/viz:** Tableau · Three.js · D3 · Pandas · Excel
 - **CV / ML:** OpenCV · PyTorch · YOLO · NumPy
 - **Basketball:** film breakdown · scouting · play design · practice-player reps
+- **⚠ NOT SportsCode:** Ashton does **not** use SportsCode (Hudl's film-tagging
+  tool) and shouldn't claim to. His tagging experience is on the **custom dashboard
+  he built himself** (811 possessions). Never put a SportsCode-proficiency claim in
+  outreach; if asked, answer honestly — equivalent custom-tagging work + would learn
+  SportsCode fast.
 
 ### References
 - **Cal Watson** — Director of Scouting & Analytics, Alabama WBB
