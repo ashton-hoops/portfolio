@@ -109,12 +109,14 @@ player-development/strategy) live in the gitignored `wnba_outreach_targets.csv`.
 open, **woman head coach preferred**. ⚠ **Coach names below are NOT live-verified —
 confirm EVERY one before any outreach; they change constantly** (e.g., Alabama's HC
 became Pauline Love in April 2026 — memory had the old coach).
-- **Warm connections (start here):** **Alabama** — HC **Pauline Love** (hired Apr
-  2026, came from Oklahoma). Ashton's reference **Cal Watson** just became Alabama's
-  **Director of Scouting & Analytics / Assistant Coach** (also arrived from OU, Apr
-  2026) — an analytics-minded champion on the inside, plus an OU→Alabama pipeline.
-  **Oklahoma** (Jennie Baranczyk; reference Michael Neal — Ashton's alma mater;
-  re-verify Neal is still on staff).
+- **References / network (leverage for vouching + intros to OTHER programs — NOT as
+  jobs at their own schools):** **Cal Watson** — now Alabama's Dir. of Scouting &
+  Analytics / Asst Coach (came from OU, like Ashton). ⚠ **Alabama already passed on
+  Ashton (chose someone else) — treat Alabama as unlikely/closed, not a target.**
+  Watson's value is as a reference and a well-placed node who can vouch and connect
+  Ashton elsewhere. **Michael Neal** (OU) — reference; use for vouching + OU-network
+  intros (re-verify he's still on staff). Oklahoma itself: possible but its staff
+  turned over (Love + Watson left for Alabama) — verify before pursuing.
 - **Elite + woman HC + analytics-forward:** UCLA (Cori Close), USC (Lindsay
   Gottlieb), South Carolina (Dawn Staley), LSU (Kim Mulkey), Notre Dame (Niele
   Ivey), Duke (Kara Lawson), Maryland (Brenda Frese), Baylor (Nicki Collen),
