@@ -117,16 +117,19 @@ became Pauline Love in April 2026 — memory had the old coach).
   Ashton elsewhere. **Michael Neal** (OU) — reference; use for vouching + OU-network
   intros (re-verify he's still on staff). Oklahoma itself: possible but its staff
   turned over (Love + Watson left for Alabama) — verify before pursuing.
-- **Elite + woman HC + analytics-forward:** UCLA (Cori Close), USC (Lindsay
-  Gottlieb), South Carolina (Dawn Staley), LSU (Kim Mulkey), Notre Dame (Niele
-  Ivey), Duke (Kara Lawson), Maryland (Brenda Frese), Baylor (Nicki Collen),
-  Tennessee (Kim Caldwell — very data-driven system), Iowa (Jan Jensen), Stanford
-  (Kate Paye).
-- **Strong + woman HC + analytics-open:** Ole Miss (Yolett McPhee-McCuin), Michigan
-  (Kim Barnes Arico), Columbia (Megan Griffith), Gonzaga (Lisa Fortier), Colorado
-  (JR Payne), Oklahoma State (Jacie Hoyt).
-- **LA-area (Ashton likes LA):** UCLA, USC, **LMU** (Loyola Marymount), Long Beach
-  State, Pepperdine, UC Irvine, San Diego, San Diego State.
+- **Ashton's actual dream schools (his curated list — verify EVERY coach + GA
+  availability live before outreach):**
+  - **LA (top preference — UCLA is the ULTIMATE dream):** UCLA, USC, LMU (Loyola
+    Marymount). ("Loyola" also mentioned — clarify if Loyola Chicago vs LMU.)
+  - **Bay Area:** Stanford, Santa Clara, UC Berkeley (confirm whether Cal offers GA).
+  - **North Carolina:** Duke ("would be amazing"), North Carolina.
+  - **Other:** Baylor (TX), Northwestern (Chicago), Colorado.
+  - **Ivy — NO GA spots** (no athletic scholarships): **Columbia** is
+    networking/advice/possible-future-assistant only, NOT a GA target.
+- **Most ideal metros to live** (stack multiple dream programs + a WNBA team):
+  **LA** (UCLA/USC/LMU + Sparks) · **SF Bay Area** (Stanford/Santa Clara/Cal +
+  Valkyries) · **DFW** (home: SMU/TCU/UNT + Wings) · **Research Triangle NC**
+  (Duke/UNC) · **Chicago** (Northwestern + Sky).
 
 ---
 
