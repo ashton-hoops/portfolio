@@ -100,6 +100,27 @@ women's D1 teams, rendered on a real court. Data from ESPN's public API.
 
 **2-for-1 study** — optimal timing to go 2-for-1 in women's college basketball.
 
+### Target programs (outreach)
+**WNBA — every team is a target; push HARDEST on the Dallas Wings** (Ashton is
+local to DFW). Practitioner-tier contacts (analytics owners, video coordinators,
+player-development/strategy) live in the gitignored `wnba_outreach_targets.csv`.
+
+**College GA / dream schools** — criteria: strong program, analytically driven or
+open, **woman head coach preferred** (verify coaches each cycle — they change):
+- **Warm connections (start here):** **Alabama** (Kristy Curry; Ashton's reference
+  Cal Watson is their Dir. of Scouting & Analytics), **Oklahoma** (Jennie
+  Baranczyk; reference Michael Neal — Ashton's alma mater).
+- **Elite + woman HC + analytics-forward:** UCLA (Cori Close), USC (Lindsay
+  Gottlieb), South Carolina (Dawn Staley), LSU (Kim Mulkey), Notre Dame (Niele
+  Ivey), Duke (Kara Lawson), Maryland (Brenda Frese), Baylor (Nicki Collen),
+  Tennessee (Kim Caldwell — very data-driven system), Iowa (Jan Jensen), Stanford
+  (Kate Paye).
+- **Strong + woman HC + analytics-open:** Ole Miss (Yolett McPhee-McCuin), Michigan
+  (Kim Barnes Arico), Columbia (Megan Griffith), Gonzaga (Lisa Fortier), Colorado
+  (JR Payne), Oklahoma State (Jacie Hoyt).
+- **LA-area (Ashton likes LA):** UCLA, USC, **LMU** (Loyola Marymount), Long Beach
+  State, Pepperdine, UC Irvine, San Diego, San Diego State.
+
 ---
 
 ## About this repository
