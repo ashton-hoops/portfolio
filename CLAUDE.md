@@ -119,10 +119,13 @@ became Pauline Love in April 2026 — memory had the old coach).
   turned over (Love + Watson left for Alabama) — verify before pursuing.
 - **Ashton's actual dream schools (his curated list — verify EVERY coach + GA
   availability live before outreach):**
-  - **LA (top preference — UCLA is the ULTIMATE dream):** UCLA, USC, LMU (Loyola
-    Marymount). ("Loyola" also mentioned — clarify if Loyola Chicago vs LMU.)
+  - **LA / SoCal coast (top preference — UCLA is the ULTIMATE dream):** UCLA, USC,
+    LMU (Loyola Marymount), **Pepperdine** (Malibu), **UC Santa Barbara**. ("Loyola"
+    also mentioned — clarify if Loyola Chicago vs LMU.)
   - **Bay Area:** Stanford, Santa Clara, UC Berkeley (confirm whether Cal offers GA).
-  - **North Carolina:** Duke ("would be amazing"), North Carolina.
+  - **Pacific NW:** **Gonzaga** (Spokane).
+  - **North Carolina:** Duke ("would be amazing"), North Carolina, **UNC Asheville**.
+  - **Northeast:** **Boston College**.
   - **Other:** Baylor (TX), Northwestern (Chicago), Colorado.
   - **Ivy — NO GA spots** (no athletic scholarships): **Columbia** is
     networking/advice/possible-future-assistant only, NOT a GA target.
