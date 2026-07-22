@@ -31,6 +31,14 @@ computer-vision pipeline, the defensive dashboard, and the research. **Email-fir
 Ashton prefers email over LinkedIn/X DMs — default to finding/using email, not social
 DMs.** The WNBA staff-contact research and the coach-outreach campaign both exist to
 open these doors.
+
+**His email voice — MATCH IT (he is picky here):** warm, sincere, concise, a bit
+casual; never formal, salesy, or dash-heavy. Cold intros open "Hello Coach [Name], My
+name is Ashton Jantz…"; follow-ups open "Hey Coach [Name]," and stay short. He writes
+"I would love to," is relationship-first ("I'd love to learn from you and the staff and
+support the team"), and asks about a **volunteer / non-countable staff** analytics role.
+No em dashes or "·" separators anywhere. Simple signature: website, "Best,", name,
+phone/email. (Never claim SportsCode; he's open to learning/discussing it.)
 When suggesting work, optimize for *what makes a college staff or WNBA front office
 want to bring Ashton on — and for outreach that builds those connections.*
 
