@@ -121,6 +121,7 @@ export const REF_DIRECTORY: Record<string, RefInfo> = {
   "texas-tech-dobo": {"name": "Ashlee Villarreal", "school": "Texas Tech", "role": "DOBO"},
   "tulane-asst": {"name": "Shyan Mwai", "school": "Tulane", "role": "ASST"},
   "tulane-dobo": {"name": "Olivia Fouty", "school": "Tulane", "role": "DOBO"},
+  "twu-taylor-drake": {"name": "Taylor Drake", "school": "Texas Woman's University", "role": "ASST"},
   "ualbany-asst": {"name": "Jada Pierce", "school": "UAlbany", "role": "ASST"},
   "ualbany-dobo": {"name": "Philip Flory", "school": "UAlbany", "role": "DOBO"},
   "umbc-asst": {"name": "Reggie Daniels", "school": "UMBC", "role": "ASST"},
