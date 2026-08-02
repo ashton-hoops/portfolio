@@ -2018,5 +2018,15 @@
     "teamId": "299",
     "slug": "long-beach-state",
     "school": "Long Beach State"
+  },
+  {
+    "school": "North Texas",
+    "slug": "north-texas",
+    "teamId": "249"
+  },
+  {
+    "school": "Texas Woman's",
+    "slug": "twu",
+    "teamId": "d2-twu"
   }
 ]
